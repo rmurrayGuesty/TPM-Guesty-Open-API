@@ -1,0 +1,505 @@
+info:
+  name: Get conversations
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/communication/conversations?filters=<string>&fields=<string>&sort=<string>&limit=<integer>&cursorAfter=<string>&cursorBefore=<string>&conversation types=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: filters
+      value: <string>
+      type: query
+      description: |-
+        Array of filters to query by. 
+
+         **field**: Subject of the filter: `status`, `type`, `guest._id`, `owner._id`, `reservation._id`, `reservation.status`, `read`, `assignee._id`, `listing._id` 
+
+         **operator**: Enhanced MongoDB comparison operator: `$eq`, `$exists`, `$not`, `$contains`, `$notcontains`, `$gt`, `$lt`, `$between`, `$in`, `$nin` 
+
+         **value**: Value to filter by
+    - name: fields
+      value: <string>
+      type: query
+      description: Selection of fields, separated by space
+    - name: sort
+      value: <string>
+      type: query
+      description: "Sorting, default: `-createdAt`"
+    - name: limit
+      value: <integer>
+      type: query
+      description: "Pagination, max: 100, default is: `25`"
+    - name: cursorAfter
+      value: <string>
+      type: query
+      description: |-
+        Pagination cursor, default:`''`,
+
+         `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+
+         First request will require only limit parameter and in response you will get cursor object. 
+
+         Use `cursor.after` to send in query params `cursorAfter` parameter in order to move forward. 
+
+         Use `cursor.before` to send in query params `cursorBefore` parameter in order to move backwards. 
+
+         An empty string in after or before cursor in response will indicate that there is no more documents in this direction. 
+
+         If you sort buy something different than `createdAt`, please make sure include this parameter in fields, or you will get empty cursor. 
+
+         `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+    - name: cursorBefore
+      value: <string>
+      type: query
+      description: Pagination cursor, default:`null`
+    - name: conversation types
+      value: <string>
+      type: query
+      description: |-
+        The conversations API currently supports requests for guest conversations and owners conversations.
+
+        The filter field `type`(guest/ owner, guest by default) is required in order to determine the type of the returned conversations. (in contrast to the guest conversation, owner's contains owner's info)
+
+        Owners conversations do not support `airbnb2` module type, messages that sent with `platform` module type will be sent through Email. 
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: OK
+    request:
+      url: "{{baseUrl}}/communication/conversations?filters=<string>&fields=<string>&sort=<string>&limit=<integer>&cursorAfter=<string>&cursorBefore=<string>&conversation types=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: <string>
+          type: query
+          description: |-
+            Array of filters to query by. 
+
+             **field**: Subject of the filter: `status`, `type`, `guest._id`, `owner._id`, `reservation._id`, `reservation.status`, `read`, `assignee._id`, `listing._id` 
+
+             **operator**: Enhanced MongoDB comparison operator: `$eq`, `$exists`, `$not`, `$contains`, `$notcontains`, `$gt`, `$lt`, `$between`, `$in`, `$nin` 
+
+             **value**: Value to filter by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `-createdAt`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Pagination, max: 100, default is: `25`"
+        - name: cursorAfter
+          value: <string>
+          type: query
+          description: |-
+            Pagination cursor, default:`''`,
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+
+             First request will require only limit parameter and in response you will get cursor object. 
+
+             Use `cursor.after` to send in query params `cursorAfter` parameter in order to move forward. 
+
+             Use `cursor.before` to send in query params `cursorBefore` parameter in order to move backwards. 
+
+             An empty string in after or before cursor in response will indicate that there is no more documents in this direction. 
+
+             If you sort buy something different than `createdAt`, please make sure include this parameter in fields, or you will get empty cursor. 
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+        - name: cursorBefore
+          value: <string>
+          type: query
+          description: Pagination cursor, default:`null`
+        - name: conversation types
+          value: <string>
+          type: query
+          description: |-
+            The conversations API currently supports requests for guest conversations and owners conversations.
+
+            The filter field `type`(guest/ owner, guest by default) is required in order to determine the type of the returned conversations. (in contrast to the guest conversation, owner's contains owner's info)
+
+            Owners conversations do not support `airbnb2` module type, messages that sent with `platform` module type will be sent through Email. 
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Date
+          value: <string>
+        - name: Content-Type
+          value: <string>
+        - name: Transfer-Encoding
+          value: <string>
+        - name: Connection
+          value: <string>
+        - name: x-request-id
+          value: <string>
+        - name: x-transit-id
+          value: <string>
+        - name: X-DNS-Prefetch-Control
+          value: <string>
+        - name: X-Frame-Options
+          value: <string>
+        - name: Strict-Transport-Security
+          value: <string>
+        - name: X-Download-Options
+          value: <string>
+        - name: X-Content-Type-Options
+          value: <string>
+        - name: X-XSS-Protection
+          value: <string>
+        - name: ETag
+          value: <string>
+        - name: Vary
+          value: <string>
+        - name: Content-Encoding
+          value: <string>
+        - name: x-content-type
+          value: <string>
+        - name: x-permitted-cross-domain-policies
+          value: <string>
+      body:
+        type: json
+        data: |-
+          {
+            "status": "<number>",
+            "data": {
+              "count": "<number>",
+              "countUnread": "<number>",
+              "fields": "<string>",
+              "limit": "<number>",
+              "cursor": {
+                "after": "<string>",
+                "before": "<string>"
+              },
+              "conversations": [
+                {
+                  "_id": "<string>",
+                  "assignee": {
+                    "_id": "<string>"
+                  },
+                  "priority": "<number>",
+                  "meta": {
+                    "reservations": [
+                      {
+                        "_id": "<string>",
+                        "status": "<string>",
+                        "checkIn": "<string>",
+                        "checkOut": "<string>",
+                        "listing": {
+                          "tags": [
+                            "<string>",
+                            "<string>"
+                          ],
+                          "active": "<boolean>",
+                          "_id": "<string>",
+                          "picture": {
+                            "_id": "<string>",
+                            "thumbnail": "<string>"
+                          },
+                          "address": {
+                            "full": "<string>",
+                            "city": "<string>",
+                            "country": "<string>",
+                            "state": "<string>"
+                          },
+                          "nickname": "<string>",
+                          "title": "<string>"
+                        }
+                      },
+                      {
+                        "_id": "<string>",
+                        "status": "<string>",
+                        "checkIn": "<string>",
+                        "checkOut": "<string>",
+                        "listing": {
+                          "tags": [
+                            "<string>",
+                            "<string>"
+                          ],
+                          "active": "<boolean>",
+                          "_id": "<string>",
+                          "picture": {
+                            "_id": "<string>",
+                            "thumbnail": "<string>"
+                          },
+                          "address": {
+                            "full": "<string>",
+                            "city": "<string>",
+                            "country": "<string>",
+                            "state": "<string>"
+                          },
+                          "nickname": "<string>",
+                          "title": "<string>"
+                        }
+                      }
+                    ],
+                    "guest": {
+                      "_id": "<string>",
+                      "email": "<string>",
+                      "isReturning": "<boolean>"
+                    }
+                  },
+                  "accountId": "<string>",
+                  "createdAt": "<string>",
+                  "state": {
+                    "read": "<boolean>",
+                    "status": "<string>"
+                  }
+                },
+                {
+                  "_id": "<string>",
+                  "assignee": {
+                    "_id": "<string>"
+                  },
+                  "priority": "<number>",
+                  "meta": {
+                    "reservations": [
+                      {
+                        "_id": "<string>",
+                        "status": "<string>",
+                        "checkIn": "<string>",
+                        "checkOut": "<string>",
+                        "listing": {
+                          "tags": [
+                            "<string>",
+                            "<string>"
+                          ],
+                          "active": "<boolean>",
+                          "_id": "<string>",
+                          "picture": {
+                            "_id": "<string>",
+                            "thumbnail": "<string>"
+                          },
+                          "address": {
+                            "full": "<string>",
+                            "city": "<string>",
+                            "country": "<string>",
+                            "state": "<string>"
+                          },
+                          "nickname": "<string>",
+                          "title": "<string>"
+                        }
+                      },
+                      {
+                        "_id": "<string>",
+                        "status": "<string>",
+                        "checkIn": "<string>",
+                        "checkOut": "<string>",
+                        "listing": {
+                          "tags": [
+                            "<string>",
+                            "<string>"
+                          ],
+                          "active": "<boolean>",
+                          "_id": "<string>",
+                          "picture": {
+                            "_id": "<string>",
+                            "thumbnail": "<string>"
+                          },
+                          "address": {
+                            "full": "<string>",
+                            "city": "<string>",
+                            "country": "<string>",
+                            "state": "<string>"
+                          },
+                          "nickname": "<string>",
+                          "title": "<string>"
+                        }
+                      }
+                    ],
+                    "guest": {
+                      "_id": "<string>",
+                      "email": "<string>",
+                      "isReturning": "<boolean>"
+                    }
+                  },
+                  "accountId": "<string>",
+                  "createdAt": "<string>",
+                  "state": {
+                    "read": "<boolean>",
+                    "status": "<string>"
+                  }
+                }
+              ]
+            }
+          }
+  - name: Conversations not found
+    request:
+      url: "{{baseUrl}}/communication/conversations?filters=<string>&fields=<string>&sort=<string>&limit=<integer>&cursorAfter=<string>&cursorBefore=<string>&conversation types=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: <string>
+          type: query
+          description: |-
+            Array of filters to query by. 
+
+             **field**: Subject of the filter: `status`, `type`, `guest._id`, `owner._id`, `reservation._id`, `reservation.status`, `read`, `assignee._id`, `listing._id` 
+
+             **operator**: Enhanced MongoDB comparison operator: `$eq`, `$exists`, `$not`, `$contains`, `$notcontains`, `$gt`, `$lt`, `$between`, `$in`, `$nin` 
+
+             **value**: Value to filter by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `-createdAt`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Pagination, max: 100, default is: `25`"
+        - name: cursorAfter
+          value: <string>
+          type: query
+          description: |-
+            Pagination cursor, default:`''`,
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+
+             First request will require only limit parameter and in response you will get cursor object. 
+
+             Use `cursor.after` to send in query params `cursorAfter` parameter in order to move forward. 
+
+             Use `cursor.before` to send in query params `cursorBefore` parameter in order to move backwards. 
+
+             An empty string in after or before cursor in response will indicate that there is no more documents in this direction. 
+
+             If you sort buy something different than `createdAt`, please make sure include this parameter in fields, or you will get empty cursor. 
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+        - name: cursorBefore
+          value: <string>
+          type: query
+          description: Pagination cursor, default:`null`
+        - name: conversation types
+          value: <string>
+          type: query
+          description: |-
+            The conversations API currently supports requests for guest conversations and owners conversations.
+
+            The filter field `type`(guest/ owner, guest by default) is required in order to determine the type of the returned conversations. (in contrast to the guest conversation, owner's contains owner's info)
+
+            Owners conversations do not support `airbnb2` module type, messages that sent with `platform` module type will be sent through Email. 
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+  - name: Internal Server Error
+    request:
+      url: "{{baseUrl}}/communication/conversations?filters=<string>&fields=<string>&sort=<string>&limit=<integer>&cursorAfter=<string>&cursorBefore=<string>&conversation types=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: <string>
+          type: query
+          description: |-
+            Array of filters to query by. 
+
+             **field**: Subject of the filter: `status`, `type`, `guest._id`, `owner._id`, `reservation._id`, `reservation.status`, `read`, `assignee._id`, `listing._id` 
+
+             **operator**: Enhanced MongoDB comparison operator: `$eq`, `$exists`, `$not`, `$contains`, `$notcontains`, `$gt`, `$lt`, `$between`, `$in`, `$nin` 
+
+             **value**: Value to filter by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `-createdAt`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Pagination, max: 100, default is: `25`"
+        - name: cursorAfter
+          value: <string>
+          type: query
+          description: |-
+            Pagination cursor, default:`''`,
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+
+             First request will require only limit parameter and in response you will get cursor object. 
+
+             Use `cursor.after` to send in query params `cursorAfter` parameter in order to move forward. 
+
+             Use `cursor.before` to send in query params `cursorBefore` parameter in order to move backwards. 
+
+             An empty string in after or before cursor in response will indicate that there is no more documents in this direction. 
+
+             If you sort buy something different than `createdAt`, please make sure include this parameter in fields, or you will get empty cursor. 
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+        - name: cursorBefore
+          value: <string>
+          type: query
+          description: Pagination cursor, default:`null`
+        - name: conversation types
+          value: <string>
+          type: query
+          description: |-
+            The conversations API currently supports requests for guest conversations and owners conversations.
+
+            The filter field `type`(guest/ owner, guest by default) is required in order to determine the type of the returned conversations. (in contrast to the guest conversation, owner's contains owner's info)
+
+            Owners conversations do not support `airbnb2` module type, messages that sent with `platform` module type will be sent through Email. 
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>"
+            }
+          }
+
+docs: Get conversations

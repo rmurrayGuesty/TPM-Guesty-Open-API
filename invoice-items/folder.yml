@@ -1,0 +1,7 @@
+info:
+  name: invoice-items
+  type: folder
+  seq: 38
+
+request:
+  auth: inherit

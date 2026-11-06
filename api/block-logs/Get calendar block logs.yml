@@ -1,0 +1,341 @@
+info:
+  name: Get calendar block logs
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/block-logs?listingId=<string>&userName=<string>&startDate=<string>&endDate=<string>&blockType=preparation_time&eventType=updated"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: listingId
+      value: <string>
+      type: query
+      description: Filters the logs by the Guesty listing ID.
+    - name: userName
+      value: <string>
+      type: query
+      description: Filter logs based on the user who created the block.
+    - name: startDate
+      value: <string>
+      type: query
+      description: Filter logs based on the block's start date.
+    - name: endDate
+      value: <string>
+      type: query
+      description: Filter logs based on the block's end date.
+    - name: blockType
+      value: preparation_time
+      type: query
+      description: Filters logs by the type of block (manual or preparation_time).
+    - name: eventType
+      value: updated
+      type: query
+      description: Filters logs by the event type (created, updated, removed).
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The record has been successfully fetched
+    request:
+      url: "{{baseUrl}}/api/block-logs?listingId=<string>&userName=<string>&startDate=<string>&endDate=<string>&blockType=preparation_time&eventType=updated"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: <string>
+          type: query
+          description: Filters the logs by the Guesty listing ID.
+        - name: userName
+          value: <string>
+          type: query
+          description: Filter logs based on the user who created the block.
+        - name: startDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's start date.
+        - name: endDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's end date.
+        - name: blockType
+          value: preparation_time
+          type: query
+          description: Filters logs by the type of block (manual or preparation_time).
+        - name: eventType
+          value: updated
+          type: query
+          description: Filters logs by the event type (created, updated, removed).
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "data": [
+                {
+                  "propertyName": "<string>",
+                  "userName": "<string>",
+                  "startDate": "<string>",
+                  "endDate": "<string>",
+                  "blockType": "<string>",
+                  "eventType": "BLOCK_REMOVED",
+                  "note": "<string>",
+                  "reason": "Emergency out of order",
+                  "doneAt": "<string>"
+                },
+                {
+                  "propertyName": "<string>",
+                  "userName": "<string>",
+                  "startDate": "<string>",
+                  "endDate": "<string>",
+                  "blockType": "<string>",
+                  "eventType": "BLOCK_REMOVED",
+                  "note": "<string>",
+                  "reason": "Offboarded",
+                  "doneAt": "<string>"
+                }
+              ]
+            },
+            {
+              "data": [
+                {
+                  "propertyName": "<string>",
+                  "userName": "<string>",
+                  "startDate": "<string>",
+                  "endDate": "<string>",
+                  "blockType": "<string>",
+                  "eventType": "BLOCK_UPDATED",
+                  "note": "<string>",
+                  "reason": "Deactivated",
+                  "doneAt": "<string>"
+                },
+                {
+                  "propertyName": "<string>",
+                  "userName": "<string>",
+                  "startDate": "<string>",
+                  "endDate": "<string>",
+                  "blockType": "<string>",
+                  "eventType": "BLOCK_CREATED",
+                  "note": "<string>",
+                  "reason": "Other",
+                  "doneAt": "<string>"
+                }
+              ]
+            }
+          ]
+  - name: Bad Request - Invalid parameters
+    request:
+      url: "{{baseUrl}}/api/block-logs?listingId=<string>&userName=<string>&startDate=<string>&endDate=<string>&blockType=preparation_time&eventType=updated"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: <string>
+          type: query
+          description: Filters the logs by the Guesty listing ID.
+        - name: userName
+          value: <string>
+          type: query
+          description: Filter logs based on the user who created the block.
+        - name: startDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's start date.
+        - name: endDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's end date.
+        - name: blockType
+          value: preparation_time
+          type: query
+          description: Filters logs by the type of block (manual or preparation_time).
+        - name: eventType
+          value: updated
+          type: query
+          description: Filters logs by the event type (created, updated, removed).
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Unauthorized - Authentication failed
+    request:
+      url: "{{baseUrl}}/api/block-logs?listingId=<string>&userName=<string>&startDate=<string>&endDate=<string>&blockType=preparation_time&eventType=updated"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: <string>
+          type: query
+          description: Filters the logs by the Guesty listing ID.
+        - name: userName
+          value: <string>
+          type: query
+          description: Filter logs based on the user who created the block.
+        - name: startDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's start date.
+        - name: endDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's end date.
+        - name: blockType
+          value: preparation_time
+          type: query
+          description: Filters logs by the type of block (manual or preparation_time).
+        - name: eventType
+          value: updated
+          type: query
+          description: Filters logs by the event type (created, updated, removed).
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Forbidden - Insufficient permissions
+    request:
+      url: "{{baseUrl}}/api/block-logs?listingId=<string>&userName=<string>&startDate=<string>&endDate=<string>&blockType=preparation_time&eventType=updated"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: <string>
+          type: query
+          description: Filters the logs by the Guesty listing ID.
+        - name: userName
+          value: <string>
+          type: query
+          description: Filter logs based on the user who created the block.
+        - name: startDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's start date.
+        - name: endDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's end date.
+        - name: blockType
+          value: preparation_time
+          type: query
+          description: Filters logs by the type of block (manual or preparation_time).
+        - name: eventType
+          value: updated
+          type: query
+          description: Filters logs by the event type (created, updated, removed).
+    response:
+      status: 403
+      statusText: Forbidden
+      body:
+        type: text
+        data: ""
+  - name: No block logs found for this listing
+    request:
+      url: "{{baseUrl}}/api/block-logs?listingId=<string>&userName=<string>&startDate=<string>&endDate=<string>&blockType=preparation_time&eventType=updated"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: <string>
+          type: query
+          description: Filters the logs by the Guesty listing ID.
+        - name: userName
+          value: <string>
+          type: query
+          description: Filter logs based on the user who created the block.
+        - name: startDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's start date.
+        - name: endDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's end date.
+        - name: blockType
+          value: preparation_time
+          type: query
+          description: Filters logs by the type of block (manual or preparation_time).
+        - name: eventType
+          value: updated
+          type: query
+          description: Filters logs by the event type (created, updated, removed).
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+  - name: Internal Server Error
+    request:
+      url: "{{baseUrl}}/api/block-logs?listingId=<string>&userName=<string>&startDate=<string>&endDate=<string>&blockType=preparation_time&eventType=updated"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: <string>
+          type: query
+          description: Filters the logs by the Guesty listing ID.
+        - name: userName
+          value: <string>
+          type: query
+          description: Filter logs based on the user who created the block.
+        - name: startDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's start date.
+        - name: endDate
+          value: <string>
+          type: query
+          description: Filter logs based on the block's end date.
+        - name: blockType
+          value: preparation_time
+          type: query
+          description: Filters logs by the type of block (manual or preparation_time).
+        - name: eventType
+          value: updated
+          type: query
+          description: Filters logs by the event type (created, updated, removed).
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Retrieves a list of block logs based on the specified filters.

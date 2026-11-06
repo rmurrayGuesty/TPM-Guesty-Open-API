@@ -1,0 +1,48 @@
+info:
+  name: Authentication
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: https://open-api.guesty.com/oauth2/token
+  headers:
+    - name: Content-Type
+      value: application/x-www-form-urlencoded
+    - name: Accept
+      value: application/json
+    - name: ""
+      value: ""
+  body:
+    type: form-urlencoded
+    data:
+      - name: grant_type
+        value: client_credentials
+  auth:
+    type: basic
+    username: "{{client_Id}}"
+    password: "{{client_Secret}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // not possible to save token auto to secrets
+
+        // Check if the response was successful
+        //if (res.status === 200) {
+          // If your token is nested in a JSON object (e.g., { "access_token": "ey..." })
+        //  const token = res.body.access_token; 
+          
+          // Save it to the active environment
+        //  bru.setEnvVar("bearer", token);
+        // }
+
+        // setSecretVar() doesn't exist
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

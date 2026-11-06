@@ -1,0 +1,248 @@
+info:
+  name: Get list of additional fees for account
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/additional-fees/account"
+  headers:
+    - name: Accept
+      value: application/json; charset=utf-8
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: List of additional fees configured on account level
+    request:
+      url: "{{baseUrl}}/additional-fees/account"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json; charset=utf-8
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json; charset=utf-8
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "name": "<string>",
+              "type": "RESORT",
+              "value": "<integer>",
+              "targetFee": "CLEANING_FEE",
+              "automationSources": [
+                "<string>",
+                "<string>"
+              ],
+              "automationPlatforms": [
+                "bookingPal",
+                "expedia"
+              ],
+              "RUSources": [
+                "homeAway",
+                "homeAway"
+              ],
+              "allSources": "<boolean>",
+              "isDeducted": "<boolean>",
+              "isBundled": "<boolean>",
+              "allPlatforms": "<boolean>",
+              "allRUSources": "<boolean>",
+              "isAutomated": "<boolean>",
+              "isPercentage": "<boolean>",
+              "multiplier": "PER_GUEST_PER_NIGHT",
+              "isSyncToSupportedChannelsEnabled": "<boolean>",
+              "deductedConfiguration": {
+                "isApplyToAll": "<boolean>",
+                "sources": [
+                  "<string>",
+                  "<string>"
+                ],
+                "channels": [
+                  "<string>",
+                  "<string>"
+                ]
+              },
+              "channelConfigurations": [
+                {
+                  "channel": "<string>",
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "isEnabled": "<boolean>",
+                  "type": "<string>",
+                  "multiplier": "PER_STAY",
+                  "targetFee": "ACCOMMODATION_FARE",
+                  "isBundled": "<boolean>"
+                },
+                {
+                  "channel": "<string>",
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "isEnabled": "<boolean>",
+                  "type": "<string>",
+                  "multiplier": "PER_GUEST",
+                  "targetFee": "ACCOMMODATION_FARE",
+                  "isBundled": "<boolean>"
+                }
+              ],
+              "sourcesConfigurations": [
+                {
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "sources": [
+                    "<string>"
+                  ],
+                  "type": "MEET_AND_GREET",
+                  "multiplier": "PER_STAY",
+                  "targetFee": "PAYOUT",
+                  "isBundled": "<boolean>"
+                },
+                {
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "sources": [
+                    "<string>"
+                  ],
+                  "type": "RESORT",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "targetFee": "PAYOUT",
+                  "isBundled": "<boolean>"
+                }
+              ],
+              "isUpsell": "<boolean>",
+              "upsell": {
+                "description": "<string>",
+                "images": [
+                  {
+                    "url": "<string>",
+                    "fileName": "<string>"
+                  }
+                ]
+              }
+            },
+            {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "name": "<string>",
+              "type": "BABY_BED",
+              "value": "<integer>",
+              "targetFee": "ACCOMMODATION_FARE",
+              "automationSources": [
+                "<string>",
+                "<string>"
+              ],
+              "automationPlatforms": [
+                "airbnb",
+                "expedia"
+              ],
+              "RUSources": [
+                "hostelworld",
+                "hostelworld"
+              ],
+              "allSources": "<boolean>",
+              "isDeducted": "<boolean>",
+              "isBundled": "<boolean>",
+              "allPlatforms": "<boolean>",
+              "allRUSources": "<boolean>",
+              "isAutomated": "<boolean>",
+              "isPercentage": "<boolean>",
+              "multiplier": "PER_GUEST",
+              "isSyncToSupportedChannelsEnabled": "<boolean>",
+              "deductedConfiguration": {
+                "isApplyToAll": "<boolean>",
+                "sources": [
+                  "<string>",
+                  "<string>"
+                ],
+                "channels": [
+                  "<string>",
+                  "<string>"
+                ]
+              },
+              "channelConfigurations": [
+                {
+                  "channel": "<string>",
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "isEnabled": "<boolean>",
+                  "type": "<string>",
+                  "multiplier": "PER_STAY",
+                  "targetFee": "ACCOMMODATION_FARE",
+                  "isBundled": "<boolean>"
+                },
+                {
+                  "channel": "<string>",
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "isEnabled": "<boolean>",
+                  "type": "<string>",
+                  "multiplier": "PER_NIGHT",
+                  "targetFee": "PAYOUT",
+                  "isBundled": "<boolean>"
+                }
+              ],
+              "sourcesConfigurations": [
+                {
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "sources": [
+                    "<string>"
+                  ],
+                  "type": "CLUB_CARD",
+                  "multiplier": "PER_GUEST",
+                  "targetFee": "ACCOMMODATION_FARE",
+                  "isBundled": "<boolean>"
+                },
+                {
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "sources": [
+                    "<string>"
+                  ],
+                  "type": "GIFT_BASKET",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "targetFee": "PAYOUT",
+                  "isBundled": "<boolean>"
+                }
+              ],
+              "isUpsell": "<boolean>",
+              "upsell": {
+                "description": "<string>",
+                "images": [
+                  {
+                    "url": "<string>",
+                    "fileName": "<string>"
+                  }
+                ]
+              }
+            }
+          ]
+  - name: Invalid input
+    request:
+      url: "{{baseUrl}}/additional-fees/account"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""

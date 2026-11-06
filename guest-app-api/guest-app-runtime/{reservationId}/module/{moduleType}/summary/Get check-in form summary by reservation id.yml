@@ -1,0 +1,104 @@
+info:
+  name: Get check-in form summary by reservation id
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/guest-app-api/guest-app-runtime/:reservationId/module/:moduleType/summary"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: reservationId
+      value: <string>
+      type: path
+      description: (Required) Reservation id
+    - name: moduleType
+      value: check_in
+      type: path
+      description: (Required) Module type
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Details of check-in form summary file
+    request:
+      url: "{{baseUrl}}/guest-app-api/guest-app-runtime/:reservationId/module/:moduleType/summary"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+        - name: moduleType
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "url": "<string>",
+            "fileName": "<string>"
+          }
+  - name: Can not pull details, unauthorized
+    request:
+      url: "{{baseUrl}}/guest-app-api/guest-app-runtime/:reservationId/module/:moduleType/summary"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+        - name: moduleType
+          value: ""
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Check-in form summary not found
+    request:
+      url: "{{baseUrl}}/guest-app-api/guest-app-runtime/:reservationId/module/:moduleType/summary"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+        - name: moduleType
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+
+docs: Get url and filename of the check-in form summary. Url is valid for 1 hour.

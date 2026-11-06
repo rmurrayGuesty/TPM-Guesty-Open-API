@@ -1,0 +1,7 @@
+info:
+  name: light-business-models
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit

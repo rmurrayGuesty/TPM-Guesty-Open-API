@@ -1,0 +1,7 @@
+info:
+  name: price-adjustments
+  type: folder
+  seq: 35
+
+request:
+  auth: inherit

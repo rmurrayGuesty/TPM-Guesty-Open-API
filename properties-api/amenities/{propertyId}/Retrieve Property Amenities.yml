@@ -1,0 +1,121 @@
+info:
+  name: Retrieve Property Amenities
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/properties-api/amenities/:propertyId"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: propertyId
+      value: <string>
+      type: path
+      description: (Required) The id of the property to retrieve a list of amenities
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Return the list of amenities assigned to specific property
+    request:
+      url: "{{baseUrl}}/properties-api/amenities/:propertyId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "propertyId": "<string>",
+            "amenities": [
+              "<string>",
+              "<string>"
+            ],
+            "otherAmenities": [
+              "<string>",
+              "<string>"
+            ]
+          }
+  - name: Unauthorized Request
+    request:
+      url: "{{baseUrl}}/properties-api/amenities/:propertyId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Amenities not found
+    request:
+      url: "{{baseUrl}}/properties-api/amenities/:propertyId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>",
+              "data": "<string>"
+            }
+          }
+
+docs: Retrieve a property's amenities.

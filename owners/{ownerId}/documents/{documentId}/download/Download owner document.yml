@@ -1,0 +1,131 @@
+info:
+  name: Download owner document
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/owners/:ownerId/documents/:documentId/download"
+  headers:
+    - name: Accept
+      value: application/pdf
+  params:
+    - name: ownerId
+      value: <string>
+      type: path
+      description: (Required) Owner id
+    - name: documentId
+      value: <string>
+      type: path
+      description: (Required) Document id
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Owner document
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents/:documentId/download"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/pdf
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+        - name: documentId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/pdf
+      body:
+        type: text
+        data: <binary>
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents/:documentId/download"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+        - name: documentId
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Not found
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents/:documentId/download"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+        - name: documentId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents/:documentId/download"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+        - name: documentId
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Download owner document

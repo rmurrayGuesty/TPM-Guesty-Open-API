@@ -1,0 +1,309 @@
+info:
+  name: Update existing additional fee
+  type: http
+  seq: 1
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/additional-fees/:id"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json; charset=utf-8
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) id of item to update
+  body:
+    type: json
+    data: |-
+      {
+        "name": "<string>",
+        "type": "TRANSFER",
+        "value": "<integer>",
+        "isPercentage": "<boolean>",
+        "targetFee": "CLEANING_FEE",
+        "multiplier": "PER_STAY",
+        "isSyncToSupportedChannelsEnabled": "<boolean>",
+        "isAutomated": "<boolean>",
+        "allPlatforms": "<boolean>",
+        "automationPlatforms": [
+          "agoda",
+          "bookingPal"
+        ],
+        "allSources": "<boolean>",
+        "automationSources": [
+          "<string>",
+          "<string>"
+        ],
+        "allRUSources": "<boolean>",
+        "RUSources": [
+          "expedia",
+          "expedia"
+        ],
+        "isDeducted": "<boolean>",
+        "isBundled": "<boolean>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Updated additional fee item
+    request:
+      url: "{{baseUrl}}/additional-fees/:id"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json; charset=utf-8
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "TRANSFER",
+            "value": "<integer>",
+            "isPercentage": "<boolean>",
+            "targetFee": "CLEANING_FEE",
+            "multiplier": "PER_STAY",
+            "isSyncToSupportedChannelsEnabled": "<boolean>",
+            "isAutomated": "<boolean>",
+            "allPlatforms": "<boolean>",
+            "automationPlatforms": [
+              "agoda",
+              "bookingPal"
+            ],
+            "allSources": "<boolean>",
+            "automationSources": [
+              "<string>",
+              "<string>"
+            ],
+            "allRUSources": "<boolean>",
+            "RUSources": [
+              "expedia",
+              "expedia"
+            ],
+            "isDeducted": "<boolean>",
+            "isBundled": "<boolean>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json; charset=utf-8
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "name": "<string>",
+            "type": "RESERVATION_FEE",
+            "value": "<integer>",
+            "targetFee": "ACCOMMODATION_FARE",
+            "automationSources": [
+              "<string>",
+              "<string>"
+            ],
+            "automationPlatforms": [
+              "agoda",
+              "agoda"
+            ],
+            "RUSources": [
+              "expedia",
+              "homeAway"
+            ],
+            "allSources": "<boolean>",
+            "isDeducted": "<boolean>",
+            "isBundled": "<boolean>",
+            "allPlatforms": "<boolean>",
+            "allRUSources": "<boolean>",
+            "isAutomated": "<boolean>",
+            "isPercentage": "<boolean>",
+            "multiplier": "PER_GUEST",
+            "isSyncToSupportedChannelsEnabled": "<boolean>",
+            "deductedConfiguration": {
+              "isApplyToAll": "<boolean>",
+              "sources": [
+                "<string>",
+                "<string>"
+              ],
+              "channels": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "channelConfigurations": [
+              {
+                "channel": "<string>",
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "isEnabled": "<boolean>",
+                "type": "<string>",
+                "multiplier": "PER_GUEST_PER_NIGHT",
+                "targetFee": "ACCOMMODATION_FARE",
+                "isBundled": "<boolean>"
+              },
+              {
+                "channel": "<string>",
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "isEnabled": "<boolean>",
+                "type": "<string>",
+                "multiplier": "PER_NIGHT",
+                "targetFee": "PAYOUT",
+                "isBundled": "<boolean>"
+              }
+            ],
+            "sourcesConfigurations": [
+              {
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "sources": [
+                  "<string>"
+                ],
+                "type": "BEVERAGE",
+                "multiplier": "PER_GUEST_PER_NIGHT",
+                "targetFee": "ACCOMMODATION_FARE",
+                "isBundled": "<boolean>"
+              },
+              {
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "sources": [
+                  "<string>"
+                ],
+                "type": "EARLY_CHECK_IN",
+                "multiplier": "PER_STAY",
+                "targetFee": "CLEANING_FEE",
+                "isBundled": "<boolean>"
+              }
+            ],
+            "isUpsell": "<boolean>",
+            "upsell": {
+              "description": "<string>",
+              "images": [
+                {
+                  "url": "<string>",
+                  "fileName": "<string>"
+                }
+              ]
+            }
+          }
+  - name: Invalid input
+    request:
+      url: "{{baseUrl}}/additional-fees/:id"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "TRANSFER",
+            "value": "<integer>",
+            "isPercentage": "<boolean>",
+            "targetFee": "CLEANING_FEE",
+            "multiplier": "PER_STAY",
+            "isSyncToSupportedChannelsEnabled": "<boolean>",
+            "isAutomated": "<boolean>",
+            "allPlatforms": "<boolean>",
+            "automationPlatforms": [
+              "agoda",
+              "bookingPal"
+            ],
+            "allSources": "<boolean>",
+            "automationSources": [
+              "<string>",
+              "<string>"
+            ],
+            "allRUSources": "<boolean>",
+            "RUSources": [
+              "expedia",
+              "expedia"
+            ],
+            "isDeducted": "<boolean>",
+            "isBundled": "<boolean>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Not found
+    request:
+      url: "{{baseUrl}}/additional-fees/:id"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "TRANSFER",
+            "value": "<integer>",
+            "isPercentage": "<boolean>",
+            "targetFee": "CLEANING_FEE",
+            "multiplier": "PER_STAY",
+            "isSyncToSupportedChannelsEnabled": "<boolean>",
+            "isAutomated": "<boolean>",
+            "allPlatforms": "<boolean>",
+            "automationPlatforms": [
+              "agoda",
+              "bookingPal"
+            ],
+            "allSources": "<boolean>",
+            "automationSources": [
+              "<string>",
+              "<string>"
+            ],
+            "allRUSources": "<boolean>",
+            "RUSources": [
+              "expedia",
+              "expedia"
+            ],
+            "isDeducted": "<boolean>",
+            "isBundled": "<boolean>"
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""

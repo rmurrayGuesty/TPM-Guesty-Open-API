@@ -1,0 +1,87 @@
+info:
+  name: Get all total amount price adjustments for a reservation
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/price-adjustments/total-amount/:id"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: "(Required) "
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: All total amount price adjustments for the reservation.
+    request:
+      url: "{{baseUrl}}/price-adjustments/total-amount/:id"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "_id": {},
+              "reservationId": {},
+              "accountId": {},
+              "amount": "<number>",
+              "normalType": "<string>",
+              "creationMethod": "<string>",
+              "type": "<string>",
+              "userName": "<string>",
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>",
+              "secondIdentifier": "<string>",
+              "description": "<string>",
+              "attributedAt": "<dateTime>",
+              "adjustmentFlow": "<string>",
+              "sourceName": "<string>"
+            },
+            {
+              "_id": {},
+              "reservationId": {},
+              "accountId": {},
+              "amount": "<number>",
+              "normalType": "<string>",
+              "creationMethod": "<string>",
+              "type": "<string>",
+              "userName": "<string>",
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>",
+              "secondIdentifier": "<string>",
+              "description": "<string>",
+              "attributedAt": "<dateTime>",
+              "adjustmentFlow": "<string>",
+              "sourceName": "<string>"
+            }
+          ]
+
+docs: Get all total amount price adjustments for a reservation

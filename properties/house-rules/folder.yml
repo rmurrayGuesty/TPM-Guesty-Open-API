@@ -1,0 +1,7 @@
+info:
+  name: house-rules
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit

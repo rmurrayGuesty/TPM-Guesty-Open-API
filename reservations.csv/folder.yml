@@ -1,0 +1,7 @@
+info:
+  name: reservations.csv
+  type: folder
+  seq: 13
+
+request:
+  auth: inherit

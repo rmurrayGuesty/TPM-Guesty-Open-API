@@ -1,0 +1,190 @@
+info:
+  name: Create a group reservation
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/reservations-v3/group"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "quoteAndRatePlanIds": [
+          {
+            "quoteId": "<string>",
+            "ratePlanId": "<string>",
+            "status": "confirmed",
+            "booker": {
+              "_id": "<string>",
+              "fullName": "<string>"
+            }
+          },
+          {
+            "quoteId": "<string>",
+            "ratePlanId": "<string>",
+            "status": "reserved",
+            "booker": {
+              "_id": "<string>",
+              "fullName": "<string>"
+            }
+          }
+        ],
+        "name": "<string>",
+        "source": "<string>",
+        "status": "closed",
+        "reservedUntil": 24,
+        "note": "<string>",
+        "groupBooker": {
+          "_id": "<string>",
+          "fullName": "<string>"
+        },
+        "coupons": [
+          "<string>",
+          "<string>"
+        ],
+        "chargeMethod": "PER_GROUP"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The group reservation has been created successfuly
+    request:
+      url: "{{baseUrl}}/reservations-v3/group"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "quoteAndRatePlanIds": [
+              {
+                "quoteId": "<string>",
+                "ratePlanId": "<string>",
+                "status": "confirmed",
+                "booker": {
+                  "_id": "<string>",
+                  "fullName": "<string>"
+                }
+              },
+              {
+                "quoteId": "<string>",
+                "ratePlanId": "<string>",
+                "status": "reserved",
+                "booker": {
+                  "_id": "<string>",
+                  "fullName": "<string>"
+                }
+              }
+            ],
+            "name": "<string>",
+            "source": "<string>",
+            "status": "closed",
+            "reservedUntil": 24,
+            "note": "<string>",
+            "groupBooker": {
+              "_id": "<string>",
+              "fullName": "<string>"
+            },
+            "coupons": [
+              "<string>",
+              "<string>"
+            ],
+            "chargeMethod": "PER_GROUP"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": {},
+            "accountId": {},
+            "platform": "<string>",
+            "name": "<string>",
+            "source": "<string>",
+            "createdAt": "<dateTime>",
+            "note": "<string>",
+            "confirmationCode": "<string>",
+            "bookerId": "<string>"
+          }
+  - name: Group reservation creating failed
+    request:
+      url: "{{baseUrl}}/reservations-v3/group"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "quoteAndRatePlanIds": [
+              {
+                "quoteId": "<string>",
+                "ratePlanId": "<string>",
+                "status": "confirmed",
+                "booker": {
+                  "_id": "<string>",
+                  "fullName": "<string>"
+                }
+              },
+              {
+                "quoteId": "<string>",
+                "ratePlanId": "<string>",
+                "status": "reserved",
+                "booker": {
+                  "_id": "<string>",
+                  "fullName": "<string>"
+                }
+              }
+            ],
+            "name": "<string>",
+            "source": "<string>",
+            "status": "closed",
+            "reservedUntil": 24,
+            "note": "<string>",
+            "groupBooker": {
+              "_id": "<string>",
+              "fullName": "<string>"
+            },
+            "coupons": [
+              "<string>",
+              "<string>"
+            ],
+            "chargeMethod": "PER_GROUP"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: This endpoint allows the creation of a group reservation, based on an array of quotes

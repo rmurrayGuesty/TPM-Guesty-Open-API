@@ -1,0 +1,122 @@
+info:
+  name: "[Beta] Retrieve a list of supported languages for specific listing"
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/marketing/languages/:id"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) The listing ID whose languages you wish to retrieve or upsert
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Return a list of languages
+    request:
+      url: "{{baseUrl}}/marketing/languages/:id"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "name": "<string>",
+              "slug": "<string>",
+              "active": "<boolean>"
+            },
+            {
+              "name": "<string>",
+              "slug": "<string>",
+              "active": "<boolean>"
+            }
+          ]
+  - name: Unauthorized Request.
+    request:
+      url: "{{baseUrl}}/marketing/languages/:id"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/marketing/languages/:id"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>",
+              "data": "<string>"
+            }
+          }
+
+docs: Retrieve a list of supported languages for specific listing by listing id

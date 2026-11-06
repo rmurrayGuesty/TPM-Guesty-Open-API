@@ -1,0 +1,321 @@
+info:
+  name: Update Complex Address
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/address/:id/update/complex"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) The Guesty ID of the complex for which you would like to edit the address.
+  body:
+    type: json
+    data: |-
+      {
+        "address": {
+          "location": {
+            "lat": "<number>",
+            "lng": "<number>"
+          },
+          "full": "<string>",
+          "apartment": "<string>",
+          "city": "<string>",
+          "country": "<string>",
+          "county": "<string>",
+          "floor": "<string>",
+          "unitNumber": "<string>",
+          "neighborhood": "<string>",
+          "searchable": "<string>",
+          "state": "<string>",
+          "street": "<string>",
+          "zipcode": "<string>",
+          "buildingName": "<string>"
+        },
+        "publishedAddress": {
+          "location": {
+            "lat": "<number>",
+            "lng": "<number>"
+          },
+          "full": "<string>",
+          "apartment": "<string>",
+          "city": "<string>",
+          "country": "<string>",
+          "county": "<string>",
+          "floor": "<string>",
+          "unitNumber": "<string>",
+          "neighborhood": "<string>",
+          "searchable": "<string>",
+          "state": "<string>",
+          "street": "<string>",
+          "zipcode": "<string>",
+          "buildingName": "<string>"
+        },
+        "isPublishedAddressEnabled": "<boolean>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Return updated complex addresses.
+    request:
+      url: "{{baseUrl}}/address/:id/update/complex"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "address": {
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "full": "<string>",
+              "apartment": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "county": "<string>",
+              "floor": "<string>",
+              "unitNumber": "<string>",
+              "neighborhood": "<string>",
+              "searchable": "<string>",
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>",
+              "buildingName": "<string>"
+            },
+            "publishedAddress": {
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "full": "<string>",
+              "apartment": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "county": "<string>",
+              "floor": "<string>",
+              "unitNumber": "<string>",
+              "neighborhood": "<string>",
+              "searchable": "<string>",
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>",
+              "buildingName": "<string>"
+            },
+            "isPublishedAddressEnabled": "<boolean>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "address": {
+              "full": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>"
+            },
+            "publishedAddress": {
+              "full": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>"
+            },
+            "isPublishedAddressEnabled": "<boolean>"
+          }
+  - name: Unauthorized Request.
+    request:
+      url: "{{baseUrl}}/address/:id/update/complex"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "address": {
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "full": "<string>",
+              "apartment": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "county": "<string>",
+              "floor": "<string>",
+              "unitNumber": "<string>",
+              "neighborhood": "<string>",
+              "searchable": "<string>",
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>",
+              "buildingName": "<string>"
+            },
+            "publishedAddress": {
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "full": "<string>",
+              "apartment": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "county": "<string>",
+              "floor": "<string>",
+              "unitNumber": "<string>",
+              "neighborhood": "<string>",
+              "searchable": "<string>",
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>",
+              "buildingName": "<string>"
+            },
+            "isPublishedAddressEnabled": "<boolean>"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Address not found.
+    request:
+      url: "{{baseUrl}}/address/:id/update/complex"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "address": {
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "full": "<string>",
+              "apartment": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "county": "<string>",
+              "floor": "<string>",
+              "unitNumber": "<string>",
+              "neighborhood": "<string>",
+              "searchable": "<string>",
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>",
+              "buildingName": "<string>"
+            },
+            "publishedAddress": {
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "full": "<string>",
+              "apartment": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "county": "<string>",
+              "floor": "<string>",
+              "unitNumber": "<string>",
+              "neighborhood": "<string>",
+              "searchable": "<string>",
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>",
+              "buildingName": "<string>"
+            },
+            "isPublishedAddressEnabled": "<boolean>"
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>",
+              "data": "<string>"
+            }
+          }
+
+docs: Edit a complex's address. All children will be updated too.

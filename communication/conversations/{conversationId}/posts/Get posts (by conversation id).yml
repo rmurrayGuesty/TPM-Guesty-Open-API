@@ -1,0 +1,277 @@
+info:
+  name: Get posts (by conversation id)
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/communication/conversations/:conversationId/posts?sort=<string>&cursorAfter=<string>&cursorBefore=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: sort
+      value: <string>
+      type: query
+      description: "Sorting, default: `-createdAt` "
+    - name: cursorAfter
+      value: <string>
+      type: query
+      description: |-
+        Pagination cursor, default:`''`.
+
+         First request will require only limit parameter and in response you will get cursor object. 
+
+         Use `cursor.after` to send in query params `cursorAfter` parameter in order to move forward. 
+
+         Use `cursor.before` to send in query params `cursorBefore` parameter in order to move backwards. 
+
+         An empty string in after or before cursor in response will indicate that there is no more documents in this direction. 
+
+         If you sort buy something different than `createdAt`, please make sure include this parameter in fields, or you will get empty cursor. 
+
+         `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+    - name: cursorBefore
+      value: <string>
+      type: query
+      description: Pagination cursor, default:`null`.
+    - name: conversationId
+      value: <string>
+      type: path
+      description: (Required) Saved Conversation Id
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: OK
+    request:
+      url: "{{baseUrl}}/communication/conversations/:conversationId/posts?sort=<string>&cursorAfter=<string>&cursorBefore=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `-createdAt` "
+        - name: cursorAfter
+          value: <string>
+          type: query
+          description: |-
+            Pagination cursor, default:`''`.
+
+             First request will require only limit parameter and in response you will get cursor object. 
+
+             Use `cursor.after` to send in query params `cursorAfter` parameter in order to move forward. 
+
+             Use `cursor.before` to send in query params `cursorBefore` parameter in order to move backwards. 
+
+             An empty string in after or before cursor in response will indicate that there is no more documents in this direction. 
+
+             If you sort buy something different than `createdAt`, please make sure include this parameter in fields, or you will get empty cursor. 
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+        - name: cursorBefore
+          value: <string>
+          type: query
+          description: Pagination cursor, default:`null`.
+        - name: conversationId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Date
+          value: <string>
+        - name: Content-Type
+          value: <string>
+        - name: Transfer-Encoding
+          value: <string>
+        - name: Connection
+          value: <string>
+        - name: x-request-id
+          value: <string>
+        - name: x-transit-id
+          value: <string>
+        - name: X-DNS-Prefetch-Control
+          value: <string>
+        - name: X-Frame-Options
+          value: <string>
+        - name: Strict-Transport-Security
+          value: <string>
+        - name: X-Download-Options
+          value: <string>
+        - name: X-Content-Type-Options
+          value: <string>
+        - name: X-XSS-Protection
+          value: <string>
+        - name: ETag
+          value: <string>
+        - name: Vary
+          value: <string>
+        - name: Content-Encoding
+          value: <string>
+        - name: x-content-type
+          value: <string>
+        - name: x-permitted-cross-domain-policies
+          value: <string>
+      body:
+        type: json
+        data: |-
+          {
+            "status": "<number>",
+            "data": {
+              "count": "<number>",
+              "limit": "<number>",
+              "sort": "<string>",
+              "cursor": {
+                "after": "<string>",
+                "before": "<string>"
+              },
+              "posts": [
+                {
+                  "module": {
+                    "type": "<string>"
+                  },
+                  "from": {
+                    "type": "<string>",
+                    "fullName": "<string>"
+                  },
+                  "isFromMigration": "<boolean>",
+                  "_id": "<string>",
+                  "body": "<string>",
+                  "conversationId": "<string>",
+                  "createdAt": "<string>",
+                  "__v": "<number>"
+                },
+                {
+                  "module": {
+                    "type": "<string>"
+                  },
+                  "from": {
+                    "type": "<string>",
+                    "fullName": "<string>"
+                  },
+                  "isFromMigration": "<boolean>",
+                  "_id": "<string>",
+                  "body": "<string>",
+                  "conversationId": "<string>",
+                  "createdAt": "<string>",
+                  "__v": "<number>"
+                }
+              ]
+            }
+          }
+  - name: Posts not found
+    request:
+      url: "{{baseUrl}}/communication/conversations/:conversationId/posts?sort=<string>&cursorAfter=<string>&cursorBefore=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `-createdAt` "
+        - name: cursorAfter
+          value: <string>
+          type: query
+          description: |-
+            Pagination cursor, default:`''`.
+
+             First request will require only limit parameter and in response you will get cursor object. 
+
+             Use `cursor.after` to send in query params `cursorAfter` parameter in order to move forward. 
+
+             Use `cursor.before` to send in query params `cursorBefore` parameter in order to move backwards. 
+
+             An empty string in after or before cursor in response will indicate that there is no more documents in this direction. 
+
+             If you sort buy something different than `createdAt`, please make sure include this parameter in fields, or you will get empty cursor. 
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+        - name: cursorBefore
+          value: <string>
+          type: query
+          description: Pagination cursor, default:`null`.
+        - name: conversationId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+  - name: Internal Server Error
+    request:
+      url: "{{baseUrl}}/communication/conversations/:conversationId/posts?sort=<string>&cursorAfter=<string>&cursorBefore=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `-createdAt` "
+        - name: cursorAfter
+          value: <string>
+          type: query
+          description: |-
+            Pagination cursor, default:`''`.
+
+             First request will require only limit parameter and in response you will get cursor object. 
+
+             Use `cursor.after` to send in query params `cursorAfter` parameter in order to move forward. 
+
+             Use `cursor.before` to send in query params `cursorBefore` parameter in order to move backwards. 
+
+             An empty string in after or before cursor in response will indicate that there is no more documents in this direction. 
+
+             If you sort buy something different than `createdAt`, please make sure include this parameter in fields, or you will get empty cursor. 
+
+             `cursorAfter` and `cursorBefore` are not allowed to be used at the same time in one request.
+        - name: cursorBefore
+          value: <string>
+          type: query
+          description: Pagination cursor, default:`null`.
+        - name: conversationId
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>"
+            }
+          }

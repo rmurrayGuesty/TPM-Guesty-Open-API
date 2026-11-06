@@ -1,0 +1,7 @@
+info:
+  name: rate-plans
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

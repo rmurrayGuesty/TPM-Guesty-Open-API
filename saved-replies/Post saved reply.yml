@@ -1,0 +1,246 @@
+info:
+  name: Post saved reply
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/saved-replies"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "question": "<string>",
+        "answer": "<string>",
+        "applyWhenHasBooking": "<boolean>",
+        "applyWhenNoBooking": "<boolean>",
+        "isAbstract": "<boolean>",
+        "type": "contact",
+        "language": "fr",
+        "excludeListingIds": [
+          "<string>",
+          "<string>"
+        ],
+        "listingsIds": [
+          "<string>",
+          "<string>"
+        ],
+        "folder": "<string>",
+        "tags": [
+          "<string>",
+          "<string>"
+        ],
+        "filters": {
+          "_id": "<string>",
+          "field": "<string>",
+          "operator": "<string>",
+          "value": [
+            "<string>",
+            "<string>"
+          ]
+        }
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: OK
+    request:
+      url: "{{baseUrl}}/saved-replies"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "question": "<string>",
+            "answer": "<string>",
+            "applyWhenHasBooking": "<boolean>",
+            "applyWhenNoBooking": "<boolean>",
+            "isAbstract": "<boolean>",
+            "type": "contact",
+            "language": "fr",
+            "excludeListingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "listingsIds": [
+              "<string>",
+              "<string>"
+            ],
+            "folder": "<string>",
+            "tags": [
+              "<string>",
+              "<string>"
+            ],
+            "filters": {
+              "_id": "<string>",
+              "field": "<string>",
+              "operator": "<string>",
+              "value": [
+                "<string>",
+                "<string>"
+              ]
+            }
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Date
+          value: <string>
+        - name: Content-Type
+          value: <string>
+        - name: Content-Length
+          value: <integer>
+        - name: Connection
+          value: <string>
+        - name: X-DNS-Prefetch-Control
+          value: <string>
+        - name: X-Frame-Options
+          value: <string>
+        - name: Strict-Transport-Security
+          value: <string>
+        - name: X-Download-Options
+          value: <string>
+        - name: X-Content-Type-Options
+          value: <string>
+        - name: X-XSS-Protection
+          value: <string>
+        - name: Access-Control-Allow-Credentials
+          value: <boolean>
+        - name: Access-Control-Allow-Origin
+          value: <string>
+        - name: Access-Control-Max-Age
+          value: <integer>
+        - name: Access-Control-Allow-Headers
+          value: <string>
+        - name: Access-Control-Allow-Methods
+          value: <string>
+        - name: uber-trace-id
+          value: <string>
+        - name: uberctx-accountid
+          value: <string>
+        - name: x-request-id
+          value: <string>
+        - name: ETag
+          value: <string>
+        - name: x-content-type
+          value: <string>
+        - name: x-permitted-cross-domain-policies
+          value: <string>
+      body:
+        type: json
+        data: |-
+          {
+            "question": "<string>",
+            "answer": "<string>",
+            "applyWhenHasBooking": "<boolean>",
+            "applyWhenNoBooking": "<boolean>",
+            "isAbstract": "<boolean>",
+            "type": "contact",
+            "language": "ja",
+            "excludeListingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "listingsIds": [
+              "<string>",
+              "<string>"
+            ],
+            "folder": "<string>",
+            "tags": [
+              "<string>",
+              "<string>"
+            ],
+            "filters": {
+              "_id": "<string>",
+              "field": "<string>",
+              "operator": "<string>",
+              "value": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "accountId": "<string>",
+            "_id": "<string>"
+          }
+  - name: Error
+    request:
+      url: "{{baseUrl}}/saved-replies"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: text/plain
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "question": "<string>",
+            "answer": "<string>",
+            "applyWhenHasBooking": "<boolean>",
+            "applyWhenNoBooking": "<boolean>",
+            "isAbstract": "<boolean>",
+            "type": "contact",
+            "language": "fr",
+            "excludeListingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "listingsIds": [
+              "<string>",
+              "<string>"
+            ],
+            "folder": "<string>",
+            "tags": [
+              "<string>",
+              "<string>"
+            ],
+            "filters": {
+              "_id": "<string>",
+              "field": "<string>",
+              "operator": "<string>",
+              "value": [
+                "<string>",
+                "<string>"
+              ]
+            }
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: text/plain
+      body:
+        type: text
+        data: <string>

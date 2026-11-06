@@ -1,0 +1,261 @@
+info:
+  name: Get list of owners
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{baseUrl}}/owners?pagination=<boolean>&limit=<number>&skip=<number>&sort=<string>&q=<string>&fields=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: pagination
+      value: <boolean>
+      type: query
+      description: Use pagination response
+    - name: limit
+      value: <number>
+      type: query
+      description: When use pagination, limit amount of docs per page
+    - name: skip
+      value: <number>
+      type: query
+      description: When use pagination
+    - name: sort
+      value: <string>
+      type: query
+      description: Ordered list of fields name to sort by, separated by spaces.
+    - name: q
+      value: <string>
+      type: query
+      description: Query against (fullName OR lastName OR firstName)
+    - name: fields
+      value: <string>
+      type: query
+      description: |-
+        Selection of fields, separated by space. If fields not be chosen response will be return with all fields.
+
+        `fields`:
+        > `_id` `ownersPortalSettings` `listings` `locale` `active` `allowReservations` `showReservationTooltips` `businessInformation` `birthday` `anniversary` `workingCapital` `firstName` `lastName` `fullName` `email` `address` `phone` `picture` `notes` `createdAt`
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Array of owner
+    request:
+      url: "{{baseUrl}}/owners?pagination=<boolean>&limit=<number>&skip=<number>&sort=<string>&q=<string>&fields=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: pagination
+          value: <boolean>
+          type: query
+          description: Use pagination response
+        - name: limit
+          value: <number>
+          type: query
+          description: When use pagination, limit amount of docs per page
+        - name: skip
+          value: <number>
+          type: query
+          description: When use pagination
+        - name: sort
+          value: <string>
+          type: query
+          description: Ordered list of fields name to sort by, separated by spaces.
+        - name: q
+          value: <string>
+          type: query
+          description: Query against (fullName OR lastName OR firstName)
+        - name: fields
+          value: <string>
+          type: query
+          description: |-
+            Selection of fields, separated by space. If fields not be chosen response will be return with all fields.
+
+            `fields`:
+            > `_id` `ownersPortalSettings` `listings` `locale` `active` `allowReservations` `showReservationTooltips` `businessInformation` `birthday` `anniversary` `workingCapital` `firstName` `lastName` `fullName` `email` `address` `phone` `picture` `notes` `createdAt`
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "results": [
+              {
+                "_id": "<string>",
+                "accountId": "<string>",
+                "ownersPortalSettings": {
+                  "bookedNights": "<boolean>",
+                  "revenue": "<boolean>",
+                  "accommodationFare": "<boolean>",
+                  "guestsReports": "<boolean>",
+                  "occupancy": "<boolean>",
+                  "avgNightlyRate": "<boolean>",
+                  "revPal": "<boolean>",
+                  "hostPayout": "<boolean>",
+                  "nightlyRate": "<boolean>",
+                  "minNights": "<boolean>",
+                  "bookingSource": "<boolean>",
+                  "showInternalNotesForBlocks": "<boolean>",
+                  "showReservedReservations": "<boolean>",
+                  "showHelpCenter": "<boolean>",
+                  "showOwnerStatements": "<boolean>",
+                  "allowReservations": "<boolean>",
+                  "allowReservationsUnavailableDates": "<boolean>",
+                  "showGuestFullName": "<boolean>",
+                  "showGuestEmail": "<boolean>",
+                  "showGuestPhone": "<boolean>"
+                },
+                "listings": [
+                  "<string>",
+                  "<string>"
+                ],
+                "locale": "<string>",
+                "active": "<boolean>",
+                "allowReservations": "<boolean>",
+                "showReservationTooltips": "<boolean>",
+                "businessInformation": {
+                  "businessType": {
+                    "type": "<string>",
+                    "other": "<string>"
+                  },
+                  "address": {
+                    "street": "<string>",
+                    "city": "<string>",
+                    "state": "<string>",
+                    "zipcode": "<string>",
+                    "country": "<string>",
+                    "full": "<string>"
+                  },
+                  "vatIdentificationNumber": "<string>",
+                  "vatRate": "<number>",
+                  "ownerCommission": "<number>"
+                },
+                "birthday": "<string>",
+                "anniversary": "<string>",
+                "workingCapital": "<number>",
+                "firstName": "<string>",
+                "lastName": "<string>",
+                "fullName": "<string>",
+                "email": "<string>",
+                "address": "<string>",
+                "personalAddress": {
+                  "street": "<string>",
+                  "city": "<string>",
+                  "state": "<string>",
+                  "zipcode": "<string>",
+                  "country": "<string>",
+                  "full": "<string>"
+                },
+                "phone": "<string>",
+                "picture": {
+                  "thumbnail": "<string>",
+                  "regular": "<string>",
+                  "large": "<string>"
+                },
+                "notes": "<string>",
+                "createdAt": "<string>"
+              },
+              {
+                "_id": "<string>",
+                "accountId": "<string>",
+                "ownersPortalSettings": {
+                  "bookedNights": "<boolean>",
+                  "revenue": "<boolean>",
+                  "accommodationFare": "<boolean>",
+                  "guestsReports": "<boolean>",
+                  "occupancy": "<boolean>",
+                  "avgNightlyRate": "<boolean>",
+                  "revPal": "<boolean>",
+                  "hostPayout": "<boolean>",
+                  "nightlyRate": "<boolean>",
+                  "minNights": "<boolean>",
+                  "bookingSource": "<boolean>",
+                  "showInternalNotesForBlocks": "<boolean>",
+                  "showReservedReservations": "<boolean>",
+                  "showHelpCenter": "<boolean>",
+                  "showOwnerStatements": "<boolean>",
+                  "allowReservations": "<boolean>",
+                  "allowReservationsUnavailableDates": "<boolean>",
+                  "showGuestFullName": "<boolean>",
+                  "showGuestEmail": "<boolean>",
+                  "showGuestPhone": "<boolean>"
+                },
+                "listings": [
+                  "<string>",
+                  "<string>"
+                ],
+                "locale": "<string>",
+                "active": "<boolean>",
+                "allowReservations": "<boolean>",
+                "showReservationTooltips": "<boolean>",
+                "businessInformation": {
+                  "businessType": {
+                    "type": "<string>",
+                    "other": "<string>"
+                  },
+                  "address": {
+                    "street": "<string>",
+                    "city": "<string>",
+                    "state": "<string>",
+                    "zipcode": "<string>",
+                    "country": "<string>",
+                    "full": "<string>"
+                  },
+                  "vatIdentificationNumber": "<string>",
+                  "vatRate": "<number>",
+                  "ownerCommission": "<number>"
+                },
+                "birthday": "<string>",
+                "anniversary": "<string>",
+                "workingCapital": "<number>",
+                "firstName": "<string>",
+                "lastName": "<string>",
+                "fullName": "<string>",
+                "email": "<string>",
+                "address": "<string>",
+                "personalAddress": {
+                  "street": "<string>",
+                  "city": "<string>",
+                  "state": "<string>",
+                  "zipcode": "<string>",
+                  "country": "<string>",
+                  "full": "<string>"
+                },
+                "phone": "<string>",
+                "picture": {
+                  "thumbnail": "<string>",
+                  "regular": "<string>",
+                  "large": "<string>"
+                },
+                "notes": "<string>",
+                "createdAt": "<string>"
+              }
+            ],
+            "count": "<number>",
+            "limit": "<number>",
+            "skip": "<number>"
+          }
+
+docs: Get list of owners

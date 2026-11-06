@@ -1,0 +1,285 @@
+info:
+  name: Update calendar for multiple listings
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/availability-pricing/api/calendar/listings"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      [
+        {
+          "listingId": "<string>",
+          "startDate": "<string>",
+          "endDate": "<string>",
+          "status": "unavailable",
+          "price": "<number>",
+          "isBasePrice": "<boolean>",
+          "minNights": "<integer>",
+          "isBaseMinNights": "<boolean>",
+          "note": "<string>",
+          "cta": "<boolean>",
+          "ctd": "<boolean>"
+        },
+        {
+          "listingId": "<string>",
+          "startDate": "<string>",
+          "endDate": "<string>",
+          "status": "available",
+          "price": "<number>",
+          "isBasePrice": "<boolean>",
+          "minNights": "<integer>",
+          "isBaseMinNights": "<boolean>",
+          "note": "<string>",
+          "cta": "<boolean>",
+          "ctd": "<boolean>"
+        }
+      ]
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Returns ok if the update successful
+    request:
+      url: "{{baseUrl}}/availability-pricing/api/calendar/listings"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "listingId": "<string>",
+              "startDate": "<string>",
+              "endDate": "<string>",
+              "status": "unavailable",
+              "price": "<number>",
+              "isBasePrice": "<boolean>",
+              "minNights": "<integer>",
+              "isBaseMinNights": "<boolean>",
+              "note": "<string>",
+              "cta": "<boolean>",
+              "ctd": "<boolean>"
+            },
+            {
+              "listingId": "<string>",
+              "startDate": "<string>",
+              "endDate": "<string>",
+              "status": "available",
+              "price": "<number>",
+              "isBasePrice": "<boolean>",
+              "minNights": "<integer>",
+              "isBaseMinNights": "<boolean>",
+              "note": "<string>",
+              "cta": "<boolean>",
+              "ctd": "<boolean>"
+            }
+          ]
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Listing Not Found
+    request:
+      url: "{{baseUrl}}/availability-pricing/api/calendar/listings"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "listingId": "<string>",
+              "startDate": "<string>",
+              "endDate": "<string>",
+              "status": "unavailable",
+              "price": "<number>",
+              "isBasePrice": "<boolean>",
+              "minNights": "<integer>",
+              "isBaseMinNights": "<boolean>",
+              "note": "<string>",
+              "cta": "<boolean>",
+              "ctd": "<boolean>"
+            },
+            {
+              "listingId": "<string>",
+              "startDate": "<string>",
+              "endDate": "<string>",
+              "status": "available",
+              "price": "<number>",
+              "isBasePrice": "<boolean>",
+              "minNights": "<integer>",
+              "isBaseMinNights": "<boolean>",
+              "note": "<string>",
+              "cta": "<boolean>",
+              "ctd": "<boolean>"
+            }
+          ]
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": "<string>",
+            "code": "<string>",
+            "data": {},
+            "requestId": "<string>"
+          }
+  - name: Validation Error
+    request:
+      url: "{{baseUrl}}/availability-pricing/api/calendar/listings"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "listingId": "<string>",
+              "startDate": "<string>",
+              "endDate": "<string>",
+              "status": "unavailable",
+              "price": "<number>",
+              "isBasePrice": "<boolean>",
+              "minNights": "<integer>",
+              "isBaseMinNights": "<boolean>",
+              "note": "<string>",
+              "cta": "<boolean>",
+              "ctd": "<boolean>"
+            },
+            {
+              "listingId": "<string>",
+              "startDate": "<string>",
+              "endDate": "<string>",
+              "status": "available",
+              "price": "<number>",
+              "isBasePrice": "<boolean>",
+              "minNights": "<integer>",
+              "isBaseMinNights": "<boolean>",
+              "note": "<string>",
+              "cta": "<boolean>",
+              "ctd": "<boolean>"
+            }
+          ]
+    response:
+      status: 422
+      statusText: Unprocessable Entity (WebDAV) (RFC 4918)
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": "<string>",
+            "code": "<string>",
+            "requestId": "<string>"
+          }
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/availability-pricing/api/calendar/listings"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "listingId": "<string>",
+              "startDate": "<string>",
+              "endDate": "<string>",
+              "status": "unavailable",
+              "price": "<number>",
+              "isBasePrice": "<boolean>",
+              "minNights": "<integer>",
+              "isBaseMinNights": "<boolean>",
+              "note": "<string>",
+              "cta": "<boolean>",
+              "ctd": "<boolean>"
+            },
+            {
+              "listingId": "<string>",
+              "startDate": "<string>",
+              "endDate": "<string>",
+              "status": "available",
+              "price": "<number>",
+              "isBasePrice": "<boolean>",
+              "minNights": "<integer>",
+              "isBaseMinNights": "<boolean>",
+              "note": "<string>",
+              "cta": "<boolean>",
+              "ctd": "<boolean>"
+            }
+          ]
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": "<string>"
+          }
+
+docs: |-
+  Use this endpoint to set availability and pricing for multiple listings across a range of dates.
+
+  IMPORTANT:
+  - It is strongly suggested updating a single unique listing ID in a single HTTP request, despite the fact the API does support receiving different listing IDs.
+  - Max allowed days to be updated - 730 (~2 years)
+  - Strongly suggested to not update the same listing ID in parallel.
+  - To decrease response time, send fewer date periods.

@@ -1,0 +1,672 @@
+info:
+  name: Create a new task
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/tasks-open-api/create-single-task"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "title": "<string>",
+        "description": "<string>",
+        "priority": "medium",
+        "type": "cleaning",
+        "assigneeGroup": [
+          "<string>",
+          "<string>"
+        ],
+        "assigneeId": "<string>",
+        "supervisorId": "<string>",
+        "checklist": [
+          "<string>",
+          "<string>"
+        ],
+        "attachments": [
+          {
+            "url": "<string>",
+            "title": "<string>",
+            "mimetype": "<string>",
+            "size": "<number>",
+            "client": "cbt"
+          },
+          {
+            "url": "<string>",
+            "title": "<string>",
+            "mimetype": "<string>",
+            "size": "<number>",
+            "client": "cbt"
+          }
+        ],
+        "expenses": [
+          {
+            "name": "<string>",
+            "category": "mortgage",
+            "vendorId": "<string>",
+            "amount": "<number>",
+            "description": "<string>",
+            "recognitionDate": "<date>",
+            "shareSplit": "<number>",
+            "attachments": {
+              "url": "<string>",
+              "extension": "<string>",
+              "fileName": "<string>"
+            }
+          },
+          {
+            "name": "<string>",
+            "category": "supplies_purchases",
+            "vendorId": "<string>",
+            "amount": "<number>",
+            "description": "<string>",
+            "recognitionDate": "<date>",
+            "shareSplit": "<number>",
+            "attachments": {
+              "url": "<string>",
+              "extension": "<string>",
+              "fileName": "<string>"
+            }
+          }
+        ],
+        "startTime": "<dateTime>",
+        "canStartAfter": "<dateTime>",
+        "mustFinishBefore": "<dateTime>",
+        "listingId": "<string>",
+        "reservationId": "<string>",
+        "comments": [
+          {
+            "text": "<string>",
+            "attachments": [
+              {
+                "name": "<string>",
+                "url": "<string>"
+              },
+              {
+                "name": "<string>",
+                "url": "<string>"
+              }
+            ]
+          },
+          {
+            "text": "<string>",
+            "attachments": [
+              {
+                "name": "<string>",
+                "url": "<string>"
+              },
+              {
+                "name": "<string>",
+                "url": "<string>"
+              }
+            ]
+          }
+        ],
+        "plannedDuration": "<number>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Successful operation
+    request:
+      url: "{{baseUrl}}/tasks-open-api/create-single-task"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "description": "<string>",
+            "priority": "medium",
+            "type": "cleaning",
+            "assigneeGroup": [
+              "<string>",
+              "<string>"
+            ],
+            "assigneeId": "<string>",
+            "supervisorId": "<string>",
+            "checklist": [
+              "<string>",
+              "<string>"
+            ],
+            "attachments": [
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              },
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              }
+            ],
+            "expenses": [
+              {
+                "name": "<string>",
+                "category": "mortgage",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "shareSplit": "<number>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>"
+                }
+              },
+              {
+                "name": "<string>",
+                "category": "supplies_purchases",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "shareSplit": "<number>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>"
+                }
+              }
+            ],
+            "startTime": "<dateTime>",
+            "canStartAfter": "<dateTime>",
+            "mustFinishBefore": "<dateTime>",
+            "listingId": "<string>",
+            "reservationId": "<string>",
+            "comments": [
+              {
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              },
+              {
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              }
+            ],
+            "plannedDuration": "<number>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "assigneeGroup": [
+              "<string>",
+              "<string>"
+            ],
+            "type": "<string>",
+            "checklistFinished": [
+              "<string>",
+              "<string>"
+            ],
+            "checklist": [
+              "<string>",
+              "<string>"
+            ],
+            "checklistAggregated": "<array>",
+            "tags": [
+              "<string>",
+              "<string>"
+            ],
+            "status": "<string>",
+            "comment": {
+              "_id": "<string>",
+              "text": "<string>",
+              "by": "<string>",
+              "date": "<string>"
+            },
+            "accountId": "<string>",
+            "createdBy": "<string>",
+            "title": "<string>",
+            "description": "<string>",
+            "priority": "medium",
+            "assigneeId": "<string>",
+            "supervisorId": "<string>",
+            "timezone": "<string>",
+            "afterEffects": {
+              "action": "<string>",
+              "_id": "<string>",
+              "payload": {
+                "target": "user",
+                "targetId": "<string>",
+                "message": {
+                  "subject": "<string>",
+                  "body": "<string>",
+                  "attachments": {
+                    "_id": "<string>",
+                    "url": "<string>",
+                    "title": "<string>",
+                    "mimetype": "<string>",
+                    "size": "<string>",
+                    "client": "<string>"
+                  }
+                }
+              }
+            },
+            "attachments": {
+              "title": "<string>",
+              "url": "<string>",
+              "mimetype": "<string>",
+              "size": "<number>",
+              "client": "<string>"
+            },
+            "timing": {
+              "type": "none",
+              "startTime": "<string>",
+              "canStartAfter": "<string>",
+              "mustFinishBefore": "<string>"
+            },
+            "apply": {
+              "type": "listing",
+              "listingId": "<string>",
+              "reservationId": "<string>",
+              "ownerReservationId": "<string>"
+            },
+            "plannedDuration": "<number>",
+            "pendingExpenses": [
+              {
+                "_id": "<string>",
+                "name": "<string>",
+                "description": "<string>",
+                "shareSplit": "<number>",
+                "shareType": "percent",
+                "accounting": {
+                  "charges": [
+                    "<number>",
+                    "<number>"
+                  ]
+                },
+                "category": "channel_commission",
+                "chargeable": {
+                  "amount": "<number>"
+                },
+                "payTo": {
+                  "id": "<string>"
+                },
+                "attachments": {
+                  "url": "<string>",
+                  "originalExtension": "<string>",
+                  "originalFilename": "<string>",
+                  "uploadedAt": "<string>",
+                  "uploadedBy": "<string>"
+                }
+              },
+              {
+                "_id": "<string>",
+                "name": "<string>",
+                "description": "<string>",
+                "shareSplit": "<number>",
+                "shareType": "percent",
+                "accounting": {
+                  "charges": [
+                    "<number>",
+                    "<number>"
+                  ]
+                },
+                "category": "supplies_purchases",
+                "chargeable": {
+                  "amount": "<number>"
+                },
+                "payTo": {
+                  "id": "<string>"
+                },
+                "attachments": {
+                  "url": "<string>",
+                  "originalExtension": "<string>",
+                  "originalFilename": "<string>",
+                  "uploadedAt": "<string>",
+                  "uploadedBy": "<string>"
+                }
+              }
+            ],
+            "postedExpenses": [
+              {
+                "_id": "<string>",
+                "name": "<string>",
+                "description": "<string>",
+                "shareSplit": "<number>",
+                "shareType": "percent",
+                "accounting": {
+                  "charges": [
+                    "<number>",
+                    "<number>"
+                  ],
+                  "failureCode": "<number>",
+                  "requestId": "<string>"
+                },
+                "category": "owner_cleaning",
+                "chargeable": {
+                  "amount": "<number>"
+                },
+                "payTo": {
+                  "id": "<string>"
+                },
+                "attachments": {
+                  "url": "<string>",
+                  "originalExtension": "<string>",
+                  "originalFilename": "<string>",
+                  "uploadedAt": "<string>",
+                  "uploadedBy": "<string>"
+                }
+              },
+              {
+                "_id": "<string>",
+                "name": "<string>",
+                "description": "<string>",
+                "shareSplit": "<number>",
+                "shareType": "percent",
+                "accounting": {
+                  "charges": [
+                    "<number>",
+                    "<number>"
+                  ],
+                  "failureCode": "<number>",
+                  "requestId": "<string>"
+                },
+                "category": "property_taxes",
+                "chargeable": {
+                  "amount": "<number>"
+                },
+                "payTo": {
+                  "id": "<string>"
+                },
+                "attachments": {
+                  "url": "<string>",
+                  "originalExtension": "<string>",
+                  "originalFilename": "<string>",
+                  "uploadedAt": "<string>",
+                  "uploadedBy": "<string>"
+                }
+              }
+            ]
+          }
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/tasks-open-api/create-single-task"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "description": "<string>",
+            "priority": "medium",
+            "type": "cleaning",
+            "assigneeGroup": [
+              "<string>",
+              "<string>"
+            ],
+            "assigneeId": "<string>",
+            "supervisorId": "<string>",
+            "checklist": [
+              "<string>",
+              "<string>"
+            ],
+            "attachments": [
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              },
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              }
+            ],
+            "expenses": [
+              {
+                "name": "<string>",
+                "category": "mortgage",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "shareSplit": "<number>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>"
+                }
+              },
+              {
+                "name": "<string>",
+                "category": "supplies_purchases",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "shareSplit": "<number>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>"
+                }
+              }
+            ],
+            "startTime": "<dateTime>",
+            "canStartAfter": "<dateTime>",
+            "mustFinishBefore": "<dateTime>",
+            "listingId": "<string>",
+            "reservationId": "<string>",
+            "comments": [
+              {
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              },
+              {
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              }
+            ],
+            "plannedDuration": "<number>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Forbidden
+    request:
+      url: "{{baseUrl}}/tasks-open-api/create-single-task"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "description": "<string>",
+            "priority": "medium",
+            "type": "cleaning",
+            "assigneeGroup": [
+              "<string>",
+              "<string>"
+            ],
+            "assigneeId": "<string>",
+            "supervisorId": "<string>",
+            "checklist": [
+              "<string>",
+              "<string>"
+            ],
+            "attachments": [
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              },
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              }
+            ],
+            "expenses": [
+              {
+                "name": "<string>",
+                "category": "mortgage",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "shareSplit": "<number>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>"
+                }
+              },
+              {
+                "name": "<string>",
+                "category": "supplies_purchases",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "shareSplit": "<number>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>"
+                }
+              }
+            ],
+            "startTime": "<dateTime>",
+            "canStartAfter": "<dateTime>",
+            "mustFinishBefore": "<dateTime>",
+            "listingId": "<string>",
+            "reservationId": "<string>",
+            "comments": [
+              {
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              },
+              {
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              }
+            ],
+            "plannedDuration": "<number>"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": "<string>"
+          }

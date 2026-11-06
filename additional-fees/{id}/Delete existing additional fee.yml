@@ -1,0 +1,77 @@
+info:
+  name: Delete existing additional fee
+  type: http
+  seq: 2
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/additional-fees/:id"
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) id of item to remove
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Additional fee item deleted
+    request:
+      url: "{{baseUrl}}/additional-fees/:id"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: Invalid input
+    request:
+      url: "{{baseUrl}}/additional-fees/:id"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Not found
+    request:
+      url: "{{baseUrl}}/additional-fees/:id"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""

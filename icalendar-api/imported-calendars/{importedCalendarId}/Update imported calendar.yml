@@ -1,0 +1,122 @@
+info:
+  name: Update imported calendar
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: importedCalendarId
+      value: <string>
+      type: path
+      description: (Required) Id of an imported calendars
+  body:
+    type: json
+    data: |-
+      {
+        "name": "<string>",
+        "adjustmentValueStart": 2,
+        "adjustmentValueEnd": 2
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Returns updated state of imported calendar
+    request:
+      url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: importedCalendarId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "adjustmentValueStart": 2,
+            "adjustmentValueEnd": 2
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "<string>",
+            "listingId": "<string>",
+            "accountId": "<string>",
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "status": "suspended",
+            "url": "<string>",
+            "name": "<string>",
+            "adjustmentValueStart": "<number>",
+            "adjustmentValueEnd": "<number>",
+            "lastSyncedAt": "<string>"
+          }
+  - name: Listing not found
+    request:
+      url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: importedCalendarId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "adjustmentValueStart": 2,
+            "adjustmentValueEnd": 2
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+
+docs: |2-
+  
+        If any adjustments are made to the values, the import sync process will be automatically triggered. 
+        You can use this request to update the URL, name, or events adjustment of a specific imported calendar ID. 
+        To pause or resume the import process, navigate to "Pause/Resume Imported-Calendar Sync." 
+        Please note that you can only update the allowed properties that are listed below.

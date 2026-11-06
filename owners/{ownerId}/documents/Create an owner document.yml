@@ -1,0 +1,328 @@
+info:
+  name: Create an owner document
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/owners/:ownerId/documents"
+  headers:
+    - name: Content-Type
+      value: multipart/form-data
+    - name: Accept
+      value: application/json
+  params:
+    - name: ownerId
+      value: <string>
+      type: path
+      description: (Required) Owner id
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        type: file
+        value: []
+        description: (Required) Document in pdf format, maximum size 5 MB
+      - name: name
+        type: text
+        value: <string>
+        description: "(Required) "
+      - name: description
+        type: text
+        value: <string>
+      - name: type
+        type: text
+        value: DOCUMENT
+        description: Type of the document, defaults to DOCUMENT (This can only be one of DOCUMENT,CONTRACT)
+      - name: isShared
+        type: text
+        value: <boolean>
+      - name: startDate
+        type: text
+        value: <dateTime>
+        description: Date in YYYY-MM-DD format
+      - name: endDate
+        type: text
+        value: <dateTime>
+        description: Date in YYYY-MM-DD format
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Created owner document
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: multipart/form-data
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+      body:
+        type: multipart-form
+        data:
+          - name: file
+            type: file
+            value: []
+            description: (Required) Document in pdf format, maximum size 5 MB
+          - name: name
+            type: text
+            value: <string>
+            description: "(Required) "
+          - name: description
+            type: text
+            value: <string>
+          - name: type
+            type: text
+            value: DOCUMENT
+            description: Type of the document, defaults to DOCUMENT (This can only be one of DOCUMENT,CONTRACT)
+          - name: isShared
+            type: text
+            value: <boolean>
+          - name: startDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+          - name: endDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "ownerId": "<string>",
+            "originalFileName": "<string>",
+            "name": "<string>",
+            "type": "CONTRACT",
+            "isShared": "<boolean>",
+            "createdAt": "<dateTime>",
+            "description": "<string>",
+            "startDate": "<string>",
+            "endDate": "<string>",
+            "deletedAt": "<dateTime>"
+          }
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: multipart/form-data
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+      body:
+        type: multipart-form
+        data:
+          - name: file
+            type: file
+            value: []
+            description: (Required) Document in pdf format, maximum size 5 MB
+          - name: name
+            type: text
+            value: <string>
+            description: "(Required) "
+          - name: description
+            type: text
+            value: <string>
+          - name: type
+            type: text
+            value: DOCUMENT
+            description: Type of the document, defaults to DOCUMENT (This can only be one of DOCUMENT,CONTRACT)
+          - name: isShared
+            type: text
+            value: <boolean>
+          - name: startDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+          - name: endDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: multipart/form-data
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+      body:
+        type: multipart-form
+        data:
+          - name: file
+            type: file
+            value: []
+            description: (Required) Document in pdf format, maximum size 5 MB
+          - name: name
+            type: text
+            value: <string>
+            description: "(Required) "
+          - name: description
+            type: text
+            value: <string>
+          - name: type
+            type: text
+            value: DOCUMENT
+            description: Type of the document, defaults to DOCUMENT (This can only be one of DOCUMENT,CONTRACT)
+          - name: isShared
+            type: text
+            value: <boolean>
+          - name: startDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+          - name: endDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+    response:
+      status: 413
+      statusText: Request Entity Too Large
+      body:
+        type: text
+        data: ""
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: multipart/form-data
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+      body:
+        type: multipart-form
+        data:
+          - name: file
+            type: file
+            value: []
+            description: (Required) Document in pdf format, maximum size 5 MB
+          - name: name
+            type: text
+            value: <string>
+            description: "(Required) "
+          - name: description
+            type: text
+            value: <string>
+          - name: type
+            type: text
+            value: DOCUMENT
+            description: Type of the document, defaults to DOCUMENT (This can only be one of DOCUMENT,CONTRACT)
+          - name: isShared
+            type: text
+            value: <boolean>
+          - name: startDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+          - name: endDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+    response:
+      status: 415
+      statusText: Unsupported Media Type
+      body:
+        type: text
+        data: ""
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: multipart/form-data
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+      body:
+        type: multipart-form
+        data:
+          - name: file
+            type: file
+            value: []
+            description: (Required) Document in pdf format, maximum size 5 MB
+          - name: name
+            type: text
+            value: <string>
+            description: "(Required) "
+          - name: description
+            type: text
+            value: <string>
+          - name: type
+            type: text
+            value: DOCUMENT
+            description: Type of the document, defaults to DOCUMENT (This can only be one of DOCUMENT,CONTRACT)
+          - name: isShared
+            type: text
+            value: <boolean>
+          - name: startDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+          - name: endDate
+            type: text
+            value: <dateTime>
+            description: Date in YYYY-MM-DD format
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Create an owner document

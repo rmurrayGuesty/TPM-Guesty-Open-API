@@ -1,0 +1,312 @@
+info:
+  name: Retrieve Reservations
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: "{{baseUrl}}/reservations-v3?reservationIds=<string>&reservationIds=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: reservationIds
+      value: <string>
+      type: query
+      description: (Required) Reservation IDs from Guesty
+    - name: reservationIds
+      value: <string>
+      type: query
+      description: (Required) Reservation IDs from Guesty
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/reservations-v3?reservationIds=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationIds
+          value: <string>
+          type: query
+          description: (Required) Reservation IDs from Guesty
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "_id": {},
+              "stay": [
+                {
+                  "checkInDateLocalized": "<string>",
+                  "checkOutDateLocalized": "<string>",
+                  "guestsCount": "<number>",
+                  "unitTypeId": {},
+                  "eta": "<dateTime>",
+                  "etd": "<dateTime>",
+                  "_id": {},
+                  "unitId": {},
+                  "ratePlanId": "<string>",
+                  "numberOfGuests": {
+                    "numberOfAdults": "<number>",
+                    "numberOfChildren": "<number>",
+                    "numberOfInfants": "<number>",
+                    "numberOfPets": "<number>"
+                  },
+                  "earlyCheckIn": {},
+                  "lateCheckOut": {}
+                },
+                {
+                  "checkInDateLocalized": "<string>",
+                  "checkOutDateLocalized": "<string>",
+                  "guestsCount": "<number>",
+                  "unitTypeId": {},
+                  "eta": "<dateTime>",
+                  "etd": "<dateTime>",
+                  "_id": {},
+                  "unitId": {},
+                  "ratePlanId": "<string>",
+                  "numberOfGuests": {
+                    "numberOfAdults": "<number>",
+                    "numberOfChildren": "<number>",
+                    "numberOfInfants": "<number>",
+                    "numberOfPets": "<number>"
+                  },
+                  "earlyCheckIn": {},
+                  "lateCheckOut": {}
+                }
+              ],
+              "bookerId": "<string>",
+              "platform": "<string>",
+              "quoteId": {},
+              "accountId": {},
+              "source": "<string>",
+              "createdAt": "<dateTime>",
+              "status": "confirmed",
+              "notes": {
+                "other": "<string>",
+                "cleaning": "<string>",
+                "guest": "<string>",
+                "specialRequests": "<string>",
+                "keyCode": "<string>"
+              },
+              "confirmationCode": "<string>",
+              "groupId": {},
+              "sendQuoteId": {},
+              "integrationId": {},
+              "confirmedAt": "<dateTime>",
+              "reservedAt": "<dateTime>",
+              "reservedUntil": "0.5",
+              "canceledAt": "<dateTime>",
+              "isAssigned": "<boolean>",
+              "moneyId": "<string>",
+              "specialRequests": "<string>",
+              "keyCode": "<string>",
+              "alteredAt": "<dateTime>",
+              "conversationId": "<string>",
+              "transportation": {},
+              "agentBooking": "<boolean>",
+              "reasonForVisit": "other",
+              "canceledBy": "TEAM_MEMBER",
+              "cancellationReason": "<string>",
+              "guestStay": {
+                "createdAt": "<dateTime>",
+                "updatedAt": "<dateTime>",
+                "status": "checked_out",
+                "doneBy": {
+                  "type": "<string>",
+                  "id": "<string>",
+                  "name": "<string>"
+                }
+              },
+              "pointOfSale": "<string>",
+              "creationInfo": {
+                "owner": {
+                  "_id": {},
+                  "fullName": "<string>",
+                  "email": "<string>",
+                  "phone": "<string>",
+                  "locale": "<string>"
+                }
+              },
+              "customFields": [
+                {
+                  "_id": "<string>",
+                  "fieldId": "<string>",
+                  "value": {}
+                },
+                {
+                  "_id": "<string>",
+                  "fieldId": "<string>",
+                  "value": {}
+                }
+              ]
+            },
+            {
+              "_id": {},
+              "stay": [
+                {
+                  "checkInDateLocalized": "<string>",
+                  "checkOutDateLocalized": "<string>",
+                  "guestsCount": "<number>",
+                  "unitTypeId": {},
+                  "eta": "<dateTime>",
+                  "etd": "<dateTime>",
+                  "_id": {},
+                  "unitId": {},
+                  "ratePlanId": "<string>",
+                  "numberOfGuests": {
+                    "numberOfAdults": "<number>",
+                    "numberOfChildren": "<number>",
+                    "numberOfInfants": "<number>",
+                    "numberOfPets": "<number>"
+                  },
+                  "earlyCheckIn": {},
+                  "lateCheckOut": {}
+                },
+                {
+                  "checkInDateLocalized": "<string>",
+                  "checkOutDateLocalized": "<string>",
+                  "guestsCount": "<number>",
+                  "unitTypeId": {},
+                  "eta": "<dateTime>",
+                  "etd": "<dateTime>",
+                  "_id": {},
+                  "unitId": {},
+                  "ratePlanId": "<string>",
+                  "numberOfGuests": {
+                    "numberOfAdults": "<number>",
+                    "numberOfChildren": "<number>",
+                    "numberOfInfants": "<number>",
+                    "numberOfPets": "<number>"
+                  },
+                  "earlyCheckIn": {},
+                  "lateCheckOut": {}
+                }
+              ],
+              "bookerId": "<string>",
+              "platform": "<string>",
+              "quoteId": {},
+              "accountId": {},
+              "source": "<string>",
+              "createdAt": "<dateTime>",
+              "status": "closed",
+              "notes": {
+                "other": "<string>",
+                "cleaning": "<string>",
+                "guest": "<string>",
+                "specialRequests": "<string>",
+                "keyCode": "<string>"
+              },
+              "confirmationCode": "<string>",
+              "groupId": {},
+              "sendQuoteId": {},
+              "integrationId": {},
+              "confirmedAt": "<dateTime>",
+              "reservedAt": "<dateTime>",
+              "reservedUntil": "thirtySixHours",
+              "canceledAt": "<dateTime>",
+              "isAssigned": "<boolean>",
+              "moneyId": "<string>",
+              "specialRequests": "<string>",
+              "keyCode": "<string>",
+              "alteredAt": "<dateTime>",
+              "conversationId": "<string>",
+              "transportation": {},
+              "agentBooking": "<boolean>",
+              "reasonForVisit": "business",
+              "canceledBy": "OWNER",
+              "cancellationReason": "<string>",
+              "guestStay": {
+                "createdAt": "<dateTime>",
+                "updatedAt": "<dateTime>",
+                "status": "not_set",
+                "doneBy": {
+                  "type": "<string>",
+                  "id": "<string>",
+                  "name": "<string>"
+                }
+              },
+              "pointOfSale": "<string>",
+              "creationInfo": {
+                "owner": {
+                  "_id": {},
+                  "fullName": "<string>",
+                  "email": "<string>",
+                  "phone": "<string>",
+                  "locale": "<string>"
+                }
+              },
+              "customFields": [
+                {
+                  "_id": "<string>",
+                  "fieldId": "<string>",
+                  "value": {}
+                },
+                {
+                  "_id": "<string>",
+                  "fieldId": "<string>",
+                  "value": {}
+                }
+              ]
+            }
+          ]
+  - name: Returned if required fields are missing or there is a validation error in the request body
+    request:
+      url: "{{baseUrl}}/reservations-v3?reservationIds=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationIds
+          value: <string>
+          type: query
+          description: (Required) Reservation IDs from Guesty
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Indicates server-side error while processing the request
+    request:
+      url: "{{baseUrl}}/reservations-v3?reservationIds=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationIds
+          value: <string>
+          type: query
+          description: (Required) Reservation IDs from Guesty
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Retrieve multiple reservations by ID. Use this endpoint to get all the relevant information about your reservation including the financial breakdown and guest details

@@ -1,0 +1,46 @@
+info:
+  name: Export as CSV
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/listings.csv"
+  headers:
+    - name: Accept
+      value: text/csv
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Listings csv
+    request:
+      url: "{{baseUrl}}/listings.csv"
+      method: POST
+      headers:
+        - name: Accept
+          value: text/csv
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: text/csv
+      body:
+        type: text
+        data: ""
+
+docs: Same as GET /listings but results are returned as a downloadable csv file

@@ -1,0 +1,167 @@
+info:
+  name: Create Invoice Item
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/invoice-items/reservation/:reservationId"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: reservationId
+      value: <string>
+      type: path
+      description: (Required) Reservation id to which the invoice item is related to
+  body:
+    type: json
+    data: |-
+      {
+        "title": "<string>",
+        "amount": "<number>",
+        "normalType": "VAT",
+        "description": "<string>",
+        "secondIdentifier": "LAUNDRY",
+        "realizationDates": [
+          {
+            "date": "<string>"
+          },
+          {
+            "date": "<string>"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The updated folio with the new invoice item
+    request:
+      url: "{{baseUrl}}/invoice-items/reservation/:reservationId"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "amount": "<number>",
+            "normalType": "VAT",
+            "description": "<string>",
+            "secondIdentifier": "LAUNDRY",
+            "realizationDates": [
+              {
+                "date": "<string>"
+              },
+              {
+                "date": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/invoice-items/reservation/:reservationId"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "amount": "<number>",
+            "normalType": "VAT",
+            "description": "<string>",
+            "secondIdentifier": "LAUNDRY",
+            "realizationDates": [
+              {
+                "date": "<string>"
+              },
+              {
+                "date": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+  - name: Some of the request parameters are invalid
+    request:
+      url: "{{baseUrl}}/invoice-items/reservation/:reservationId"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "amount": "<number>",
+            "normalType": "VAT",
+            "description": "<string>",
+            "secondIdentifier": "LAUNDRY",
+            "realizationDates": [
+              {
+                "date": "<string>"
+              },
+              {
+                "date": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: Create Invoice Item

@@ -1,0 +1,7 @@
+info:
+  name: business-models-api
+  type: folder
+  seq: 32
+
+request:
+  auth: inherit

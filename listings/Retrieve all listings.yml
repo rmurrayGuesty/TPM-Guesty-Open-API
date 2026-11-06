@@ -1,0 +1,986 @@
+info:
+  name: Retrieve all listings
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{baseUrl}}/listings"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: ids
+      value: <string>
+      type: query
+      description: Limit results to these ids, comma separated
+      disabled: true
+    - name: nids
+      value: <string>
+      type: query
+      description: Limit results to not include these ids, comma seperated
+      disabled: true
+    - name: viewId
+      value: ""
+      type: query
+      description: Pull a specific view (view is a saved settings of accountId, filters, fields,sort)
+      disabled: true
+    - name: q
+      value: ""
+      type: query
+      description: Search query string. Searches in title, internalNote, address.full
+      disabled: true
+    - name: city
+      value: ""
+      type: query
+      description: Limit results to city
+      disabled: true
+    - name: active
+      value: "true"
+      type: query
+      description: Limit results to active state. Boolean, true for only active, false for only inactive, don't include for all.
+      disabled: true
+    - name: pmsActive
+      value: "true"
+      type: query
+      description: Limit results to listings with the feature pms active. Boolean, true for only active, false for only inactive, don't include for all.
+      disabled: true
+    - name: integrationId
+      value: ""
+      type: query
+      description: Limit results to specific integration
+      disabled: true
+    - name: listed
+      value: "true"
+      type: query
+      description: Limit results to listed state. Boolean, true for only listed, false for only unlisted, don't include for all.
+      disabled: true
+    - name: checkIn
+      value: <string>
+      type: query
+      description: |-
+        Limit results to only available listings in specific dates
+
+         **IMPORTANT NOTE:**
+         Fields in this query must be enclosed in curly braces as shown below, and NOT as displayed in the coding playground output.
+         `available = {"checkIn":"YYYY-MM-DD","checkOut":"YYYY-MM-DD","minOccupancy":3}`
+      disabled: true
+    - name: checkOut
+      value: <string>
+      type: query
+      description: |-
+        Limit results to only available listings in specific dates
+
+         **IMPORTANT NOTE:**
+         Fields in this query must be enclosed in curly braces as shown below, and NOT as displayed in the coding playground output.
+         `available = {"checkIn":"YYYY-MM-DD","checkOut":"YYYY-MM-DD","minOccupancy":3}`
+      disabled: true
+    - name: minOccupancy
+      value: <number>
+      type: query
+      description: |-
+        Limit results to only available listings in specific dates
+
+         **IMPORTANT NOTE:**
+         Fields in this query must be enclosed in curly braces as shown below, and NOT as displayed in the coding playground output.
+         `available = {"checkIn":"YYYY-MM-DD","checkOut":"YYYY-MM-DD","minOccupancy":3}`
+      disabled: true
+    - name: ignoreFlexibleBlocks
+      value: "false"
+      type: query
+      description: Shows available listings and listings with flexible blocks.
+      disabled: true
+    - name: tags
+      value: ""
+      type: query
+      description: Limit results to listings with specific tag
+      disabled: true
+    - name: fields
+      value: ""
+      type: query
+      description: Selection of fields, separated by space
+      disabled: true
+    - name: sort
+      value: title
+      type: query
+      description: ascending alphabetical sort , use - to descending sort
+      disabled: true
+    - name: limit
+      value: "25"
+      type: query
+      description: "Pagination, max: 100"
+      disabled: true
+    - name: skip
+      value: "0"
+      type: query
+      description: Pagination skip
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Listings Array
+    request:
+      url: "{{baseUrl}}/listings?ids=<string>&nids=<string>&viewId=&q=&city=&active=true&pmsActive=true&integrationId=&listed=true&checkIn=<string>&checkOut=<string>&minOccupancy=<number>&ignoreFlexibleBlocks=false&tags=&fields=&sort=title&limit=25&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ids
+          value: <string>
+          type: query
+          description: Limit results to these ids, comma separated
+        - name: nids
+          value: <string>
+          type: query
+          description: Limit results to not include these ids, comma seperated
+        - name: viewId
+          value: ""
+          type: query
+          description: Pull a specific view (view is a saved settings of accountId, filters, fields,sort)
+        - name: q
+          value: ""
+          type: query
+          description: Search query string. Searches in title, internalNote, address.full
+        - name: city
+          value: ""
+          type: query
+          description: Limit results to city
+        - name: active
+          value: "true"
+          type: query
+          description: Limit results to active state. Boolean, true for only active, false for only inactive, don't include for all.
+        - name: pmsActive
+          value: "true"
+          type: query
+          description: Limit results to listings with the feature pms active. Boolean, true for only active, false for only inactive, don't include for all.
+        - name: integrationId
+          value: ""
+          type: query
+          description: Limit results to specific integration
+        - name: listed
+          value: "true"
+          type: query
+          description: Limit results to listed state. Boolean, true for only listed, false for only unlisted, don't include for all.
+        - name: checkIn
+          value: <string>
+          type: query
+          description: |-
+            Limit results to only available listings in specific dates
+
+             **IMPORTANT NOTE:**
+             Fields in this query must be enclosed in curly braces as shown below, and NOT as displayed in the coding playground output.
+             `available = {"checkIn":"YYYY-MM-DD","checkOut":"YYYY-MM-DD","minOccupancy":3}`
+        - name: checkOut
+          value: <string>
+          type: query
+          description: |-
+            Limit results to only available listings in specific dates
+
+             **IMPORTANT NOTE:**
+             Fields in this query must be enclosed in curly braces as shown below, and NOT as displayed in the coding playground output.
+             `available = {"checkIn":"YYYY-MM-DD","checkOut":"YYYY-MM-DD","minOccupancy":3}`
+        - name: minOccupancy
+          value: <number>
+          type: query
+          description: |-
+            Limit results to only available listings in specific dates
+
+             **IMPORTANT NOTE:**
+             Fields in this query must be enclosed in curly braces as shown below, and NOT as displayed in the coding playground output.
+             `available = {"checkIn":"YYYY-MM-DD","checkOut":"YYYY-MM-DD","minOccupancy":3}`
+        - name: ignoreFlexibleBlocks
+          value: "false"
+          type: query
+          description: Shows available listings and listings with flexible blocks.
+        - name: tags
+          value: ""
+          type: query
+          description: Limit results to listings with specific tag
+        - name: fields
+          value: ""
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: title
+          type: query
+          description: ascending alphabetical sort , use - to descending sort
+        - name: limit
+          value: "25"
+          type: query
+          description: "Pagination, max: 100"
+        - name: skip
+          value: "0"
+          type: query
+          description: Pagination skip
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "createdAt": "<string>",
+              "integrations": [
+                {
+                  "_id": "<string>",
+                  "airbnb2": {
+                    "credentials": {
+                      "code": "<string>",
+                      "expiresAt": "<integer>",
+                      "accessToken": "<string>",
+                      "refreshToken": "<string>",
+                      "lastForceRefresh": "<string>"
+                    },
+                    "forwardEmails": {
+                      "all": true,
+                      "emails": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "createdAt": "<string>"
+                  },
+                  "forwardEmails": {
+                    "all": true,
+                    "emails": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  },
+                  "active": "<boolean>",
+                  "platform": "<string>",
+                  "nickname": "<string>",
+                  "channelId": "<string>",
+                  "activatedAt": "<string>",
+                  "disconnectedAt": "<string>",
+                  "proxyEmail": "<string>",
+                  "incomingEmail": "<string>",
+                  "externalAccountId": "<string>",
+                  "id": "<integer>",
+                  "companyName": "<string>",
+                  "fetchRequests": [
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "FAILED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    },
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "COMPLETED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    }
+                  ],
+                  "status": "PENDING",
+                  "migration": {
+                    "status": "COMPLETED",
+                    "createTime": "<string>",
+                    "updateTime": "<string>",
+                    "finishedTime": "<string>",
+                    "discrepancyStepExecuted": false,
+                    "discrepancyResolution": "AIRBNB",
+                    "listingQuantityDiscrepancyStepExecuted": false,
+                    "error": {
+                      "at": "<string>",
+                      "code": "<string>",
+                      "message": "<string>",
+                      "raw": {}
+                    },
+                    "notes": "<string>",
+                    "isRollingBack": false
+                  },
+                  "userId": "<string>",
+                  "accountId": "<string>",
+                  "tripAdvisor": {},
+                  "homeaway2": {},
+                  "bookingCom": {
+                    "legalEntityId": "<string>"
+                  },
+                  "createdAt": "<string>",
+                  "missingStep": "<string>",
+                  "steps": [
+                    {
+                      "type": "<string>",
+                      "status": "COMPLETED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    },
+                    {
+                      "type": "<string>",
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    }
+                  ],
+                  "newIntegrationBackup": {},
+                  "threadIdsMigrated": "<boolean>",
+                  "isDeleted": "<boolean>",
+                  "deletedAt": "<string>"
+                },
+                {
+                  "_id": "<string>",
+                  "airbnb2": {
+                    "credentials": {
+                      "code": "<string>",
+                      "expiresAt": "<integer>",
+                      "accessToken": "<string>",
+                      "refreshToken": "<string>",
+                      "lastForceRefresh": "<string>"
+                    },
+                    "forwardEmails": {
+                      "all": true,
+                      "emails": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "createdAt": "<string>"
+                  },
+                  "forwardEmails": {
+                    "all": true,
+                    "emails": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  },
+                  "active": "<boolean>",
+                  "platform": "<string>",
+                  "nickname": "<string>",
+                  "channelId": "<string>",
+                  "activatedAt": "<string>",
+                  "disconnectedAt": "<string>",
+                  "proxyEmail": "<string>",
+                  "incomingEmail": "<string>",
+                  "externalAccountId": "<string>",
+                  "id": "<integer>",
+                  "companyName": "<string>",
+                  "fetchRequests": [
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    },
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    }
+                  ],
+                  "status": "NOT_CONNECTED",
+                  "migration": {
+                    "status": "FAILED",
+                    "createTime": "<string>",
+                    "updateTime": "<string>",
+                    "finishedTime": "<string>",
+                    "discrepancyStepExecuted": false,
+                    "discrepancyResolution": "AIRBNB",
+                    "listingQuantityDiscrepancyStepExecuted": false,
+                    "error": {
+                      "at": "<string>",
+                      "code": "<string>",
+                      "message": "<string>",
+                      "raw": {}
+                    },
+                    "notes": "<string>",
+                    "isRollingBack": false
+                  },
+                  "userId": "<string>",
+                  "accountId": "<string>",
+                  "tripAdvisor": {},
+                  "homeaway2": {},
+                  "bookingCom": {
+                    "legalEntityId": "<string>"
+                  },
+                  "createdAt": "<string>",
+                  "missingStep": "<string>",
+                  "steps": [
+                    {
+                      "type": "<string>",
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    },
+                    {
+                      "type": "<string>",
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    }
+                  ],
+                  "newIntegrationBackup": {},
+                  "threadIdsMigrated": "<boolean>",
+                  "isDeleted": "<boolean>",
+                  "deletedAt": "<string>"
+                }
+              ],
+              "isVirtual": "<boolean>",
+              "nickname": "<string>",
+              "tags": [
+                "<string>",
+                "<string>"
+              ],
+              "isListed": "<boolean>",
+              "title": "<string>",
+              "propertyType": "<string>",
+              "roomType": "<string>",
+              "bedType": "<string>",
+              "accommodates": "<number>",
+              "bedrooms": "<number>",
+              "areaSquareFeet": "<number>",
+              "address": {
+                "full": "<string>",
+                "lng": "<number>",
+                "lat": "<number>",
+                "street": "<string>",
+                "city": "<string>",
+                "country": "<string>"
+              },
+              "publishedAddress": {
+                "full": "<string>",
+                "lng": "<number>",
+                "lat": "<number>",
+                "street": "<string>",
+                "city": "<string>",
+                "country": "<string>"
+              },
+              "timezone": "<string>",
+              "defaultCheckInTime": "<string>",
+              "defaultCheckOutTime": "<string>",
+              "cleaning": {
+                "defaultCleaningTime": "<string>",
+                "instructions": "<string>"
+              },
+              "cleaningStatus": {
+                "value": "clean",
+                "updatedAt": "<string>"
+              },
+              "picture": {
+                "regular": "<string>",
+                "thumbnail": "<string>",
+                "large": "<string>",
+                "caption": "<string>",
+                "height": "<number>",
+                "original": "<string>",
+                "size": "<number>",
+                "width": "<number>"
+              },
+              "pictures": [
+                {
+                  "regular": "<string>",
+                  "thumbnail": "<string>",
+                  "large": "<string>",
+                  "caption": "<string>",
+                  "height": "<number>",
+                  "original": "<string>",
+                  "size": "<number>",
+                  "width": "<number>"
+                },
+                {
+                  "regular": "<string>",
+                  "thumbnail": "<string>",
+                  "large": "<string>",
+                  "caption": "<string>",
+                  "height": "<number>",
+                  "original": "<string>",
+                  "size": "<number>",
+                  "width": "<number>"
+                }
+              ],
+              "amenities": [
+                "<string>",
+                "<string>"
+              ],
+              "amenitiesNotIncluded": [
+                "<string>",
+                "<string>"
+              ],
+              "terms": {
+                "minNights": "<number>",
+                "maxNights": "<number>",
+                "cancellation": "<string>"
+              },
+              "prices": {
+                "guestsIncludedInRegularFee": "<number>",
+                "extraPersonFee": "<number>",
+                "basePrice": "<number>",
+                "basePriceUSD": "<number>",
+                "monthlyPriceFactor": "<number>",
+                "weeklyPriceFactor": "<number>",
+                "weekendBasePrice": "<number>",
+                "securityDepositFee": "<number>",
+                "currency": "<string>",
+                "cleaningFee": "<number>"
+              },
+              "netIncomeFormula": "<string>",
+              "commissionFormula": "<string>",
+              "commissionTaxPrecentage": "<string>",
+              "pms": {
+                "active": "<boolean>",
+                "automation": {
+                  "autoList": {
+                    "active": "<boolean>",
+                    "config": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  }
+                },
+                "inbox": {
+                  "customSignature": "<string>"
+                },
+                "cleaningStatus": {
+                  "value": "clean",
+                  "updatedAt": "<string>"
+                },
+                "paymentProcessing": {
+                  "active": "<boolean>",
+                  "paymentProviders": {
+                    "stripe": {
+                      "active": "<boolean>",
+                      "status": "<string>",
+                      "accountName": "<string>",
+                      "defaultCurrency": "<string>",
+                      "syncedAt": "<date>",
+                      "payload": {
+                        "id": "<string>",
+                        "livemode": "<boolean>",
+                        "token_type": "<string>",
+                        "stripe_publishable_key": "<string>",
+                        "stripe_user_id": "<string>",
+                        "scope": "<string>"
+                      }
+                    }
+                  }
+                },
+                "autoPayments": {
+                  "policy": "<array>"
+                }
+              },
+              "receptionistsService": {
+                "receptionDesk": {},
+                "screening": {},
+                "contactPersonUserId": "<string>"
+              },
+              "active": "<boolean>",
+              "customFields": {},
+              "calendarRules": {},
+              "publicDescription": {},
+              "privateDescription": {},
+              "markups": {}
+            },
+            {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "createdAt": "<string>",
+              "integrations": [
+                {
+                  "_id": "<string>",
+                  "airbnb2": {
+                    "credentials": {
+                      "code": "<string>",
+                      "expiresAt": "<integer>",
+                      "accessToken": "<string>",
+                      "refreshToken": "<string>",
+                      "lastForceRefresh": "<string>"
+                    },
+                    "forwardEmails": {
+                      "all": true,
+                      "emails": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "createdAt": "<string>"
+                  },
+                  "forwardEmails": {
+                    "all": true,
+                    "emails": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  },
+                  "active": "<boolean>",
+                  "platform": "<string>",
+                  "nickname": "<string>",
+                  "channelId": "<string>",
+                  "activatedAt": "<string>",
+                  "disconnectedAt": "<string>",
+                  "proxyEmail": "<string>",
+                  "incomingEmail": "<string>",
+                  "externalAccountId": "<string>",
+                  "id": "<integer>",
+                  "companyName": "<string>",
+                  "fetchRequests": [
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "FAILED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    },
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "FAILED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    }
+                  ],
+                  "status": "TIMEOUT",
+                  "migration": {
+                    "status": "FAILED",
+                    "createTime": "<string>",
+                    "updateTime": "<string>",
+                    "finishedTime": "<string>",
+                    "discrepancyStepExecuted": false,
+                    "discrepancyResolution": "GUESTY",
+                    "listingQuantityDiscrepancyStepExecuted": false,
+                    "error": {
+                      "at": "<string>",
+                      "code": "<string>",
+                      "message": "<string>",
+                      "raw": {}
+                    },
+                    "notes": "<string>",
+                    "isRollingBack": false
+                  },
+                  "userId": "<string>",
+                  "accountId": "<string>",
+                  "tripAdvisor": {},
+                  "homeaway2": {},
+                  "bookingCom": {
+                    "legalEntityId": "<string>"
+                  },
+                  "createdAt": "<string>",
+                  "missingStep": "<string>",
+                  "steps": [
+                    {
+                      "type": "<string>",
+                      "status": "COMPLETED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    },
+                    {
+                      "type": "<string>",
+                      "status": "COMPLETED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    }
+                  ],
+                  "newIntegrationBackup": {},
+                  "threadIdsMigrated": "<boolean>",
+                  "isDeleted": "<boolean>",
+                  "deletedAt": "<string>"
+                },
+                {
+                  "_id": "<string>",
+                  "airbnb2": {
+                    "credentials": {
+                      "code": "<string>",
+                      "expiresAt": "<integer>",
+                      "accessToken": "<string>",
+                      "refreshToken": "<string>",
+                      "lastForceRefresh": "<string>"
+                    },
+                    "forwardEmails": {
+                      "all": true,
+                      "emails": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "createdAt": "<string>"
+                  },
+                  "forwardEmails": {
+                    "all": true,
+                    "emails": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  },
+                  "active": "<boolean>",
+                  "platform": "<string>",
+                  "nickname": "<string>",
+                  "channelId": "<string>",
+                  "activatedAt": "<string>",
+                  "disconnectedAt": "<string>",
+                  "proxyEmail": "<string>",
+                  "incomingEmail": "<string>",
+                  "externalAccountId": "<string>",
+                  "id": "<integer>",
+                  "companyName": "<string>",
+                  "fetchRequests": [
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "NOT_STARTED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    },
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "NOT_STARTED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    }
+                  ],
+                  "status": "PENDING",
+                  "migration": {
+                    "status": "FAILED",
+                    "createTime": "<string>",
+                    "updateTime": "<string>",
+                    "finishedTime": "<string>",
+                    "discrepancyStepExecuted": false,
+                    "discrepancyResolution": "AIRBNB",
+                    "listingQuantityDiscrepancyStepExecuted": false,
+                    "error": {
+                      "at": "<string>",
+                      "code": "<string>",
+                      "message": "<string>",
+                      "raw": {}
+                    },
+                    "notes": "<string>",
+                    "isRollingBack": false
+                  },
+                  "userId": "<string>",
+                  "accountId": "<string>",
+                  "tripAdvisor": {},
+                  "homeaway2": {},
+                  "bookingCom": {
+                    "legalEntityId": "<string>"
+                  },
+                  "createdAt": "<string>",
+                  "missingStep": "<string>",
+                  "steps": [
+                    {
+                      "type": "<string>",
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    },
+                    {
+                      "type": "<string>",
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    }
+                  ],
+                  "newIntegrationBackup": {},
+                  "threadIdsMigrated": "<boolean>",
+                  "isDeleted": "<boolean>",
+                  "deletedAt": "<string>"
+                }
+              ],
+              "isVirtual": "<boolean>",
+              "nickname": "<string>",
+              "tags": [
+                "<string>",
+                "<string>"
+              ],
+              "isListed": "<boolean>",
+              "title": "<string>",
+              "propertyType": "<string>",
+              "roomType": "<string>",
+              "bedType": "<string>",
+              "accommodates": "<number>",
+              "bedrooms": "<number>",
+              "areaSquareFeet": "<number>",
+              "address": {
+                "full": "<string>",
+                "lng": "<number>",
+                "lat": "<number>",
+                "street": "<string>",
+                "city": "<string>",
+                "country": "<string>"
+              },
+              "publishedAddress": {
+                "full": "<string>",
+                "lng": "<number>",
+                "lat": "<number>",
+                "street": "<string>",
+                "city": "<string>",
+                "country": "<string>"
+              },
+              "timezone": "<string>",
+              "defaultCheckInTime": "<string>",
+              "defaultCheckOutTime": "<string>",
+              "cleaning": {
+                "defaultCleaningTime": "<string>",
+                "instructions": "<string>"
+              },
+              "cleaningStatus": {
+                "value": "clean",
+                "updatedAt": "<string>"
+              },
+              "picture": {
+                "regular": "<string>",
+                "thumbnail": "<string>",
+                "large": "<string>",
+                "caption": "<string>",
+                "height": "<number>",
+                "original": "<string>",
+                "size": "<number>",
+                "width": "<number>"
+              },
+              "pictures": [
+                {
+                  "regular": "<string>",
+                  "thumbnail": "<string>",
+                  "large": "<string>",
+                  "caption": "<string>",
+                  "height": "<number>",
+                  "original": "<string>",
+                  "size": "<number>",
+                  "width": "<number>"
+                },
+                {
+                  "regular": "<string>",
+                  "thumbnail": "<string>",
+                  "large": "<string>",
+                  "caption": "<string>",
+                  "height": "<number>",
+                  "original": "<string>",
+                  "size": "<number>",
+                  "width": "<number>"
+                }
+              ],
+              "amenities": [
+                "<string>",
+                "<string>"
+              ],
+              "amenitiesNotIncluded": [
+                "<string>",
+                "<string>"
+              ],
+              "terms": {
+                "minNights": "<number>",
+                "maxNights": "<number>",
+                "cancellation": "<string>"
+              },
+              "prices": {
+                "guestsIncludedInRegularFee": "<number>",
+                "extraPersonFee": "<number>",
+                "basePrice": "<number>",
+                "basePriceUSD": "<number>",
+                "monthlyPriceFactor": "<number>",
+                "weeklyPriceFactor": "<number>",
+                "weekendBasePrice": "<number>",
+                "securityDepositFee": "<number>",
+                "currency": "<string>",
+                "cleaningFee": "<number>"
+              },
+              "netIncomeFormula": "<string>",
+              "commissionFormula": "<string>",
+              "commissionTaxPrecentage": "<string>",
+              "pms": {
+                "active": "<boolean>",
+                "automation": {
+                  "autoList": {
+                    "active": "<boolean>",
+                    "config": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  }
+                },
+                "inbox": {
+                  "customSignature": "<string>"
+                },
+                "cleaningStatus": {
+                  "value": "dirty",
+                  "updatedAt": "<string>"
+                },
+                "paymentProcessing": {
+                  "active": "<boolean>",
+                  "paymentProviders": {
+                    "stripe": {
+                      "active": "<boolean>",
+                      "status": "<string>",
+                      "accountName": "<string>",
+                      "defaultCurrency": "<string>",
+                      "syncedAt": "<date>",
+                      "payload": {
+                        "id": "<string>",
+                        "livemode": "<boolean>",
+                        "token_type": "<string>",
+                        "stripe_publishable_key": "<string>",
+                        "stripe_user_id": "<string>",
+                        "scope": "<string>"
+                      }
+                    }
+                  }
+                },
+                "autoPayments": {
+                  "policy": "<array>"
+                }
+              },
+              "receptionistsService": {
+                "receptionDesk": {},
+                "screening": {},
+                "contactPersonUserId": "<string>"
+              },
+              "active": "<boolean>",
+              "customFields": {},
+              "calendarRules": {},
+              "publicDescription": {},
+              "privateDescription": {},
+              "markups": {}
+            }
+          ]

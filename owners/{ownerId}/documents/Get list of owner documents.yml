@@ -1,0 +1,163 @@
+info:
+  name: Get list of owner documents
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/owners/:ownerId/documents?skip=0&limit=10&sort=-_id&includeDeleted=false"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: skip
+      value: "0"
+      type: query
+      description: Pagination start index
+    - name: limit
+      value: "10"
+      type: query
+      description: Limit amount of results per page
+    - name: sort
+      value: -_id
+      type: query
+      description: Ordered list of field names to sort by, separated by spaces
+    - name: includeDeleted
+      value: "false"
+      type: query
+      description: Include deleted documents, true/false
+    - name: ownerId
+      value: <string>
+      type: path
+      description: (Required) Owner id
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Array of owner documents
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents?skip=0&limit=10&sort=-_id&includeDeleted=false"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: "0"
+          type: query
+          description: Pagination start index
+        - name: limit
+          value: "10"
+          type: query
+          description: Limit amount of results per page
+        - name: sort
+          value: -_id
+          type: query
+          description: Ordered list of field names to sort by, separated by spaces
+        - name: includeDeleted
+          value: "false"
+          type: query
+          description: Include deleted documents, true/false
+        - name: ownerId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "skip": "<number>",
+            "limit": "<number>",
+            "count": "<number>",
+            "totalCount": "<number>",
+            "sort": "<string>",
+            "results": [
+              {
+                "_id": "<string>",
+                "accountId": "<string>",
+                "ownerId": "<string>",
+                "originalFileName": "<string>",
+                "name": "<string>",
+                "type": "DOCUMENT",
+                "isShared": "<boolean>",
+                "createdAt": "<dateTime>",
+                "description": "<string>",
+                "startDate": "<string>",
+                "endDate": "<string>",
+                "deletedAt": "<dateTime>"
+              },
+              {
+                "_id": "<string>",
+                "accountId": "<string>",
+                "ownerId": "<string>",
+                "originalFileName": "<string>",
+                "name": "<string>",
+                "type": "CONTRACT",
+                "isShared": "<boolean>",
+                "createdAt": "<dateTime>",
+                "description": "<string>",
+                "startDate": "<string>",
+                "endDate": "<string>",
+                "deletedAt": "<dateTime>"
+              }
+            ]
+          }
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents?skip=0&limit=10&sort=-_id&includeDeleted=false"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: "0"
+          type: query
+          description: Pagination start index
+        - name: limit
+          value: "10"
+          type: query
+          description: Limit amount of results per page
+        - name: sort
+          value: -_id
+          type: query
+          description: Ordered list of field names to sort by, separated by spaces
+        - name: includeDeleted
+          value: "false"
+          type: query
+          description: Include deleted documents, true/false
+        - name: ownerId
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Get list of owner documents

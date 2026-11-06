@@ -1,0 +1,61 @@
+info:
+  name: Delete tax
+  type: http
+  seq: 1
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/taxes/:id"
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) The tax id
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The tax has been successfully deleted.
+    request:
+      url: "{{baseUrl}}/taxes/:id"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: The input provided is invalid.
+    request:
+      url: "{{baseUrl}}/taxes/:id"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: Delete tax by id.

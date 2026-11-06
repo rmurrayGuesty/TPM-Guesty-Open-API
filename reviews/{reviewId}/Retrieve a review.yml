@@ -1,0 +1,118 @@
+info:
+  name: Retrieve a review
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/reviews/:reviewId"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: reviewId
+      value: ""
+      type: path
+      description: (Required) Guesty Review ID
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Get Review Response
+    request:
+      url: "{{baseUrl}}/reviews/:reviewId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reviewId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": {},
+            "accountId": {},
+            "externalReviewId": "<string>",
+            "channelId": "homeaway2",
+            "listingId": {},
+            "externalListingId": "<string>",
+            "externalReservationId": "<string>",
+            "rawReview": {},
+            "subListingId": {},
+            "complexId": {},
+            "externalComplexId": "<string>",
+            "reservationId": {},
+            "guestId": {},
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "createdAtGuesty": "<string>",
+            "updatedAtGuesty": "<string>",
+            "reviewReplies": [
+              {
+                "status": "PENDING",
+                "reviewReply": "<string>",
+                "replyAt": "<dateTime>"
+              },
+              {
+                "status": "PENDING",
+                "reviewReply": "<string>",
+                "replyAt": "<dateTime>"
+              }
+            ]
+          }
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reviews/:reviewId"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reviewId
+          value: ""
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/reviews/:reviewId"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reviewId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+
+docs: Retrieve a review

@@ -1,0 +1,61 @@
+info:
+  name: Remove a Smart Calendar Rule
+  type: http
+  seq: 2
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/api/scr-v2/open-api/:scrId"
+  params:
+    - name: scrId
+      value: <string>
+      type: path
+      description: (Required) The ID of the smart calendar rule to remove
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Smart rule was removed
+    request:
+      url: "{{baseUrl}}/api/scr-v2/open-api/:scrId"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: scrId
+          value: ""
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: Smart calendar rule was not found. Please check the smart calendar rule ID
+    request:
+      url: "{{baseUrl}}/api/scr-v2/open-api/:scrId"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: scrId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+
+docs: Remove a specific Smart Calendar Rule from Guesty.

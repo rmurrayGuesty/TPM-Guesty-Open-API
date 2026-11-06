@@ -1,0 +1,191 @@
+info:
+  name: Add new photos to property
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/properties-api/property-photos/property-photos/:propertyId"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: propertyId
+      value: <string>
+      type: path
+      description: (Required) Guesty property ID.
+  body:
+    type: json
+    data: |-
+      [
+        {
+          "url": "<uri>",
+          "caption": "<string>"
+        },
+        {
+          "url": "<uri>",
+          "caption": "<string>"
+        }
+      ]
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Returns a list of all the property's photos.
+    request:
+      url: "{{baseUrl}}/properties-api/property-photos/property-photos/:propertyId"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "url": "<uri>",
+              "caption": "<string>"
+            },
+            {
+              "url": "<uri>",
+              "caption": "<string>"
+            }
+          ]
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "_id": "<string>",
+              "source": "<string>",
+              "original": "<string>",
+              "thumbnail": "<string>",
+              "caption": "<string>",
+              "index": "<number>",
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>"
+            },
+            {
+              "_id": "<string>",
+              "source": "<string>",
+              "original": "<string>",
+              "thumbnail": "<string>",
+              "caption": "<string>",
+              "index": "<number>",
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>"
+            }
+          ]
+  - name: Unauthorized Request.
+    request:
+      url: "{{baseUrl}}/properties-api/property-photos/property-photos/:propertyId"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "url": "<uri>",
+              "caption": "<string>"
+            },
+            {
+              "url": "<uri>",
+              "caption": "<string>"
+            }
+          ]
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Property not found.
+    request:
+      url: "{{baseUrl}}/properties-api/property-photos/property-photos/:propertyId"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "url": "<uri>",
+              "caption": "<string>"
+            },
+            {
+              "url": "<uri>",
+              "caption": "<string>"
+            }
+          ]
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>"
+            }
+          }
+
+docs: Upload new property photos using URLs. Ensure the repositories are accessible to Guesty.

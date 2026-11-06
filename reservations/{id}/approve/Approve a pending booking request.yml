@@ -1,0 +1,179 @@
+info:
+  name: Approve a pending booking request
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/reservations/:id/approve"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Reservation ID
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Reservation object - _id and status fields
+    request:
+      url: "{{baseUrl}}/reservations/:id/approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "example": "{\n    \"_id\": \"5fa02fa358d2db673e17bc2d\",\n    \"status\": \"CONFIRMED\",\n}"
+          }
+  - name: Invalid Input
+    request:
+      url: "{{baseUrl}}/reservations/:id/approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reservations/:id/approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Forbidden
+    request:
+      url: "{{baseUrl}}/reservations/:id/approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/reservations/:id/approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/reservations/:id/approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Use this call to accept a pending reservation request.

@@ -1,0 +1,167 @@
+info:
+  name: Change the photo order on a property
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/properties-api/property-photos/property-photos/:propertyId/order"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: propertyId
+      value: <string>
+      type: path
+      description: (Required) Guesty property ID.
+  body:
+    type: json
+    data: |-
+      [
+        "<string>",
+        "<string>"
+      ]
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Returns a list of all the property's photos.
+    request:
+      url: "{{baseUrl}}/properties-api/property-photos/property-photos/:propertyId/order"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          [
+            "<string>",
+            "<string>"
+          ]
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "_id": "<string>",
+              "source": "<string>",
+              "original": "<string>",
+              "thumbnail": "<string>",
+              "caption": "<string>",
+              "index": "<number>",
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>"
+            },
+            {
+              "_id": "<string>",
+              "source": "<string>",
+              "original": "<string>",
+              "thumbnail": "<string>",
+              "caption": "<string>",
+              "index": "<number>",
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>"
+            }
+          ]
+  - name: Unauthorized Request.
+    request:
+      url: "{{baseUrl}}/properties-api/property-photos/property-photos/:propertyId/order"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          [
+            "<string>",
+            "<string>"
+          ]
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Property not found.
+    request:
+      url: "{{baseUrl}}/properties-api/property-photos/property-photos/:propertyId/order"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: propertyId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          [
+            "<string>",
+            "<string>"
+          ]
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>"
+            }
+          }
+
+docs: Alter the order of the existing property photos. All listed photos will be placed first, and the rest will be placed at the end.

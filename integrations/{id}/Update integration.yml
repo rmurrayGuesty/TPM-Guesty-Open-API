@@ -1,0 +1,752 @@
+info:
+  name: Update integration
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/integrations/:id"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Integration ID
+  body:
+    type: json
+    data: |-
+      {
+        "_id": "<string>",
+        "airbnb2": {
+          "credentials": {
+            "code": "<string>",
+            "expiresAt": "<integer>",
+            "accessToken": "<string>",
+            "refreshToken": "<string>",
+            "lastForceRefresh": "<string>"
+          },
+          "forwardEmails": {
+            "all": true,
+            "emails": [
+              "<string>",
+              "<string>"
+            ]
+          }
+        },
+        "forwardEmails": {
+          "all": true,
+          "emails": [
+            "<string>",
+            "<string>"
+          ]
+        },
+        "active": "<boolean>",
+        "platform": "<string>",
+        "nickname": "<string>",
+        "channelId": "<string>",
+        "proxyEmail": "<string>",
+        "incomingEmail": "<string>",
+        "externalAccountId": "<string>",
+        "id": "<integer>",
+        "companyName": "<string>",
+        "fetchRequests": [
+          {
+            "fetchAllListings": "<boolean>",
+            "externalListingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "status": "TIMEOUT",
+            "createTime": "<string>",
+            "updateTime": "<string>",
+            "finishedTime": "<string>"
+          },
+          {
+            "fetchAllListings": "<boolean>",
+            "externalListingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "status": "TIMEOUT",
+            "createTime": "<string>",
+            "updateTime": "<string>",
+            "finishedTime": "<string>"
+          }
+        ],
+        "status": "CONNECTING",
+        "migration": {
+          "status": "IN_PROGRESS",
+          "createTime": "<string>",
+          "updateTime": "<string>",
+          "finishedTime": "<string>",
+          "discrepancyStepExecuted": false,
+          "discrepancyResolution": "GUESTY",
+          "listingQuantityDiscrepancyStepExecuted": false,
+          "error": {
+            "at": "<string>",
+            "code": "<string>",
+            "message": "<string>",
+            "raw": {}
+          },
+          "notes": "<string>",
+          "isRollingBack": false
+        },
+        "userId": "<string>",
+        "accountId": "<string>",
+        "tripAdvisor": {},
+        "homeaway2": {},
+        "bookingCom": {
+          "legalEntityId": "<string>"
+        },
+        "missingStep": "<string>",
+        "steps": [
+          {
+            "type": "<string>",
+            "status": "IN_PROGRESS"
+          },
+          {
+            "type": "<string>",
+            "status": "IN_PROGRESS"
+          }
+        ],
+        "newIntegrationBackup": {},
+        "threadIdsMigrated": "<boolean>",
+        "isDeleted": "<boolean>"
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Integration object
+    request:
+      url: "{{baseUrl}}/integrations/:id"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "airbnb2": {
+              "credentials": {
+                "code": "<string>",
+                "expiresAt": "<integer>",
+                "accessToken": "<string>",
+                "refreshToken": "<string>",
+                "lastForceRefresh": "<string>"
+              },
+              "forwardEmails": {
+                "all": true,
+                "emails": [
+                  "<string>",
+                  "<string>"
+                ]
+              }
+            },
+            "forwardEmails": {
+              "all": true,
+              "emails": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "active": "<boolean>",
+            "platform": "<string>",
+            "nickname": "<string>",
+            "channelId": "<string>",
+            "proxyEmail": "<string>",
+            "incomingEmail": "<string>",
+            "externalAccountId": "<string>",
+            "id": "<integer>",
+            "companyName": "<string>",
+            "fetchRequests": [
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "TIMEOUT",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              },
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "TIMEOUT",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              }
+            ],
+            "status": "CONNECTING",
+            "migration": {
+              "status": "IN_PROGRESS",
+              "createTime": "<string>",
+              "updateTime": "<string>",
+              "finishedTime": "<string>",
+              "discrepancyStepExecuted": false,
+              "discrepancyResolution": "GUESTY",
+              "listingQuantityDiscrepancyStepExecuted": false,
+              "error": {
+                "at": "<string>",
+                "code": "<string>",
+                "message": "<string>",
+                "raw": {}
+              },
+              "notes": "<string>",
+              "isRollingBack": false
+            },
+            "userId": "<string>",
+            "accountId": "<string>",
+            "tripAdvisor": {},
+            "homeaway2": {},
+            "bookingCom": {
+              "legalEntityId": "<string>"
+            },
+            "missingStep": "<string>",
+            "steps": [
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS"
+              },
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS"
+              }
+            ],
+            "newIntegrationBackup": {},
+            "threadIdsMigrated": "<boolean>",
+            "isDeleted": "<boolean>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "airbnb2": {
+              "credentials": {
+                "code": "<string>",
+                "expiresAt": "<integer>",
+                "accessToken": "<string>",
+                "refreshToken": "<string>",
+                "lastForceRefresh": "<string>"
+              },
+              "forwardEmails": {
+                "all": true,
+                "emails": [
+                  "<string>",
+                  "<string>"
+                ]
+              },
+              "createdAt": "<string>"
+            },
+            "forwardEmails": {
+              "all": true,
+              "emails": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "active": "<boolean>",
+            "platform": "<string>",
+            "nickname": "<string>",
+            "channelId": "<string>",
+            "activatedAt": "<string>",
+            "disconnectedAt": "<string>",
+            "proxyEmail": "<string>",
+            "incomingEmail": "<string>",
+            "externalAccountId": "<string>",
+            "id": "<integer>",
+            "companyName": "<string>",
+            "fetchRequests": [
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "FAILED",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              },
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "COMPLETED",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              }
+            ],
+            "status": "CONNECTED",
+            "migration": {
+              "status": "FAILED",
+              "createTime": "<string>",
+              "updateTime": "<string>",
+              "finishedTime": "<string>",
+              "discrepancyStepExecuted": false,
+              "discrepancyResolution": "AIRBNB",
+              "listingQuantityDiscrepancyStepExecuted": false,
+              "error": {
+                "at": "<string>",
+                "code": "<string>",
+                "message": "<string>",
+                "raw": {}
+              },
+              "notes": "<string>",
+              "isRollingBack": false
+            },
+            "userId": "<string>",
+            "accountId": "<string>",
+            "tripAdvisor": {},
+            "homeaway2": {},
+            "bookingCom": {
+              "legalEntityId": "<string>"
+            },
+            "createdAt": "<string>",
+            "missingStep": "<string>",
+            "steps": [
+              {
+                "type": "<string>",
+                "status": "COMPLETED",
+                "createTime": "<string>",
+                "updateTime": "<string>"
+              },
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS",
+                "createTime": "<string>",
+                "updateTime": "<string>"
+              }
+            ],
+            "newIntegrationBackup": {},
+            "threadIdsMigrated": "<boolean>",
+            "isDeleted": "<boolean>",
+            "deletedAt": "<string>"
+          }
+  - name: Invalid Input
+    request:
+      url: "{{baseUrl}}/integrations/:id"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "airbnb2": {
+              "credentials": {
+                "code": "<string>",
+                "expiresAt": "<integer>",
+                "accessToken": "<string>",
+                "refreshToken": "<string>",
+                "lastForceRefresh": "<string>"
+              },
+              "forwardEmails": {
+                "all": true,
+                "emails": [
+                  "<string>",
+                  "<string>"
+                ]
+              }
+            },
+            "forwardEmails": {
+              "all": true,
+              "emails": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "active": "<boolean>",
+            "platform": "<string>",
+            "nickname": "<string>",
+            "channelId": "<string>",
+            "proxyEmail": "<string>",
+            "incomingEmail": "<string>",
+            "externalAccountId": "<string>",
+            "id": "<integer>",
+            "companyName": "<string>",
+            "fetchRequests": [
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "TIMEOUT",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              },
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "TIMEOUT",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              }
+            ],
+            "status": "CONNECTING",
+            "migration": {
+              "status": "IN_PROGRESS",
+              "createTime": "<string>",
+              "updateTime": "<string>",
+              "finishedTime": "<string>",
+              "discrepancyStepExecuted": false,
+              "discrepancyResolution": "GUESTY",
+              "listingQuantityDiscrepancyStepExecuted": false,
+              "error": {
+                "at": "<string>",
+                "code": "<string>",
+                "message": "<string>",
+                "raw": {}
+              },
+              "notes": "<string>",
+              "isRollingBack": false
+            },
+            "userId": "<string>",
+            "accountId": "<string>",
+            "tripAdvisor": {},
+            "homeaway2": {},
+            "bookingCom": {
+              "legalEntityId": "<string>"
+            },
+            "missingStep": "<string>",
+            "steps": [
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS"
+              },
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS"
+              }
+            ],
+            "newIntegrationBackup": {},
+            "threadIdsMigrated": "<boolean>",
+            "isDeleted": "<boolean>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/integrations/:id"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "airbnb2": {
+              "credentials": {
+                "code": "<string>",
+                "expiresAt": "<integer>",
+                "accessToken": "<string>",
+                "refreshToken": "<string>",
+                "lastForceRefresh": "<string>"
+              },
+              "forwardEmails": {
+                "all": true,
+                "emails": [
+                  "<string>",
+                  "<string>"
+                ]
+              }
+            },
+            "forwardEmails": {
+              "all": true,
+              "emails": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "active": "<boolean>",
+            "platform": "<string>",
+            "nickname": "<string>",
+            "channelId": "<string>",
+            "proxyEmail": "<string>",
+            "incomingEmail": "<string>",
+            "externalAccountId": "<string>",
+            "id": "<integer>",
+            "companyName": "<string>",
+            "fetchRequests": [
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "TIMEOUT",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              },
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "TIMEOUT",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              }
+            ],
+            "status": "CONNECTING",
+            "migration": {
+              "status": "IN_PROGRESS",
+              "createTime": "<string>",
+              "updateTime": "<string>",
+              "finishedTime": "<string>",
+              "discrepancyStepExecuted": false,
+              "discrepancyResolution": "GUESTY",
+              "listingQuantityDiscrepancyStepExecuted": false,
+              "error": {
+                "at": "<string>",
+                "code": "<string>",
+                "message": "<string>",
+                "raw": {}
+              },
+              "notes": "<string>",
+              "isRollingBack": false
+            },
+            "userId": "<string>",
+            "accountId": "<string>",
+            "tripAdvisor": {},
+            "homeaway2": {},
+            "bookingCom": {
+              "legalEntityId": "<string>"
+            },
+            "missingStep": "<string>",
+            "steps": [
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS"
+              },
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS"
+              }
+            ],
+            "newIntegrationBackup": {},
+            "threadIdsMigrated": "<boolean>",
+            "isDeleted": "<boolean>"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Internal Server Error
+    request:
+      url: "{{baseUrl}}/integrations/:id"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "airbnb2": {
+              "credentials": {
+                "code": "<string>",
+                "expiresAt": "<integer>",
+                "accessToken": "<string>",
+                "refreshToken": "<string>",
+                "lastForceRefresh": "<string>"
+              },
+              "forwardEmails": {
+                "all": true,
+                "emails": [
+                  "<string>",
+                  "<string>"
+                ]
+              }
+            },
+            "forwardEmails": {
+              "all": true,
+              "emails": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "active": "<boolean>",
+            "platform": "<string>",
+            "nickname": "<string>",
+            "channelId": "<string>",
+            "proxyEmail": "<string>",
+            "incomingEmail": "<string>",
+            "externalAccountId": "<string>",
+            "id": "<integer>",
+            "companyName": "<string>",
+            "fetchRequests": [
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "TIMEOUT",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              },
+              {
+                "fetchAllListings": "<boolean>",
+                "externalListingIds": [
+                  "<string>",
+                  "<string>"
+                ],
+                "status": "TIMEOUT",
+                "createTime": "<string>",
+                "updateTime": "<string>",
+                "finishedTime": "<string>"
+              }
+            ],
+            "status": "CONNECTING",
+            "migration": {
+              "status": "IN_PROGRESS",
+              "createTime": "<string>",
+              "updateTime": "<string>",
+              "finishedTime": "<string>",
+              "discrepancyStepExecuted": false,
+              "discrepancyResolution": "GUESTY",
+              "listingQuantityDiscrepancyStepExecuted": false,
+              "error": {
+                "at": "<string>",
+                "code": "<string>",
+                "message": "<string>",
+                "raw": {}
+              },
+              "notes": "<string>",
+              "isRollingBack": false
+            },
+            "userId": "<string>",
+            "accountId": "<string>",
+            "tripAdvisor": {},
+            "homeaway2": {},
+            "bookingCom": {
+              "legalEntityId": "<string>"
+            },
+            "missingStep": "<string>",
+            "steps": [
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS"
+              },
+              {
+                "type": "<string>",
+                "status": "IN_PROGRESS"
+              }
+            ],
+            "newIntegrationBackup": {},
+            "threadIdsMigrated": "<boolean>",
+            "isDeleted": "<boolean>"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Selectively update fields of single account integration.

@@ -1,0 +1,7 @@
+info:
+  name: properties
+  type: folder
+  seq: 41
+
+request:
+  auth: inherit

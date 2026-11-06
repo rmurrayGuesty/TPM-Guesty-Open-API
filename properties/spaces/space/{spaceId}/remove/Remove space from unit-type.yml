@@ -1,0 +1,105 @@
+info:
+  name: Remove space from unit-type
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/properties/spaces/space/:spaceId/remove"
+  headers:
+    - name: Accept
+      value: application/json; charset=utf-8
+  params:
+    - name: spaceId
+      value: <string>
+      type: path
+      description: (Required) spaceId to remove
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Space was removed, returns the spaces left on the unitType
+    request:
+      url: "{{baseUrl}}/properties/spaces/space/:spaceId/remove"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json; charset=utf-8
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: spaceId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json; charset=utf-8
+      body:
+        type: json
+        data: |-
+          {
+            "unitTypeId": "<string>",
+            "spaces": [
+              {
+                "unitTypeId": "<string>",
+                "accountId": "<string>",
+                "name": "<string>",
+                "roomIds": {
+                  "airbnb": "<string>"
+                },
+                "beds": {
+                  "KING_BED": 0,
+                  "QUEEN_BED": 0,
+                  "DOUBLE_BED": 0,
+                  "SINGLE_BED": 0,
+                  "SOFA_BED": 0,
+                  "AIR_MATTRESS": 0,
+                  "BUNK_BED": 0
+                },
+                "other": {
+                  "FLOOR_MATTRESS": 0,
+                  "WATER_BED": 0,
+                  "TODDLER_BED": 0,
+                  "CRIB": 0
+                }
+              },
+              {
+                "unitTypeId": "<string>",
+                "accountId": "<string>",
+                "name": "<string>",
+                "roomIds": {
+                  "airbnb": "<string>"
+                },
+                "beds": {
+                  "KING_BED": 0,
+                  "QUEEN_BED": 0,
+                  "DOUBLE_BED": 0,
+                  "SINGLE_BED": 0,
+                  "SOFA_BED": 0,
+                  "AIR_MATTRESS": 0,
+                  "BUNK_BED": 0
+                },
+                "other": {
+                  "FLOOR_MATTRESS": 0,
+                  "WATER_BED": 0,
+                  "TODDLER_BED": 0,
+                  "CRIB": 0
+                }
+              }
+            ],
+            "bedroomsAllowed": "<boolean>",
+            "bathrooms": {
+              "SHARED": "<number>",
+              "PRIVATE": "<number>"
+            }
+          }

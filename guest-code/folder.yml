@@ -1,0 +1,7 @@
+info:
+  name: guest-code
+  type: folder
+  seq: 52
+
+request:
+  auth: inherit

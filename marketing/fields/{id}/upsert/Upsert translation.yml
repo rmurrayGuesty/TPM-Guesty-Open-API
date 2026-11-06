@@ -1,0 +1,193 @@
+info:
+  name: Upsert translation
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/marketing/fields/:id/upsert?language=<string>"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: language
+      value: <string>
+      type: query
+      description: (Required) Language slug for the translation
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) The listing ID whose translations you wish to upsert.
+  body:
+    type: json
+    data: |-
+      {
+        "active": "<boolean>",
+        "title": "<string>",
+        "summary": "<string>",
+        "space": "<string>",
+        "access": "<string>",
+        "neighborhood": "<string>",
+        "transit": "<string>",
+        "notes": "<string>",
+        "interactionWithGuests": "<string>",
+        "checkInInstructions": {
+          "primaryCheckIn": "<string>",
+          "alternativeCheckIn": "<string>",
+          "notes": "<string>",
+          "welcomeMessage": "<string>"
+        },
+        "descriptionSetId": [
+          "<string>",
+          "<string>"
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Return the updated translation
+    request:
+      url: "{{baseUrl}}/marketing/fields/:id/upsert?language=<string>"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: language
+          value: <string>
+          type: query
+          description: (Required) Language slug for the translation
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "active": "<boolean>",
+            "title": "<string>",
+            "summary": "<string>",
+            "space": "<string>",
+            "access": "<string>",
+            "neighborhood": "<string>",
+            "transit": "<string>",
+            "notes": "<string>",
+            "interactionWithGuests": "<string>",
+            "checkInInstructions": {
+              "primaryCheckIn": "<string>",
+              "alternativeCheckIn": "<string>",
+              "notes": "<string>",
+              "welcomeMessage": "<string>"
+            },
+            "descriptionSetId": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "languageSlug": "<string>",
+            "active": "<boolean>",
+            "title": "<string>",
+            "summary": "<string>",
+            "space": "<string>",
+            "access": "<string>",
+            "neighborhood": "<string>",
+            "transit": "<string>",
+            "notes": "<string>",
+            "interactionWithGuests": "<string>",
+            "checkInInstructions": {
+              "primaryCheckIn": "<string>",
+              "alternativeCheckIn": "<string>",
+              "notes": "<string>",
+              "welcomeMessage": "<string>"
+            },
+            "channels": [
+              "<string>",
+              "<string>"
+            ]
+          }
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/marketing/fields/:id/upsert?language=<string>"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: language
+          value: <string>
+          type: query
+          description: (Required) Language slug for the translation
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "active": "<boolean>",
+            "title": "<string>",
+            "summary": "<string>",
+            "space": "<string>",
+            "access": "<string>",
+            "neighborhood": "<string>",
+            "transit": "<string>",
+            "notes": "<string>",
+            "interactionWithGuests": "<string>",
+            "checkInInstructions": {
+              "primaryCheckIn": "<string>",
+              "alternativeCheckIn": "<string>",
+              "notes": "<string>",
+              "welcomeMessage": "<string>"
+            },
+            "descriptionSetId": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>",
+              "data": "<string>"
+            }
+          }
+
+docs: Upsert a new translation for specific listing and language slug.

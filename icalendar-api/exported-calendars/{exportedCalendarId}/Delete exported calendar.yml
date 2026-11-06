@@ -1,0 +1,90 @@
+info:
+  name: Delete exported calendar
+  type: http
+  seq: 3
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: exportedCalendarId
+      value: <string>
+      type: path
+      description: (Required) Id of an exported calendars
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Exported calendar deleted
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: exportedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: exportedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: Exported calendar not found
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: exportedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+
+docs: |2-
+  
+      Keep in mind - when you remove an exported calendar, any services that use its URL will encounter a 404 error.
+      To permanently delete the exported calendar, use the following request.

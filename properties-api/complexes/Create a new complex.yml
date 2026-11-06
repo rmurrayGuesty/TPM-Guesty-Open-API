@@ -1,0 +1,207 @@
+info:
+  name: Create a new complex
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/properties-api/complexes"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "title": "<string>",
+        "nickname": "<string>",
+        "propertyIds": [
+          "<string>",
+          "<string>"
+        ],
+        "tags": [
+          "<string>",
+          "<string>"
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The ID of the newly created complex
+    request:
+      url: "{{baseUrl}}/properties-api/complexes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "nickname": "<string>",
+            "propertyIds": [
+              "<string>",
+              "<string>"
+            ],
+            "tags": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "<string>"
+          }
+  - name: Bad Request
+    request:
+      url: "{{baseUrl}}/properties-api/complexes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "nickname": "<string>",
+            "propertyIds": [
+              "<string>",
+              "<string>"
+            ],
+            "tags": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>",
+              "data": "<string>"
+            }
+          }
+  - name: Unauthorized Request
+    request:
+      url: "{{baseUrl}}/properties-api/complexes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "nickname": "<string>",
+            "propertyIds": [
+              "<string>",
+              "<string>"
+            ],
+            "tags": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Complex not found
+    request:
+      url: "{{baseUrl}}/properties-api/complexes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "nickname": "<string>",
+            "propertyIds": [
+              "<string>",
+              "<string>"
+            ],
+            "tags": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>",
+              "data": "<string>"
+            }
+          }
+
+docs: Create a new complex and return the ID of the newly created complex

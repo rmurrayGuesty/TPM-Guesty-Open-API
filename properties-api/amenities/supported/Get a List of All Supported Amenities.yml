@@ -1,0 +1,79 @@
+info:
+  name: Get a List of All Supported Amenities
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/properties-api/amenities/supported"
+  headers:
+    - name: Accept
+      value: application/json
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: A list of all supported amenities
+    request:
+      url: "{{baseUrl}}/properties-api/amenities/supported"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "name": "<string>",
+              "group": "<string>",
+              "channels": {}
+            },
+            {
+              "name": "<string>",
+              "group": "<string>",
+              "channels": {}
+            }
+          ]
+  - name: Unauthorized Request
+    request:
+      url: "{{baseUrl}}/properties-api/amenities/supported"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+
+docs: Get a list of all supported amenities, including their names, groups and channels

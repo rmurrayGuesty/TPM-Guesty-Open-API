@@ -1,0 +1,226 @@
+info:
+  name: Get Business Models
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/business-models-api/light-business-models?skip=<number>&limit=<number>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: skip
+      value: <number>
+      type: query
+      description: Skip number of records. In case nothing provided so nothing will be skipped
+    - name: limit
+      value: <number>
+      type: query
+      description: Limit for list of records. In case nothing provided all the records will be returned
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Latest versions of business models response
+    request:
+      url: "{{baseUrl}}/business-models-api/light-business-models?skip=<number>&limit=<number>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: <number>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+        - name: limit
+          value: <number>
+          type: query
+          description: Limit for list of records. In case nothing provided all the records will be returned
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "skip": "<number>",
+            "limit": "<number>",
+            "count": "<number>",
+            "list": [
+              {
+                "id": "<string>",
+                "type": "<string>",
+                "listingsCount": "<number>",
+                "name": "<string>",
+                "modifier": "<string>",
+                "activationDate": "<string>",
+                "createdAt": "<string>"
+              },
+              {
+                "id": "<string>",
+                "type": "<string>",
+                "listingsCount": "<number>",
+                "name": "<string>",
+                "modifier": "<string>",
+                "activationDate": "<string>",
+                "createdAt": "<string>"
+              }
+            ]
+          }
+  - name: Input data is not valid
+    request:
+      url: "{{baseUrl}}/business-models-api/light-business-models?skip=<number>&limit=<number>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: <number>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+        - name: limit
+          value: <number>
+          type: query
+          description: Limit for list of records. In case nothing provided all the records will be returned
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "code": "<string>",
+              "status": "<number>",
+              "data": [
+                "<string>",
+                "<string>"
+              ]
+            }
+          }
+  - name: You do not have sufficient permissions to access this resource
+    request:
+      url: "{{baseUrl}}/business-models-api/light-business-models?skip=<number>&limit=<number>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: <number>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+        - name: limit
+          value: <number>
+          type: query
+          description: Limit for list of records. In case nothing provided all the records will be returned
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+  - name: Can't find business model, by provided accountId
+    request:
+      url: "{{baseUrl}}/business-models-api/light-business-models?skip=<number>&limit=<number>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: <number>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+        - name: limit
+          value: <number>
+          type: query
+          description: Limit for list of records. In case nothing provided all the records will be returned
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+  - name: Unhandled exception. Something went wrong on server
+    request:
+      url: "{{baseUrl}}/business-models-api/light-business-models?skip=<number>&limit=<number>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: <number>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+        - name: limit
+          value: <number>
+          type: query
+          description: Limit for list of records. In case nothing provided all the records will be returned
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+
+docs: Get list of Business Models by accountId

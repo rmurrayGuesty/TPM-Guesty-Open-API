@@ -1,0 +1,328 @@
+info:
+  name: Create tax
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/taxes"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "type": "STATE_TAX",
+        "units": "PERCENTAGE",
+        "amount": "<number>",
+        "quantifier": "PER_STAY",
+        "unitTypeId": "<string>",
+        "name": "<string>",
+        "appliedToAllFees": "<boolean>",
+        "appliedOnFees": [
+          "<string>",
+          "<string>"
+        ],
+        "isAppliedByDefault": "<boolean>",
+        "appliedByDefaultOnChannels": [
+          "homeaway2",
+          "homeaway2"
+        ],
+        "conditionalOverrides": {
+          "viewType": "LOS",
+          "rules": [
+            {
+              "nightRanges": [
+                {
+                  "from": "<number>",
+                  "amount": "<number>",
+                  "to": "<number>"
+                },
+                {
+                  "from": "<number>",
+                  "amount": "<number>",
+                  "to": "<number>"
+                }
+              ],
+              "dateRange": {
+                "from": "<string>",
+                "to": "<string>"
+              }
+            },
+            {
+              "nightRanges": [
+                {
+                  "from": "<number>",
+                  "amount": "<number>",
+                  "to": "<number>"
+                },
+                {
+                  "from": "<number>",
+                  "amount": "<number>",
+                  "to": "<number>"
+                }
+              ],
+              "dateRange": {
+                "from": "<string>",
+                "to": "<string>"
+              }
+            }
+          ],
+          "maxNightCountToApplyOn": "<number>"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The tax has been successfully created.
+    request:
+      url: "{{baseUrl}}/taxes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "type": "STATE_TAX",
+            "units": "PERCENTAGE",
+            "amount": "<number>",
+            "quantifier": "PER_STAY",
+            "unitTypeId": "<string>",
+            "name": "<string>",
+            "appliedToAllFees": "<boolean>",
+            "appliedOnFees": [
+              "<string>",
+              "<string>"
+            ],
+            "isAppliedByDefault": "<boolean>",
+            "appliedByDefaultOnChannels": [
+              "homeaway2",
+              "homeaway2"
+            ],
+            "conditionalOverrides": {
+              "viewType": "LOS",
+              "rules": [
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                },
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                }
+              ],
+              "maxNightCountToApplyOn": "<number>"
+            }
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "accountId": "<string>",
+            "type": "MINIMUM_ALTERNATE_TAX",
+            "units": "PERCENTAGE",
+            "quantifier": "PER_GUEST_PER_NIGHT",
+            "appliedOnFees": [
+              "<string>",
+              "<string>"
+            ],
+            "appliedByDefaultOnChannels": [
+              "tripAdvisor",
+              "bookingPal"
+            ],
+            "amount": "<number>",
+            "appliedToAllFees": "<boolean>",
+            "isAppliedByDefault": "<boolean>",
+            "_id": "<string>",
+            "unitTypeId": "<string>",
+            "isDeleted": "<boolean>",
+            "name": "<string>",
+            "conditionalOverrides": {
+              "viewType": "NIGHTS_IN_DATES",
+              "rules": [
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                },
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                }
+              ],
+              "maxNightCountToApplyOn": "<number>"
+            },
+            "channelConfig": [
+              {
+                "channel": "<string>",
+                "userConfig": {
+                  "syncSelection": "<string>"
+                }
+              },
+              {
+                "channel": "<string>",
+                "userConfig": {
+                  "syncSelection": "<string>"
+                }
+              }
+            ]
+          }
+  - name: The input provided is invalid.
+    request:
+      url: "{{baseUrl}}/taxes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "type": "STATE_TAX",
+            "units": "PERCENTAGE",
+            "amount": "<number>",
+            "quantifier": "PER_STAY",
+            "unitTypeId": "<string>",
+            "name": "<string>",
+            "appliedToAllFees": "<boolean>",
+            "appliedOnFees": [
+              "<string>",
+              "<string>"
+            ],
+            "isAppliedByDefault": "<boolean>",
+            "appliedByDefaultOnChannels": [
+              "homeaway2",
+              "homeaway2"
+            ],
+            "conditionalOverrides": {
+              "viewType": "LOS",
+              "rules": [
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                },
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                }
+              ],
+              "maxNightCountToApplyOn": "<number>"
+            }
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: Create tax configuration with the provided settings.

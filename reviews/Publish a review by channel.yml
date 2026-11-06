@@ -1,0 +1,141 @@
+info:
+  name: Publish a review by channel
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/reviews"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "channelId": "bookingCom",
+        "rawReview": {},
+        "metaData": {}
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Upsert Review Response
+    request:
+      url: "{{baseUrl}}/reviews"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "channelId": "bookingCom",
+            "rawReview": {},
+            "metaData": {}
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": {},
+            "accountId": {},
+            "externalReviewId": "<string>",
+            "channelId": "homeaway2",
+            "listingId": {},
+            "externalListingId": "<string>",
+            "externalReservationId": "<string>",
+            "rawReview": {},
+            "subListingId": {},
+            "complexId": {},
+            "externalComplexId": "<string>",
+            "reservationId": {},
+            "guestId": {},
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "createdAtGuesty": "<string>",
+            "updatedAtGuesty": "<string>",
+            "reviewReplies": [
+              {
+                "status": "PENDING",
+                "reviewReply": "<string>",
+                "replyAt": "<dateTime>"
+              },
+              {
+                "status": "PENDING",
+                "reviewReply": "<string>",
+                "replyAt": "<dateTime>"
+              }
+            ]
+          }
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reviews"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "channelId": "bookingCom",
+            "rawReview": {},
+            "metaData": {}
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/reviews"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "channelId": "bookingCom",
+            "rawReview": {},
+            "metaData": {}
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+
+docs: Publish a review by channel

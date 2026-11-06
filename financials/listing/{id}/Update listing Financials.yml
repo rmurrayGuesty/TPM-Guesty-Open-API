@@ -1,0 +1,266 @@
+info:
+  name: Update listing Financials
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/financials/listing/:id"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: "(Required) "
+  body:
+    type: json
+    data: |-
+      {
+        "guestsIncludedInRegularFee": "<number>",
+        "extraPersonFee": "<number>",
+        "basePrice": "<number>",
+        "basePriceUSD": "<number>",
+        "monthlyPriceFactor": "<number>",
+        "weeklyPriceFactor": "<number>",
+        "weekendBasePrice": "<number>",
+        "securityDepositFee": "<number>",
+        "currency": "<string>",
+        "cleaningFee": {
+          "value": {
+            "valueType": "PERCENTAGE",
+            "multiplier": "PER_GUEST",
+            "formula": "<number>"
+          },
+          "lastUpdatedAt": "<date>",
+          "airbnb": {
+            "value": {
+              "valueType": "PERCENTAGE",
+              "multiplier": "PER_NIGHT",
+              "formula": "<number>",
+              "_id": "<string>"
+            }
+          },
+          "rentalsUnited": {
+            "value": {
+              "valueType": "PERCENTAGE",
+              "multiplier": "PER_GUEST_PER_NIGHT",
+              "formula": "<number>",
+              "_id": "<string>"
+            }
+          },
+          "homeAway": {
+            "value": {
+              "valueType": "PERCENTAGE",
+              "multiplier": "PER_NIGHT",
+              "formula": "<number>",
+              "_id": "<string>"
+            }
+          },
+          "expedia": {
+            "value": {
+              "valueType": "PERCENTAGE",
+              "multiplier": "PER_NIGHT",
+              "formula": "<number>",
+              "_id": "<string>"
+            }
+          },
+          "despegar": {
+            "value": {
+              "valueType": "FIXED",
+              "multiplier": "PER_GUEST_PER_NIGHT",
+              "formula": "<number>",
+              "_id": "<string>"
+            }
+          },
+          "bookingCom": {
+            "value": {
+              "valueType": "PERCENTAGE",
+              "multiplier": "PER_GUEST",
+              "formula": "<number>",
+              "_id": "<string>"
+            }
+          }
+        }
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The Updated financials object
+    request:
+      url: "{{baseUrl}}/financials/listing/:id"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "guestsIncludedInRegularFee": "<number>",
+            "extraPersonFee": "<number>",
+            "basePrice": "<number>",
+            "basePriceUSD": "<number>",
+            "monthlyPriceFactor": "<number>",
+            "weeklyPriceFactor": "<number>",
+            "weekendBasePrice": "<number>",
+            "securityDepositFee": "<number>",
+            "currency": "<string>",
+            "cleaningFee": {
+              "value": {
+                "valueType": "PERCENTAGE",
+                "multiplier": "PER_GUEST",
+                "formula": "<number>"
+              },
+              "lastUpdatedAt": "<date>",
+              "airbnb": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "rentalsUnited": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "homeAway": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "expedia": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "despegar": {
+                "value": {
+                  "valueType": "FIXED",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "bookingCom": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_GUEST",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              }
+            }
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "guestsIncludedInRegularFee": "<number>",
+            "extraPersonFee": "<number>",
+            "basePrice": "<number>",
+            "basePriceUSD": "<number>",
+            "monthlyPriceFactor": "<number>",
+            "weeklyPriceFactor": "<number>",
+            "weekendBasePrice": "<number>",
+            "securityDepositFee": "<number>",
+            "currency": "<string>",
+            "cleaningFee": {
+              "value": {
+                "valueType": "PERCENTAGE",
+                "multiplier": "PER_GUEST_PER_NIGHT",
+                "formula": "<number>"
+              },
+              "lastUpdatedAt": "<date>",
+              "airbnb": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "rentalsUnited": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "homeAway": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "expedia": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_GUEST",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "despegar": {
+                "value": {
+                  "valueType": "FIXED",
+                  "multiplier": "PER_STAY",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              },
+              "bookingCom": {
+                "value": {
+                  "valueType": "PERCENTAGE",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "formula": "<number>",
+                  "_id": "<string>"
+                }
+              }
+            }
+          }
+
+docs: Only accessible to Admin or User tokens.

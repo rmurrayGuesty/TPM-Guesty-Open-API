@@ -1,0 +1,282 @@
+info:
+  name: Create expense
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/business-models-api/transactions/expenses"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "<string>",
+        "category": "advertising",
+        "description": "<string>",
+        "amount": "<number>",
+        "recognitionDate": "<string>",
+        "vendorId": "<string>",
+        "referenceId": "<string>",
+        "expenseShare": {
+          "shareSplit": "<number>",
+          "ownerId": "<string>",
+          "listingId": "<string>"
+        },
+        "attachments": [
+          {
+            "url": "<string>",
+            "urlThumbnail": "<string>",
+            "extension": "<string>",
+            "fileName": "<string>"
+          },
+          {
+            "url": "<string>",
+            "urlThumbnail": "<string>",
+            "extension": "<string>",
+            "fileName": "<string>"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Expense created
+    request:
+      url: "{{baseUrl}}/business-models-api/transactions/expenses"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "category": "advertising",
+            "description": "<string>",
+            "amount": "<number>",
+            "recognitionDate": "<string>",
+            "vendorId": "<string>",
+            "referenceId": "<string>",
+            "expenseShare": {
+              "shareSplit": "<number>",
+              "ownerId": "<string>",
+              "listingId": "<string>"
+            },
+            "attachments": [
+              {
+                "url": "<string>",
+                "urlThumbnail": "<string>",
+                "extension": "<string>",
+                "fileName": "<string>"
+              },
+              {
+                "url": "<string>",
+                "urlThumbnail": "<string>",
+                "extension": "<string>",
+                "fileName": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      body:
+        type: text
+        data: ""
+  - name: Input data is not valid
+    request:
+      url: "{{baseUrl}}/business-models-api/transactions/expenses"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "category": "advertising",
+            "description": "<string>",
+            "amount": "<number>",
+            "recognitionDate": "<string>",
+            "vendorId": "<string>",
+            "referenceId": "<string>",
+            "expenseShare": {
+              "shareSplit": "<number>",
+              "ownerId": "<string>",
+              "listingId": "<string>"
+            },
+            "attachments": [
+              {
+                "url": "<string>",
+                "urlThumbnail": "<string>",
+                "extension": "<string>",
+                "fileName": "<string>"
+              },
+              {
+                "url": "<string>",
+                "urlThumbnail": "<string>",
+                "extension": "<string>",
+                "fileName": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "code": "<string>",
+              "status": "<number>",
+              "data": [
+                "<string>",
+                "<string>"
+              ]
+            }
+          }
+  - name: Accounting feature flow disabled
+    request:
+      url: "{{baseUrl}}/business-models-api/transactions/expenses"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "category": "advertising",
+            "description": "<string>",
+            "amount": "<number>",
+            "recognitionDate": "<string>",
+            "vendorId": "<string>",
+            "referenceId": "<string>",
+            "expenseShare": {
+              "shareSplit": "<number>",
+              "ownerId": "<string>",
+              "listingId": "<string>"
+            },
+            "attachments": [
+              {
+                "url": "<string>",
+                "urlThumbnail": "<string>",
+                "extension": "<string>",
+                "fileName": "<string>"
+              },
+              {
+                "url": "<string>",
+                "urlThumbnail": "<string>",
+                "extension": "<string>",
+                "fileName": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+  - name: Unhandled exception. Something went wrong on server
+    request:
+      url: "{{baseUrl}}/business-models-api/transactions/expenses"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "category": "advertising",
+            "description": "<string>",
+            "amount": "<number>",
+            "recognitionDate": "<string>",
+            "vendorId": "<string>",
+            "referenceId": "<string>",
+            "expenseShare": {
+              "shareSplit": "<number>",
+              "ownerId": "<string>",
+              "listingId": "<string>"
+            },
+            "attachments": [
+              {
+                "url": "<string>",
+                "urlThumbnail": "<string>",
+                "extension": "<string>",
+                "fileName": "<string>"
+              },
+              {
+                "url": "<string>",
+                "urlThumbnail": "<string>",
+                "extension": "<string>",
+                "fileName": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+
+docs: Create expense for provided vendor. The expense will be created only for the specified owner and will not be splited between all the listing ownerships. This endpoint is still in beta.

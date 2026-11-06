@@ -1,0 +1,307 @@
+info:
+  name: Request airbnb reservation cancellation on the platform
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/reservations/:id/request-cancellation-sync"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Reservation ID
+  body:
+    type: json
+    data: |-
+      {
+        "cancellationData": {
+          "reason": "DECLINE_REASON_HOST_OTHER",
+          "subReason": "DECLINE_REASON_HOST_EMERGENCY",
+          "messageToAirbnb": "<string>",
+          "messageToGuest": "<string>"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: "Result of operation: true or false"
+    request:
+      url: "{{baseUrl}}/reservations/:id/request-cancellation-sync"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "cancellationData": {
+              "reason": "DECLINE_REASON_HOST_OTHER",
+              "subReason": "DECLINE_REASON_HOST_EMERGENCY",
+              "messageToAirbnb": "<string>",
+              "messageToGuest": "<string>"
+            }
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "details": {
+              "reason": "<string>",
+              "subReason": "<string>",
+              "messageToAirbnb": "<string>",
+              "messageToGuest": "<string>"
+            },
+            "isSuccessful": "<boolean>",
+            "cancelledAt": "<date>"
+          }
+  - name: Invalid request
+    request:
+      url: "{{baseUrl}}/reservations/:id/request-cancellation-sync"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "cancellationData": {
+              "reason": "DECLINE_REASON_HOST_OTHER",
+              "subReason": "DECLINE_REASON_HOST_EMERGENCY",
+              "messageToAirbnb": "<string>",
+              "messageToGuest": "<string>"
+            }
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "cause": "<string>",
+              "meta": {}
+            },
+            "isSuccessful": "<boolean>"
+          }
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reservations/:id/request-cancellation-sync"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "cancellationData": {
+              "reason": "DECLINE_REASON_HOST_OTHER",
+              "subReason": "DECLINE_REASON_HOST_EMERGENCY",
+              "messageToAirbnb": "<string>",
+              "messageToGuest": "<string>"
+            }
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "cause": "<string>",
+              "meta": {}
+            },
+            "isSuccessful": "<boolean>"
+          }
+  - name: Forbidden
+    request:
+      url: "{{baseUrl}}/reservations/:id/request-cancellation-sync"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "cancellationData": {
+              "reason": "DECLINE_REASON_HOST_OTHER",
+              "subReason": "DECLINE_REASON_HOST_EMERGENCY",
+              "messageToAirbnb": "<string>",
+              "messageToGuest": "<string>"
+            }
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "cause": "<string>",
+              "meta": {}
+            },
+            "isSuccessful": "<boolean>"
+          }
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/reservations/:id/request-cancellation-sync"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "cancellationData": {
+              "reason": "DECLINE_REASON_HOST_OTHER",
+              "subReason": "DECLINE_REASON_HOST_EMERGENCY",
+              "messageToAirbnb": "<string>",
+              "messageToGuest": "<string>"
+            }
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "cause": "<string>",
+              "meta": {}
+            },
+            "isSuccessful": "<boolean>"
+          }
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/reservations/:id/request-cancellation-sync"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "cancellationData": {
+              "reason": "DECLINE_REASON_HOST_OTHER",
+              "subReason": "DECLINE_REASON_HOST_EMERGENCY",
+              "messageToAirbnb": "<string>",
+              "messageToGuest": "<string>"
+            }
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "cause": "<string>",
+              "meta": {}
+            },
+            "isSuccessful": "<boolean>"
+          }
+
+docs: Use this call to request a new reservation cancellation from your guest.

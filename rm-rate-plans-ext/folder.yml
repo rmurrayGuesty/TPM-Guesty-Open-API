@@ -1,0 +1,7 @@
+info:
+  name: rm-rate-plans-ext
+  type: folder
+  seq: 50
+
+request:
+  auth: inherit

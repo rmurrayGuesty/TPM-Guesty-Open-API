@@ -1,0 +1,299 @@
+info:
+  name: Create a Rate Plan
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "<string>",
+        "type": "independent",
+        "description": "<string>",
+        "pricingModel": "nightly_rate",
+        "cancellationPolicy": "direct_reservation_long_stay",
+        "cancellationFee": 50,
+        "mealPlans": [
+          "dinner",
+          "dinner"
+        ],
+        "availabilityRules": {
+          "advanceNotice": "<number>",
+          "bookingWindow": "<number>"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "independent",
+            "description": "<string>",
+            "pricingModel": "nightly_rate",
+            "cancellationPolicy": "direct_reservation_long_stay",
+            "cancellationFee": 50,
+            "mealPlans": [
+              "dinner",
+              "dinner"
+            ],
+            "availabilityRules": {
+              "advanceNotice": "<number>",
+              "bookingWindow": "<number>"
+            }
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "ratePlan": {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "type": "independent",
+              "name": "<string>",
+              "pricingModel": "nightly_rate",
+              "active": "<boolean>",
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>",
+              "description": "<string>",
+              "cancellationPolicy": "strict",
+              "cancellationFee": "100",
+              "mealPlans": [
+                null,
+                null
+              ],
+              "availabilityRules": {
+                "advanceNotice": "<number>",
+                "bookingWindow": "<number>",
+                "dateRange": {
+                  "to": "<dateTime>",
+                  "from": "<dateTime>",
+                  "repeatedDays": {
+                    "0": {
+                      "available": true
+                    },
+                    "1": {
+                      "available": true
+                    },
+                    "2": {
+                      "available": true
+                    },
+                    "3": {
+                      "available": true
+                    },
+                    "4": {
+                      "available": true
+                    },
+                    "5": {
+                      "available": true
+                    },
+                    "6": {
+                      "available": true
+                    }
+                  }
+                },
+                "restrictedDates": [
+                  "<string>",
+                  "<string>"
+                ]
+              },
+              "channelSync": [
+                "booking_engine",
+                "booking_engine"
+              ]
+            },
+            "requestId": "<string>"
+          }
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "independent",
+            "description": "<string>",
+            "pricingModel": "nightly_rate",
+            "cancellationPolicy": "direct_reservation_long_stay",
+            "cancellationFee": 50,
+            "mealPlans": [
+              "dinner",
+              "dinner"
+            ],
+            "availabilityRules": {
+              "advanceNotice": "<number>",
+              "bookingWindow": "<number>"
+            }
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status": 400,
+            "code": "VALIDATION_FAILED",
+            "message": "Bad Request",
+            "error": {}
+          }
+  - name: Client unauthorized
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "independent",
+            "description": "<string>",
+            "pricingModel": "nightly_rate",
+            "cancellationPolicy": "direct_reservation_long_stay",
+            "cancellationFee": 50,
+            "mealPlans": [
+              "dinner",
+              "dinner"
+            ],
+            "availabilityRules": {
+              "advanceNotice": "<number>",
+              "bookingWindow": "<number>"
+            }
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Access is forbidden for this client
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "independent",
+            "description": "<string>",
+            "pricingModel": "nightly_rate",
+            "cancellationPolicy": "direct_reservation_long_stay",
+            "cancellationFee": 50,
+            "mealPlans": [
+              "dinner",
+              "dinner"
+            ],
+            "availabilityRules": {
+              "advanceNotice": "<number>",
+              "bookingWindow": "<number>"
+            }
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      body:
+        type: text
+        data: ""
+  - name: Internal server error
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "independent",
+            "description": "<string>",
+            "pricingModel": "nightly_rate",
+            "cancellationPolicy": "direct_reservation_long_stay",
+            "cancellationFee": 50,
+            "mealPlans": [
+              "dinner",
+              "dinner"
+            ],
+            "availabilityRules": {
+              "advanceNotice": "<number>",
+              "bookingWindow": "<number>"
+            }
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: |-
+  Creates a Rate Plan. 
+
+   Currently in pilot, the Rate Plans API allows the creation and management of independent rate plans that are not visible or editable within the Guesty UI. This API is available exclusively for <a href="http://Booking.com">Booking.com</a>   and direct reservations. 
+
+  To participate in the pilot, customers should contact Guesty for an eligibility review and to receive detailed information on potential limitations and risks.

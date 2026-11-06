@@ -1,0 +1,247 @@
+info:
+  name: GET Rate Plan Calendar
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/rm-rate-plans-ext/ari-calendar/listing/:listingId/ratePlan/:ratePlanId?fromDate=<dateTime>&toDate=<dateTime>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: fromDate
+      value: <dateTime>
+      type: query
+      description: (Required) Period start date.
+    - name: toDate
+      value: <dateTime>
+      type: query
+      description: (Required) Period end date.
+    - name: listingId
+      value: ""
+      type: path
+      description: (Required) Property ID.
+    - name: ratePlanId
+      value: ""
+      type: path
+      description: (Required) Rate plan ID.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/ari-calendar/listing/:listingId/ratePlan/:ratePlanId?fromDate=<dateTime>&toDate=<dateTime>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: fromDate
+          value: <dateTime>
+          type: query
+          description: (Required) Period start date.
+        - name: toDate
+          value: <dateTime>
+          type: query
+          description: (Required) Period end date.
+        - name: listingId
+          value: ""
+          type: path
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "ratePlan": {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "type": "independent",
+              "name": "<string>",
+              "pricingModel": "nightly_rate",
+              "active": "<boolean>",
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>",
+              "description": "<string>",
+              "cancellationPolicy": "firm",
+              "cancellationFee": "100",
+              "mealPlans": [
+                null,
+                null
+              ],
+              "availabilityRules": {
+                "advanceNotice": "<number>",
+                "bookingWindow": "<number>",
+                "dateRange": {
+                  "to": "<dateTime>",
+                  "from": "<dateTime>",
+                  "repeatedDays": {
+                    "0": {
+                      "available": true
+                    },
+                    "1": {
+                      "available": true
+                    },
+                    "2": {
+                      "available": true
+                    },
+                    "3": {
+                      "available": true
+                    },
+                    "4": {
+                      "available": true
+                    },
+                    "5": {
+                      "available": true
+                    },
+                    "6": {
+                      "available": true
+                    }
+                  }
+                },
+                "restrictedDates": [
+                  "<string>",
+                  "<string>"
+                ]
+              },
+              "channelSync": [
+                "manual_reservations",
+                "bookingCom"
+              ]
+            },
+            "days": [
+              {
+                "date": {},
+                "price": {},
+                "minNights": "<number>",
+                "maxNights": "<number>",
+                "cta": "<boolean>",
+                "ctd": "<boolean>",
+                "allotment": "<number>",
+                "closed": "<boolean>",
+                "createdAt": "<dateTime>",
+                "updatedAt": "<dateTime>"
+              },
+              {
+                "date": {},
+                "price": {},
+                "minNights": "<number>",
+                "maxNights": "<number>",
+                "cta": "<boolean>",
+                "ctd": "<boolean>",
+                "allotment": "<number>",
+                "closed": "<boolean>",
+                "createdAt": "<dateTime>",
+                "updatedAt": "<dateTime>"
+              }
+            ],
+            "listingId": "<string>",
+            "requestId": "<string>"
+          }
+  - name: Client unauthorized
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/ari-calendar/listing/:listingId/ratePlan/:ratePlanId?fromDate=<dateTime>&toDate=<dateTime>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: fromDate
+          value: <dateTime>
+          type: query
+          description: (Required) Period start date.
+        - name: toDate
+          value: <dateTime>
+          type: query
+          description: (Required) Period end date.
+        - name: listingId
+          value: ""
+          type: path
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Access is forbidden for this client
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/ari-calendar/listing/:listingId/ratePlan/:ratePlanId?fromDate=<dateTime>&toDate=<dateTime>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: fromDate
+          value: <dateTime>
+          type: query
+          description: (Required) Period start date.
+        - name: toDate
+          value: <dateTime>
+          type: query
+          description: (Required) Period end date.
+        - name: listingId
+          value: ""
+          type: path
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      body:
+        type: text
+        data: ""
+  - name: Internal server error
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/ari-calendar/listing/:listingId/ratePlan/:ratePlanId?fromDate=<dateTime>&toDate=<dateTime>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: fromDate
+          value: <dateTime>
+          type: query
+          description: (Required) Period start date.
+        - name: toDate
+          value: <dateTime>
+          type: query
+          description: (Required) Period end date.
+        - name: listingId
+          value: ""
+          type: path
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Retrieves the rate plan's rates, availability and inventory by calendar date.

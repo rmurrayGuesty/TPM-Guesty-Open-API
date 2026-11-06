@@ -1,0 +1,262 @@
+info:
+  name: Retrieve the calendar for a single listing
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/availability-pricing/api/calendar/listings/:id?startDate=<string>&endDate=<string>&includeAllotment=<boolean>&ignoreInactiveChildAllotment=<boolean>&ignoreUnlistedChildAllotment=<boolean>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: startDate
+      value: <string>
+      type: query
+      description: "(Required) First day to be returned (format: YYYY-MM-DD)"
+    - name: endDate
+      value: <string>
+      type: query
+      description: "(Required) Last day to be returned (format: YYYY-MM-DD)"
+    - name: includeAllotment
+      value: <boolean>
+      type: query
+      description: Return day objects including allotment
+    - name: ignoreInactiveChildAllotment
+      value: <boolean>
+      type: query
+      description: Specify ignoreInactiveChildAllotment=true to exclude inactive sub-units from the allotment calculation. Default value is false.
+    - name: ignoreUnlistedChildAllotment
+      value: <boolean>
+      type: query
+      description: Specify ignoreUnlistedChildAllotment=true to exclude unlisted sub-units from the allotment calculation. Default value is false.
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Listing ID
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Calendar with available/unavailable dates
+    request:
+      url: "{{baseUrl}}/availability-pricing/api/calendar/listings/:id?startDate=<string>&endDate=<string>&includeAllotment=<boolean>&ignoreInactiveChildAllotment=<boolean>&ignoreUnlistedChildAllotment=<boolean>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: "(Required) First day to be returned (format: YYYY-MM-DD)"
+        - name: endDate
+          value: <string>
+          type: query
+          description: "(Required) Last day to be returned (format: YYYY-MM-DD)"
+        - name: includeAllotment
+          value: <boolean>
+          type: query
+          description: Return day objects including allotment
+        - name: ignoreInactiveChildAllotment
+          value: <boolean>
+          type: query
+          description: Specify ignoreInactiveChildAllotment=true to exclude inactive sub-units from the allotment calculation. Default value is false.
+        - name: ignoreUnlistedChildAllotment
+          value: <boolean>
+          type: query
+          description: Specify ignoreUnlistedChildAllotment=true to exclude unlisted sub-units from the allotment calculation. Default value is false.
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "date": "<string>",
+            "listingId": "<string>",
+            "currency": "<string>",
+            "price": "<number>",
+            "isBasePrice": "<boolean>",
+            "minNights": "<number>",
+            "isBaseMinNights": "<boolean>",
+            "status": "<string>",
+            "allotment": "<number>",
+            "blocks": {},
+            "blockRefs": [
+              "<string>",
+              "<string>"
+            ],
+            "reservationId": "<string>",
+            "reservation": {},
+            "cta": "<boolean>",
+            "ctd": "<boolean>"
+          }
+  - name: Listing Not Found
+    request:
+      url: "{{baseUrl}}/availability-pricing/api/calendar/listings/:id?startDate=<string>&endDate=<string>&includeAllotment=<boolean>&ignoreInactiveChildAllotment=<boolean>&ignoreUnlistedChildAllotment=<boolean>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: "(Required) First day to be returned (format: YYYY-MM-DD)"
+        - name: endDate
+          value: <string>
+          type: query
+          description: "(Required) Last day to be returned (format: YYYY-MM-DD)"
+        - name: includeAllotment
+          value: <boolean>
+          type: query
+          description: Return day objects including allotment
+        - name: ignoreInactiveChildAllotment
+          value: <boolean>
+          type: query
+          description: Specify ignoreInactiveChildAllotment=true to exclude inactive sub-units from the allotment calculation. Default value is false.
+        - name: ignoreUnlistedChildAllotment
+          value: <boolean>
+          type: query
+          description: Specify ignoreUnlistedChildAllotment=true to exclude unlisted sub-units from the allotment calculation. Default value is false.
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": "<string>",
+            "code": "<string>",
+            "data": {},
+            "requestId": "<string>"
+          }
+  - name: Validation Error
+    request:
+      url: "{{baseUrl}}/availability-pricing/api/calendar/listings/:id?startDate=<string>&endDate=<string>&includeAllotment=<boolean>&ignoreInactiveChildAllotment=<boolean>&ignoreUnlistedChildAllotment=<boolean>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: "(Required) First day to be returned (format: YYYY-MM-DD)"
+        - name: endDate
+          value: <string>
+          type: query
+          description: "(Required) Last day to be returned (format: YYYY-MM-DD)"
+        - name: includeAllotment
+          value: <boolean>
+          type: query
+          description: Return day objects including allotment
+        - name: ignoreInactiveChildAllotment
+          value: <boolean>
+          type: query
+          description: Specify ignoreInactiveChildAllotment=true to exclude inactive sub-units from the allotment calculation. Default value is false.
+        - name: ignoreUnlistedChildAllotment
+          value: <boolean>
+          type: query
+          description: Specify ignoreUnlistedChildAllotment=true to exclude unlisted sub-units from the allotment calculation. Default value is false.
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 422
+      statusText: Unprocessable Entity (WebDAV) (RFC 4918)
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": "<string>",
+            "code": "<string>",
+            "requestId": "<string>"
+          }
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/availability-pricing/api/calendar/listings/:id?startDate=<string>&endDate=<string>&includeAllotment=<boolean>&ignoreInactiveChildAllotment=<boolean>&ignoreUnlistedChildAllotment=<boolean>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: "(Required) First day to be returned (format: YYYY-MM-DD)"
+        - name: endDate
+          value: <string>
+          type: query
+          description: "(Required) Last day to be returned (format: YYYY-MM-DD)"
+        - name: includeAllotment
+          value: <boolean>
+          type: query
+          description: Return day objects including allotment
+        - name: ignoreInactiveChildAllotment
+          value: <boolean>
+          type: query
+          description: Specify ignoreInactiveChildAllotment=true to exclude inactive sub-units from the allotment calculation. Default value is false.
+        - name: ignoreUnlistedChildAllotment
+          value: <boolean>
+          type: query
+          description: Specify ignoreUnlistedChildAllotment=true to exclude unlisted sub-units from the allotment calculation. Default value is false.
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": "<string>"
+          }
+
+docs: |-
+  Use this endpoint to retrieve daily calendar availability and pricing for a given listing ID and date range.
+
+  IMPORTANT: Multi-unit calendar availability is determined by unit allotment, not its `status` field. To calculate if a multi-unit has availability, use the following formula:
+
+  ```
+  const isAvailable = _.isNumber(currentDay.allotment)?
+  currentDay.allotment > 0 : currentDay.status === 'available';
+  ```

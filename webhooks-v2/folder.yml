@@ -1,0 +1,7 @@
+info:
+  name: webhooks-v2
+  type: folder
+  seq: 24
+
+request:
+  auth: inherit

@@ -1,0 +1,316 @@
+info:
+  name: Add a payment to reservation
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/reservations/:id/payments"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Reservation ID
+  body:
+    type: json
+    data: |-
+      {
+        "paymentMethod": {
+          "method": "BANK_TRANSFER",
+          "saveForFutureUse": "<boolean>",
+          "id": "<string>"
+        },
+        "amount": "<number>",
+        "shouldBePaidAt": "<date>",
+        "paidAt": "<date>",
+        "note": "<string>",
+        "isAuthorizationHold": "<boolean>"
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Retrieve the created payment for reservation
+    request:
+      url: "{{baseUrl}}/reservations/:id/payments"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "paymentMethod": {
+              "method": "BANK_TRANSFER",
+              "saveForFutureUse": "<boolean>",
+              "id": "<string>"
+            },
+            "amount": "<number>",
+            "shouldBePaidAt": "<date>",
+            "paidAt": "<date>",
+            "note": "<string>",
+            "isAuthorizationHold": "<boolean>"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "paymentProviderId": "<string>",
+            "paymentProvider": {
+              "id": "<string>",
+              "status": "<string>",
+              "syncedAt": "<date>",
+              "lastPendingPaymentDate": "<date>",
+              "pendingPaymentsCount": "<number>",
+              "paymentMethodsCount": "<number>",
+              "providerAccountId": "<string>",
+              "isDefault": "<boolean>",
+              "providerType": "<string>",
+              "connectedBy": "<string>",
+              "accountName": "<string>",
+              "defaultCurrency": "<string>",
+              "statsLastUpdated": "<date>"
+            }
+          }
+  - name: Invalid Input
+    request:
+      url: "{{baseUrl}}/reservations/:id/payments"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "paymentMethod": {
+              "method": "BANK_TRANSFER",
+              "saveForFutureUse": "<boolean>",
+              "id": "<string>"
+            },
+            "amount": "<number>",
+            "shouldBePaidAt": "<date>",
+            "paidAt": "<date>",
+            "note": "<string>",
+            "isAuthorizationHold": "<boolean>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reservations/:id/payments"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "paymentMethod": {
+              "method": "BANK_TRANSFER",
+              "saveForFutureUse": "<boolean>",
+              "id": "<string>"
+            },
+            "amount": "<number>",
+            "shouldBePaidAt": "<date>",
+            "paidAt": "<date>",
+            "note": "<string>",
+            "isAuthorizationHold": "<boolean>"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Forbidden
+    request:
+      url: "{{baseUrl}}/reservations/:id/payments"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "paymentMethod": {
+              "method": "BANK_TRANSFER",
+              "saveForFutureUse": "<boolean>",
+              "id": "<string>"
+            },
+            "amount": "<number>",
+            "shouldBePaidAt": "<date>",
+            "paidAt": "<date>",
+            "note": "<string>",
+            "isAuthorizationHold": "<boolean>"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/reservations/:id/payments"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "paymentMethod": {
+              "method": "BANK_TRANSFER",
+              "saveForFutureUse": "<boolean>",
+              "id": "<string>"
+            },
+            "amount": "<number>",
+            "shouldBePaidAt": "<date>",
+            "paidAt": "<date>",
+            "note": "<string>",
+            "isAuthorizationHold": "<boolean>"
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/reservations/:id/payments"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "paymentMethod": {
+              "method": "BANK_TRANSFER",
+              "saveForFutureUse": "<boolean>",
+              "id": "<string>"
+            },
+            "amount": "<number>",
+            "shouldBePaidAt": "<date>",
+            "paidAt": "<date>",
+            "note": "<string>",
+            "isAuthorizationHold": "<boolean>"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: |-
+  Use this request to create an immediate or future payment, and to add a record to payment history. 
+
+  An immediate or future payment is charged using a credit card, where a rerocded payment indicates the funds were collected in other methods such as bank transfer, cash, e-check etc

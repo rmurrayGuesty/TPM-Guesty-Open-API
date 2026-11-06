@@ -1,0 +1,158 @@
+info:
+  name: Update account channel commission
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/channel-commissions-v2/account"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "manual": [
+          {
+            "source": "<string>",
+            "isPreDeduct": "<boolean>",
+            "commission": {
+              "value": "<number>",
+              "of": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "tax": "<number>"
+          },
+          {
+            "source": "<string>",
+            "isPreDeduct": "<boolean>",
+            "commission": {
+              "value": "<number>",
+              "of": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "tax": "<number>"
+          }
+        ],
+        "rentalsUnited": {}
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The updated account channel commission.
+    request:
+      url: "{{baseUrl}}/channel-commissions-v2/account"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "manual": [
+              {
+                "source": "<string>",
+                "isPreDeduct": "<boolean>",
+                "commission": {
+                  "value": "<number>",
+                  "of": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "tax": "<number>"
+              },
+              {
+                "source": "<string>",
+                "isPreDeduct": "<boolean>",
+                "commission": {
+                  "value": "<number>",
+                  "of": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "tax": "<number>"
+              }
+            ],
+            "rentalsUnited": {}
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: The params provided are invalid.
+    request:
+      url: "{{baseUrl}}/channel-commissions-v2/account"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "manual": [
+              {
+                "source": "<string>",
+                "isPreDeduct": "<boolean>",
+                "commission": {
+                  "value": "<number>",
+                  "of": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "tax": "<number>"
+              },
+              {
+                "source": "<string>",
+                "isPreDeduct": "<boolean>",
+                "commission": {
+                  "value": "<number>",
+                  "of": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "tax": "<number>"
+              }
+            ],
+            "rentalsUnited": {}
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: |-
+  This endpoint allows you to send Guesty an updated amount for channel commissions.
+  Providing an amount to an existing integration object or manual source will update its channel commission value. If the integration object or manual source do not exist, they will be added.
+
+  example for bookingCom: { bookingCom: {tax: 10, commission: {value: 5, of: ["ACCOMMODATION_FARE"]}}}
+
+
+  Applying your channel commission on fees & taxes is currently in beta.

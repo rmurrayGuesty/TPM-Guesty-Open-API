@@ -1,0 +1,34 @@
+opencollection: 1.0.0
+
+info:
+  name: GUESTY OPEN API
+
+request:
+  auth:
+    type: bearer
+    token: "{{bearer}}"
+  variables:
+    - name: baseUrl
+      value: https://open-api.guesty.com/v1
+    - name: id
+      value: <string>
+
+docs:
+  content: |-
+    Core application API
+
+    Use Params of endpoint to refine your request. More details on the types of data each param require can be found here:
+
+    | **Param Data Type** | **Example** | **More info on applying** |
+    | --- | --- | --- |
+    |  | checkIn,checkOut,... |  |
+    | \[Object\] | \[{"field":"checkOutDateLocalized","operator":"$eq","value":"2025-12-03"}, {"operator": "$in", "field": "status", "value": \["confirmed","reserved"\]}\] | [https://open-api-docs.guesty.com/docs/how-to-search-for-reservations#filters](https://open-api-docs.guesty.com/docs/how-to-search-for-reservations#filters) |
+
+    Ensure **bearer token** is selected as the Authorization method on the endpoint, reference the environment variable **bearer.** You can create your bearer token using the **Authentication** [endpoint](https://richardmurray.postman.co/workspace/be0d3789-c4af-4249-94b7-148438fb339c/request/46253707-af085323-6c46-4bb7-a9ae-13c5664b6547?action=share&source=copy-link&creator=46253707&ctx=documentation).
+  type: text/markdown
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

@@ -1,0 +1,99 @@
+info:
+  name: Get Smart Calendar Rules per listing
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/scr-v2/open-api/:listingId/list"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: listingId
+      value: <string>
+      type: path
+      description: (Required) The ID of the listing to fetch
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The record has been successfully fetched
+    request:
+      url: "{{baseUrl}}/api/scr-v2/open-api/:listingId/list"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "id": "<string>",
+              "accountId": "<string>",
+              "sourceListingId": "<string>",
+              "destinationListingId": "<string>",
+              "isTwoWayRule": "<boolean>",
+              "isActive": "<boolean>",
+              "status": "disabled",
+              "triggers": {
+                "manual": "<boolean>"
+              },
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>"
+            },
+            {
+              "id": "<string>",
+              "accountId": "<string>",
+              "sourceListingId": "<string>",
+              "destinationListingId": "<string>",
+              "isTwoWayRule": "<boolean>",
+              "isActive": "<boolean>",
+              "status": "disabled",
+              "triggers": {
+                "manual": "<boolean>"
+              },
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>"
+            }
+          ]
+  - name: No Smart calendar rules found for this listing
+    request:
+      url: "{{baseUrl}}/api/scr-v2/open-api/:listingId/list"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+
+docs: Get a list of Smart Calendar Rules based on specific property

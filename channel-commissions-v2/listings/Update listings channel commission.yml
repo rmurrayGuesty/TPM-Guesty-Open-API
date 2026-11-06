@@ -1,0 +1,270 @@
+info:
+  name: Update listings channel commission
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/channel-commissions-v2/listings"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "channelCommissions": [
+          {
+            "listingId": "<string>",
+            "useAccountSettings": "<boolean>",
+            "manual": [
+              {
+                "source": "<string>",
+                "isPreDeduct": "<boolean>",
+                "commission": {
+                  "value": "<number>",
+                  "of": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "tax": "<number>"
+              },
+              {
+                "source": "<string>",
+                "isPreDeduct": "<boolean>",
+                "commission": {
+                  "value": "<number>",
+                  "of": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "tax": "<number>"
+              }
+            ],
+            "rentalsUnited": {}
+          },
+          {
+            "listingId": "<string>",
+            "useAccountSettings": "<boolean>",
+            "manual": [
+              {
+                "source": "<string>",
+                "isPreDeduct": "<boolean>",
+                "commission": {
+                  "value": "<number>",
+                  "of": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "tax": "<number>"
+              },
+              {
+                "source": "<string>",
+                "isPreDeduct": "<boolean>",
+                "commission": {
+                  "value": "<number>",
+                  "of": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "tax": "<number>"
+              }
+            ],
+            "rentalsUnited": {}
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Array of the updated channel commission per listing.
+    request:
+      url: "{{baseUrl}}/channel-commissions-v2/listings"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "channelCommissions": [
+              {
+                "listingId": "<string>",
+                "useAccountSettings": "<boolean>",
+                "manual": [
+                  {
+                    "source": "<string>",
+                    "isPreDeduct": "<boolean>",
+                    "commission": {
+                      "value": "<number>",
+                      "of": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "tax": "<number>"
+                  },
+                  {
+                    "source": "<string>",
+                    "isPreDeduct": "<boolean>",
+                    "commission": {
+                      "value": "<number>",
+                      "of": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "tax": "<number>"
+                  }
+                ],
+                "rentalsUnited": {}
+              },
+              {
+                "listingId": "<string>",
+                "useAccountSettings": "<boolean>",
+                "manual": [
+                  {
+                    "source": "<string>",
+                    "isPreDeduct": "<boolean>",
+                    "commission": {
+                      "value": "<number>",
+                      "of": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "tax": "<number>"
+                  },
+                  {
+                    "source": "<string>",
+                    "isPreDeduct": "<boolean>",
+                    "commission": {
+                      "value": "<number>",
+                      "of": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "tax": "<number>"
+                  }
+                ],
+                "rentalsUnited": {}
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: The params provided are invalid.
+    request:
+      url: "{{baseUrl}}/channel-commissions-v2/listings"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "channelCommissions": [
+              {
+                "listingId": "<string>",
+                "useAccountSettings": "<boolean>",
+                "manual": [
+                  {
+                    "source": "<string>",
+                    "isPreDeduct": "<boolean>",
+                    "commission": {
+                      "value": "<number>",
+                      "of": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "tax": "<number>"
+                  },
+                  {
+                    "source": "<string>",
+                    "isPreDeduct": "<boolean>",
+                    "commission": {
+                      "value": "<number>",
+                      "of": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "tax": "<number>"
+                  }
+                ],
+                "rentalsUnited": {}
+              },
+              {
+                "listingId": "<string>",
+                "useAccountSettings": "<boolean>",
+                "manual": [
+                  {
+                    "source": "<string>",
+                    "isPreDeduct": "<boolean>",
+                    "commission": {
+                      "value": "<number>",
+                      "of": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "tax": "<number>"
+                  },
+                  {
+                    "source": "<string>",
+                    "isPreDeduct": "<boolean>",
+                    "commission": {
+                      "value": "<number>",
+                      "of": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "tax": "<number>"
+                  }
+                ],
+                "rentalsUnited": {}
+              }
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: |-
+  This endpoint allows you to send Guesty an updated amount for channel commissions.
+  Providing an amount to an existing integration object or manual source will update its channel commission value. If the integration object or manual source do not exist, they will be added.
+
+
+  example for bookingCom: {channelCommissions: [{listingId: "923892d53f4f56cfcb25586d", bookingCom: {tax: 10, commission: {value: 5, of: ["ACCOMMODATION_FARE"]}}}]}
+
+
+  Applying your channel commission on fees & taxes is currently in beta.

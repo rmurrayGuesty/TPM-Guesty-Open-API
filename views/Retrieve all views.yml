@@ -1,0 +1,166 @@
+info:
+  name: Retrieve all views
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/views?section=<string>&fields=&limit=25&skip=0"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: section
+      value: <string>
+      type: query
+      description: (Required) One of listings, reservations
+    - name: fields
+      value: ""
+      type: query
+      description: Selection of fields, separated by space. When null retrieves all object.
+    - name: limit
+      value: "25"
+      type: query
+      description: Pagination
+    - name: skip
+      value: "0"
+      type: query
+      description: Pagination
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Views Array
+    request:
+      url: "{{baseUrl}}/views?section=<string>&fields=&limit=25&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: section
+          value: <string>
+          type: query
+          description: (Required) One of listings, reservations
+        - name: fields
+          value: ""
+          type: query
+          description: Selection of fields, separated by space. When null retrieves all object.
+        - name: limit
+          value: "25"
+          type: query
+          description: Pagination
+        - name: skip
+          value: "0"
+          type: query
+          description: Pagination
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "title": "<string>",
+              "filters": [
+                {
+                  "field": "<string>",
+                  "operator": "<string>",
+                  "value": "<string>",
+                  "context": null
+                },
+                {
+                  "field": "<string>",
+                  "operator": "<string>",
+                  "value": "<string>",
+                  "context": null
+                }
+              ],
+              "fields": "<string>",
+              "sort": "<string>",
+              "createdAt": "<string>",
+              "updatedAt": "<string>",
+              "scheduledEmails": [
+                {
+                  "hour": "<number>",
+                  "days": "<array>",
+                  "recipient": "<string>"
+                },
+                {
+                  "hour": "<number>",
+                  "days": "<array>",
+                  "recipient": "<string>"
+                }
+              ],
+              "shares": [
+                {
+                  "contactId": "<string>"
+                },
+                {
+                  "contactId": "<string>"
+                }
+              ]
+            },
+            {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "title": "<string>",
+              "filters": [
+                {
+                  "field": "<string>",
+                  "operator": "<string>",
+                  "value": "<string>",
+                  "context": null
+                },
+                {
+                  "field": "<string>",
+                  "operator": "<string>",
+                  "value": "<string>",
+                  "context": null
+                }
+              ],
+              "fields": "<string>",
+              "sort": "<string>",
+              "createdAt": "<string>",
+              "updatedAt": "<string>",
+              "scheduledEmails": [
+                {
+                  "hour": "<number>",
+                  "days": "<array>",
+                  "recipient": "<string>"
+                },
+                {
+                  "hour": "<number>",
+                  "days": "<array>",
+                  "recipient": "<string>"
+                }
+              ],
+              "shares": [
+                {
+                  "contactId": "<string>"
+                },
+                {
+                  "contactId": "<string>"
+                }
+              ]
+            }
+          ]

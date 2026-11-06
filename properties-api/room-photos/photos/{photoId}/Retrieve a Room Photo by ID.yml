@@ -1,0 +1,116 @@
+info:
+  name: Retrieve a Room Photo by ID
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{baseUrl}}/properties-api/room-photos/photos/:photoId"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: photoId
+      value: <string>
+      type: path
+      description: (Required) The id of the photo to set spaceId to
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Get room photo mapping for a specific photo, including photo ID, space ID, and photo URL.
+    request:
+      url: "{{baseUrl}}/properties-api/room-photos/photos/:photoId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: photoId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "spaceId": "<string>",
+            "photoId": "<string>",
+            "photoUrl": "<string>"
+          }
+  - name: Unauthorized Request.
+    request:
+      url: "{{baseUrl}}/properties-api/room-photos/photos/:photoId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: photoId
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Photo not found.
+    request:
+      url: "{{baseUrl}}/properties-api/room-photos/photos/:photoId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: photoId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>"
+            }
+          }
+
+docs: Get a room photo mapping for a photo, including photo id, space id and photo URL

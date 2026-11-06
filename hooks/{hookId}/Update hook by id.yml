@@ -1,0 +1,101 @@
+info:
+  name: Update hook by id
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/hooks/:hookId"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: hookId
+      value: <string>
+      type: path
+      description: (Required) Saved Hook Id
+  body:
+    type: json
+    data: "{}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: OK
+    request:
+      url: "{{baseUrl}}/hooks/:hookId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: hookId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: "{}"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Date
+          value: <string>
+        - name: Content-Type
+          value: <string>
+        - name: Content-Length
+          value: <integer>
+        - name: Connection
+          value: <string>
+        - name: X-DNS-Prefetch-Control
+          value: <string>
+        - name: X-Frame-Options
+          value: <string>
+        - name: Strict-Transport-Security
+          value: <string>
+        - name: X-Download-Options
+          value: <string>
+        - name: X-Content-Type-Options
+          value: <string>
+        - name: X-XSS-Protection
+          value: <string>
+        - name: Access-Control-Allow-Credentials
+          value: <boolean>
+        - name: Access-Control-Allow-Origin
+          value: <string>
+        - name: Access-Control-Max-Age
+          value: <integer>
+        - name: Access-Control-Allow-Headers
+          value: <string>
+        - name: Access-Control-Allow-Methods
+          value: <string>
+        - name: uber-trace-id
+          value: <string>
+        - name: uberctx-accountid
+          value: <string>
+        - name: x-request-id
+          value: <string>
+        - name: ETag
+          value: <string>
+        - name: x-content-type
+          value: <string>
+        - name: x-permitted-cross-domain-policies
+          value: <string>
+      body:
+        type: json
+        data: "{}"

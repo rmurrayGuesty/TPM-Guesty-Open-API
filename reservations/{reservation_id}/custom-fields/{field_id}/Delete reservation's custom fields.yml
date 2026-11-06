@@ -1,0 +1,172 @@
+info:
+  name: Delete reservation's custom fields
+  type: http
+  seq: 1
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/reservations/:reservation_id/custom-fields/:field_id"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: reservation_id
+      value: <string>
+      type: path
+      description: (Required) Reservation ID
+    - name: field_id
+      value: <string>
+      type: path
+      description: (Required) Field ID
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/reservations/:reservation_id/custom-fields/:field_id"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservation_id
+          value: ""
+          type: path
+        - name: field_id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: ""
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reservations/:reservation_id/custom-fields/:field_id"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservation_id
+          value: ""
+          type: path
+        - name: field_id
+          value: ""
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Forbidden
+    request:
+      url: "{{baseUrl}}/reservations/:reservation_id/custom-fields/:field_id"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservation_id
+          value: ""
+          type: path
+        - name: field_id
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/reservations/:reservation_id/custom-fields/:field_id"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservation_id
+          value: ""
+          type: path
+        - name: field_id
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/reservations/:reservation_id/custom-fields/:field_id"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservation_id
+          value: ""
+          type: path
+        - name: field_id
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Delete specific custom fields from an existing reservation.

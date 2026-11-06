@@ -1,0 +1,111 @@
+info:
+  name: Create a total amount price adjustments
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/price-adjustments/manual-total-amount"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "reservationId": "<string>",
+        "priceAdjustments": [
+          {
+            "normalType": "GST",
+            "amount": "<number>",
+            "secondIdentifier": "MEET_AND_GREET",
+            "description": "<string>",
+            "realizationDates": [
+              {
+                "date": "<string>"
+              },
+              {
+                "date": "<string>"
+              }
+            ]
+          },
+          {
+            "normalType": "GST",
+            "amount": "<number>",
+            "secondIdentifier": "GUEST_SERVICE",
+            "description": "<string>",
+            "realizationDates": [
+              {
+                "date": "<string>"
+              },
+              {
+                "date": "<string>"
+              }
+            ]
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The updated reservation folio.
+    request:
+      url: "{{baseUrl}}/price-adjustments/manual-total-amount"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "reservationId": "<string>",
+            "priceAdjustments": [
+              {
+                "normalType": "GST",
+                "amount": "<number>",
+                "secondIdentifier": "MEET_AND_GREET",
+                "description": "<string>",
+                "realizationDates": [
+                  {
+                    "date": "<string>"
+                  },
+                  {
+                    "date": "<string>"
+                  }
+                ]
+              },
+              {
+                "normalType": "GST",
+                "amount": "<number>",
+                "secondIdentifier": "GUEST_SERVICE",
+                "description": "<string>",
+                "realizationDates": [
+                  {
+                    "date": "<string>"
+                  },
+                  {
+                    "date": "<string>"
+                  }
+                ]
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      body:
+        type: text
+        data: ""
+
+docs: Use to create a manual price adjustments (increase or decrease) for a reservation.

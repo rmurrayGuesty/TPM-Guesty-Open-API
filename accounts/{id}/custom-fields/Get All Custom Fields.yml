@@ -1,0 +1,79 @@
+info:
+  name: Get All Custom Fields
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/accounts/:id/custom-fields"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) e.g. - Account id
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Custom Fields Array
+    request:
+      url: "{{baseUrl}}/accounts/:id/custom-fields"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "fieldId": "<string>",
+              "displayName": "<string>",
+              "isPublic": "<boolean>",
+              "key": "<string>",
+              "object": "listing",
+              "options": [
+                "<string>",
+                "<string>"
+              ],
+              "type": "date"
+            },
+            {
+              "fieldId": "<string>",
+              "displayName": "<string>",
+              "isPublic": "<boolean>",
+              "key": "<string>",
+              "object": "reservation",
+              "options": [
+                "<string>",
+                "<string>"
+              ],
+              "type": "contact"
+            }
+          ]

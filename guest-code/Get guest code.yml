@@ -1,0 +1,205 @@
+info:
+  name: Get guest code
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/guest-code?reservationId=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: reservationId
+      value: <string>
+      type: query
+      description: (Required) Reservation ID for which the guest code is needed
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success response
+    request:
+      url: "{{baseUrl}}/guest-code?reservationId=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: <string>
+          type: query
+          description: (Required) Reservation ID for which the guest code is needed
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "codes": [
+              {
+                "code": "<string>",
+                "purpose": "<string>",
+                "status": "<string>",
+                "startsAt": "<dateTime>",
+                "endsAt": "<dateTime>",
+                "lockIds": [
+                  "<string>",
+                  "<string>"
+                ]
+              },
+              {
+                "code": "<string>",
+                "purpose": "<string>",
+                "status": "<string>",
+                "startsAt": "<dateTime>",
+                "endsAt": "<dateTime>",
+                "lockIds": [
+                  "<string>",
+                  "<string>"
+                ]
+              }
+            ],
+            "locks": [
+              {
+                "id": "<string>",
+                "name": "<string>",
+                "batteryLevel": "<number>",
+                "online": "<boolean>",
+                "provider": "<string>",
+                "imageUrl": "<string>",
+                "hasIssues": "<boolean>"
+              },
+              {
+                "id": "<string>",
+                "name": "<string>",
+                "batteryLevel": "<number>",
+                "online": "<boolean>",
+                "provider": "<string>",
+                "imageUrl": "<string>",
+                "hasIssues": "<boolean>"
+              }
+            ]
+          }
+  - name: The reservation does not have associated guest codes
+    request:
+      url: "{{baseUrl}}/guest-code?reservationId=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: <string>
+          type: query
+          description: (Required) Reservation ID for which the guest code is needed
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/guest-code?reservationId=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: <string>
+          type: query
+          description: (Required) Reservation ID for which the guest code is needed
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "code": "<string>",
+              "status": "<number>",
+              "data": [
+                "<string>",
+                "<string>"
+              ]
+            }
+          }
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/guest-code?reservationId=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: <string>
+          type: query
+          description: (Required) Reservation ID for which the guest code is needed
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Can't find reservation, by provided ID
+    request:
+      url: "{{baseUrl}}/guest-code?reservationId=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: <string>
+          type: query
+          description: (Required) Reservation ID for which the guest code is needed
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+
+docs: |-
+  Get guest code data for reservations with future check-out times, by reservation ID.
+        Note: The main guest codes are codes with "purpose" set to "GUEST".
+        Codes with "purpose" set to "GUEST_BACKUP" are codes to share with guests in case the "GUEST" code has errors, starting from the check-in day.
+        "GUEST_BACKUP" codes are a dynamic pool of codes associated with reservations on check-in day. When fetching a "GUEST_BACKUP" code before the check-in day, the code is not guaranteed to stay the same until the check-in day.

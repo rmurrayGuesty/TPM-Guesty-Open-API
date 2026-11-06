@@ -1,0 +1,7 @@
+info:
+  name: tasks-open-api
+  type: folder
+  seq: 21
+
+request:
+  auth: inherit

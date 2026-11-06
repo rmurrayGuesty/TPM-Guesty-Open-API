@@ -1,0 +1,87 @@
+info:
+  name: Update webhook
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/webhooks/:id"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Webhook ID
+  body:
+    type: json
+    data: |-
+      {
+        "url": "<string>",
+        "events": "task.updated"
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The updated webhook object
+    request:
+      url: "{{baseUrl}}/webhooks/:id"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "url": "<string>",
+            "events": "task.updated"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "accountId": "<string>",
+              "_id": "<string>",
+              "url": "<string>",
+              "events": "reservation_update_shortlist"
+            },
+            {
+              "accountId": "<string>",
+              "_id": "<string>",
+              "url": "<string>",
+              "events": "guest.deleted"
+            }
+          ]
+
+docs: Update a webhook

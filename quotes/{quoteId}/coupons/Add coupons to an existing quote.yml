@@ -1,0 +1,148 @@
+info:
+  name: Add coupons to an existing quote
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/quotes/:quoteId/coupons"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: quoteId
+      value: <string>
+      type: path
+      description: (Required) Quote ID from Guesty
+  body:
+    type: json
+    data: |-
+      {
+        "coupons": [
+          "<string>",
+          "<string>"
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The coupons had been successfuly added to the quote
+    request:
+      url: "{{baseUrl}}/quotes/:quoteId/coupons"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: quoteId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "coupons": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "status": "valid",
+            "guestsCount": "<number>",
+            "channel": "owner_reservations",
+            "source": "<string>",
+            "createdAt": "<dateTime>",
+            "expiresAt": "<dateTime>",
+            "unitTypeId": "<string>",
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "rates": {},
+            "coupons": [],
+            "promotions": {},
+            "reservationId": "<string>",
+            "unitId": "<string>",
+            "unassign": "<boolean>",
+            "bookerId": "<string>",
+            "alterationPayload": {
+              "reservationId": "<string>",
+              "dates": {
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>"
+              },
+              "unit": {
+                "unitTypeId": "<string>",
+                "unitId": "<string>"
+              },
+              "guestsCount": "<number>",
+              "ratePlanId": "<string>",
+              "status": "expired",
+              "numberOfGuests": {
+                "numberOfAdults": "<number>",
+                "numberOfChildren": "<number>",
+                "numberOfInfants": "<number>"
+              }
+            },
+            "numberOfGuests": {
+              "numberOfAdults": "<number>",
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfPets": "<number>"
+            },
+            "pointOfSale": "<string>"
+          }
+  - name: Provided coupons are invalid
+    request:
+      url: "{{baseUrl}}/quotes/:quoteId/coupons"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: quoteId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "coupons": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: Add coupons to an existing quote

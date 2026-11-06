@@ -1,0 +1,70 @@
+info:
+  name: Create payment method
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/guests/:id/payment-methods"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Guest ID
+  body:
+    type: json
+    data: |-
+      {
+        "stripeCardToken": "<string>",
+        "skipSetupIntent": false,
+        "paymentProviderId": null,
+        "reservationId": "<string>",
+        "reuse": false
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Payment method created
+    request:
+      url: "{{baseUrl}}/guests/:id/payment-methods"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "stripeCardToken": "<string>",
+            "skipSetupIntent": false,
+            "paymentProviderId": null,
+            "reservationId": "<string>",
+            "reuse": false
+          }
+    response:
+      status: 201
+      statusText: Created
+      body:
+        type: text
+        data: ""

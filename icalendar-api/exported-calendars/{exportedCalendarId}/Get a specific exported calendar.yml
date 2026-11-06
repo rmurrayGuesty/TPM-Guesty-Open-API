@@ -1,0 +1,91 @@
+info:
+  name: Get a specific exported calendar
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: exportedCalendarId
+      value: <string>
+      type: path
+      description: (Required) Id of an exported calendars
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Exported calendar found
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: exportedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "<string>",
+            "listingId": "<string>",
+            "accountId": "<string>",
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "url": "<string>",
+            "lastSyncedAt": "<string>",
+            "adjustmentValueStart": "<number>",
+            "adjustmentValueEnd": "<number>"
+          }
+  - name: Exported calendar not found
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: exportedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+
+docs: "
+
+  \    Should return the state of an exported calendar entity by its id.
+
+  \    If an exported calendar was removed, you will receive an error.
+
+  \    "

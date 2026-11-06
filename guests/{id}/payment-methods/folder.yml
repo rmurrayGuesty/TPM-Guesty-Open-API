@@ -1,0 +1,7 @@
+info:
+  name: payment-methods
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

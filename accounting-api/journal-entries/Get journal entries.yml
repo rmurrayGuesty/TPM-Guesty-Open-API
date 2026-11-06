@@ -1,0 +1,885 @@
+info:
+  name: Get journal entries
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/accounting-api/journal-entries?operator=@in_past&value=<string>&name=<string>&description=<string>&reservationConfirmationCodes=<string>&reservationConfirmationCodes=<string>&ledger=AD&ledger=AD&guests=<string>&guests=<string>&vendors=<string>&vendors=<string>&owners=<string>&owners=<string>&listings=<string>&listings=<string>&chargeCode=FT&chargeCode=PO&triggers=OPENAPI&triggers=PERIODIC&skip=<number>&limit=<number>&sortByDate=DESC"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: operator
+      value: "@in_past"
+      type: query
+      description: |
+        (Required) DO NOT use the format provided in the coding playground output.
+            Fields in this query param must be transformed according to the rules explained below.
+            For example, in order to fetch the information for past 7 days:
+        1. Form your object first
+        ```json
+        {
+          "operator": "@in_past_days",
+          "value": 7
+        }
+        ```
+
+        2. Then encode it to sanitized URL (see the code example written in JS below)
+        ```js
+        encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+        ```
+
+        3. The final query param structure should be looked like
+        ```
+        transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+        ```
+    - name: value
+      value: <string>
+      type: query
+      description: |
+        (Required) DO NOT use the format provided in the coding playground output.
+            Fields in this query param must be transformed according to the rules explained below.
+            For example, in order to fetch the information for past 7 days:
+        1. Form your object first
+        ```json
+        {
+          "operator": "@in_past_days",
+          "value": 7
+        }
+        ```
+
+        2. Then encode it to sanitized URL (see the code example written in JS below)
+        ```js
+        encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+        ```
+
+        3. The final query param structure should be looked like
+        ```
+        transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+        ```
+    - name: name
+      value: <string>
+      type: query
+      description: Filter list by journal entries name, it will search by matching strings from filter input
+    - name: description
+      value: <string>
+      type: query
+      description: Filter list by journal entries description, it will search by matching strings from filter input
+    - name: reservationConfirmationCodes
+      value: <string>
+      type: query
+      description: Filter by reservation confirmation codes
+    - name: reservationConfirmationCodes
+      value: <string>
+      type: query
+      description: Filter by reservation confirmation codes
+    - name: ledger
+      value: AD
+      type: query
+      description: |-
+        Filter by ledger type.
+        Available ledgers: 
+         - AD  (Advanced deposit)
+         - AP  (Accounts payable)
+         - C   (Cash)
+         - O   (Owners)
+         - WC  (Working capital)
+    - name: ledger
+      value: AD
+      type: query
+      description: |-
+        Filter by ledger type.
+        Available ledgers: 
+         - AD  (Advanced deposit)
+         - AP  (Accounts payable)
+         - C   (Cash)
+         - O   (Owners)
+         - WC  (Working capital)
+    - name: guests
+      value: <string>
+      type: query
+      description: Show journal entries for selected guests ID
+    - name: guests
+      value: <string>
+      type: query
+      description: Show journal entries for selected guests ID
+    - name: vendors
+      value: <string>
+      type: query
+      description: Show journal entries for selected vendors ID
+    - name: vendors
+      value: <string>
+      type: query
+      description: Show journal entries for selected vendors ID
+    - name: owners
+      value: <string>
+      type: query
+      description: Show journal entries for selected owners ID
+    - name: owners
+      value: <string>
+      type: query
+      description: Show journal entries for selected owners ID
+    - name: listings
+      value: <string>
+      type: query
+      description: Show journal entries for selected listings ID
+    - name: listings
+      value: <string>
+      type: query
+      description: Show journal entries for selected listings ID
+    - name: chargeCode
+      value: FT
+      type: query
+      description: Show journal entries for selected transaction codes
+    - name: chargeCode
+      value: PO
+      type: query
+      description: Show journal entries for selected transaction codes
+    - name: triggers
+      value: OPENAPI
+      type: query
+      description: |
+        Show journal entries for selected triggers. 
+        Available triggers: 
+          - PAYMENT
+          - MANUAL
+          - PERIODIC
+          - RESERVATION_CANCELLED
+          - RESERVATION_CREATED
+          - RESERVATION_UPDATED
+          - DISBURSEMENT
+          - RECONCILIATION_CASH_ADJUSTMENT
+    - name: triggers
+      value: PERIODIC
+      type: query
+      description: |
+        Show journal entries for selected triggers. 
+        Available triggers: 
+          - PAYMENT
+          - MANUAL
+          - PERIODIC
+          - RESERVATION_CANCELLED
+          - RESERVATION_CREATED
+          - RESERVATION_UPDATED
+          - DISBURSEMENT
+          - RECONCILIATION_CASH_ADJUSTMENT
+    - name: skip
+      value: <number>
+      type: query
+      description: Pagination skip value
+    - name: limit
+      value: <number>
+      type: query
+      description: Pagination limit value
+    - name: sortByDate
+      value: DESC
+      type: query
+      description: Sort by date. For ascending order use 'ASC' value, for descending - 'DESC'
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Journal entries response
+    request:
+      url: "{{baseUrl}}/accounting-api/journal-entries?operator=@in_past&value=<string>&name=<string>&description=<string>&reservationConfirmationCodes=<string>&ledger=AD&guests=<string>&vendors=<string>&owners=<string>&listings=<string>&chargeCode=PO&triggers=PERIODIC&skip=<number>&limit=<number>&sortByDate=DESC"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: operator
+          value: "@in_past"
+          type: query
+          description: |
+            (Required) DO NOT use the format provided in the coding playground output.
+                Fields in this query param must be transformed according to the rules explained below.
+                For example, in order to fetch the information for past 7 days:
+            1. Form your object first
+            ```json
+            {
+              "operator": "@in_past_days",
+              "value": 7
+            }
+            ```
+
+            2. Then encode it to sanitized URL (see the code example written in JS below)
+            ```js
+            encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+            ```
+
+            3. The final query param structure should be looked like
+            ```
+            transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+            ```
+        - name: value
+          value: <string>
+          type: query
+          description: |
+            (Required) DO NOT use the format provided in the coding playground output.
+                Fields in this query param must be transformed according to the rules explained below.
+                For example, in order to fetch the information for past 7 days:
+            1. Form your object first
+            ```json
+            {
+              "operator": "@in_past_days",
+              "value": 7
+            }
+            ```
+
+            2. Then encode it to sanitized URL (see the code example written in JS below)
+            ```js
+            encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+            ```
+
+            3. The final query param structure should be looked like
+            ```
+            transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+            ```
+        - name: name
+          value: <string>
+          type: query
+          description: Filter list by journal entries name, it will search by matching strings from filter input
+        - name: description
+          value: <string>
+          type: query
+          description: Filter list by journal entries description, it will search by matching strings from filter input
+        - name: reservationConfirmationCodes
+          value: <string>
+          type: query
+          description: Filter by reservation confirmation codes
+        - name: ledger
+          value: AD
+          type: query
+          description: |-
+            Filter by ledger type.
+            Available ledgers: 
+             - AD  (Advanced deposit)
+             - AP  (Accounts payable)
+             - C   (Cash)
+             - O   (Owners)
+             - WC  (Working capital)
+        - name: guests
+          value: <string>
+          type: query
+          description: Show journal entries for selected guests ID
+        - name: vendors
+          value: <string>
+          type: query
+          description: Show journal entries for selected vendors ID
+        - name: owners
+          value: <string>
+          type: query
+          description: Show journal entries for selected owners ID
+        - name: listings
+          value: <string>
+          type: query
+          description: Show journal entries for selected listings ID
+        - name: chargeCode
+          value: PO
+          type: query
+          description: Show journal entries for selected transaction codes
+        - name: triggers
+          value: PERIODIC
+          type: query
+          description: |
+            Show journal entries for selected triggers. 
+            Available triggers: 
+              - PAYMENT
+              - MANUAL
+              - PERIODIC
+              - RESERVATION_CANCELLED
+              - RESERVATION_CREATED
+              - RESERVATION_UPDATED
+              - DISBURSEMENT
+              - RECONCILIATION_CASH_ADJUSTMENT
+        - name: skip
+          value: <number>
+          type: query
+          description: Pagination skip value
+        - name: limit
+          value: <number>
+          type: query
+          description: Pagination limit value
+        - name: sortByDate
+          value: DESC
+          type: query
+          description: Sort by date. For ascending order use 'ASC' value, for descending - 'DESC'
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "skip": "<number>",
+            "limit": "<number>",
+            "current": "<number>",
+            "total": "<number>",
+            "data": [
+              {
+                "id": "<number>",
+                "transactionId": "<number>",
+                "date": "<string>",
+                "description": "<string>",
+                "ledger": "<string>",
+                "guest": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "vendor": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "owner": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "amount": {
+                  "value": "<number>",
+                  "currency": "<string>"
+                },
+                "name": "<string>",
+                "listing": {
+                  "href": "<string>",
+                  "title": "<string>",
+                  "target": "<string>"
+                },
+                "chargeType": "<string>",
+                "reservationConfirmationCode": {
+                  "href": "<string>",
+                  "title": "<string>",
+                  "target": "<string>"
+                },
+                "paymentConfirmationCode": "<string>",
+                "chargeCode": "<string>",
+                "trigger": "<string>",
+                "attachments": [
+                  {
+                    "id": "<number>",
+                    "url": "<string>",
+                    "urlThumbnail": "<string>",
+                    "uploadedBy": "<string>",
+                    "uploadedAt": "<number>",
+                    "originalFilename": "<string>",
+                    "originalExtension": "<string>"
+                  },
+                  {
+                    "id": "<number>",
+                    "url": "<string>",
+                    "urlThumbnail": "<string>",
+                    "uploadedBy": "<string>",
+                    "uploadedAt": "<number>",
+                    "originalFilename": "<string>",
+                    "originalExtension": "<string>"
+                  }
+                ]
+              },
+              {
+                "id": "<number>",
+                "transactionId": "<number>",
+                "date": "<string>",
+                "description": "<string>",
+                "ledger": "<string>",
+                "guest": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "vendor": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "owner": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "amount": {
+                  "value": "<number>",
+                  "currency": "<string>"
+                },
+                "name": "<string>",
+                "listing": {
+                  "href": "<string>",
+                  "title": "<string>",
+                  "target": "<string>"
+                },
+                "chargeType": "<string>",
+                "reservationConfirmationCode": {
+                  "href": "<string>",
+                  "title": "<string>",
+                  "target": "<string>"
+                },
+                "paymentConfirmationCode": "<string>",
+                "chargeCode": "<string>",
+                "trigger": "<string>",
+                "attachments": [
+                  {
+                    "id": "<number>",
+                    "url": "<string>",
+                    "urlThumbnail": "<string>",
+                    "uploadedBy": "<string>",
+                    "uploadedAt": "<number>",
+                    "originalFilename": "<string>",
+                    "originalExtension": "<string>"
+                  },
+                  {
+                    "id": "<number>",
+                    "url": "<string>",
+                    "urlThumbnail": "<string>",
+                    "uploadedBy": "<string>",
+                    "uploadedAt": "<number>",
+                    "originalFilename": "<string>",
+                    "originalExtension": "<string>"
+                  }
+                ]
+              }
+            ]
+          }
+  - name: Payload validation failed
+    request:
+      url: "{{baseUrl}}/accounting-api/journal-entries?operator=@in_past&value=<string>&name=<string>&description=<string>&reservationConfirmationCodes=<string>&ledger=AD&guests=<string>&vendors=<string>&owners=<string>&listings=<string>&chargeCode=PO&triggers=PERIODIC&skip=<number>&limit=<number>&sortByDate=DESC"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: operator
+          value: "@in_past"
+          type: query
+          description: |
+            (Required) DO NOT use the format provided in the coding playground output.
+                Fields in this query param must be transformed according to the rules explained below.
+                For example, in order to fetch the information for past 7 days:
+            1. Form your object first
+            ```json
+            {
+              "operator": "@in_past_days",
+              "value": 7
+            }
+            ```
+
+            2. Then encode it to sanitized URL (see the code example written in JS below)
+            ```js
+            encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+            ```
+
+            3. The final query param structure should be looked like
+            ```
+            transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+            ```
+        - name: value
+          value: <string>
+          type: query
+          description: |
+            (Required) DO NOT use the format provided in the coding playground output.
+                Fields in this query param must be transformed according to the rules explained below.
+                For example, in order to fetch the information for past 7 days:
+            1. Form your object first
+            ```json
+            {
+              "operator": "@in_past_days",
+              "value": 7
+            }
+            ```
+
+            2. Then encode it to sanitized URL (see the code example written in JS below)
+            ```js
+            encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+            ```
+
+            3. The final query param structure should be looked like
+            ```
+            transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+            ```
+        - name: name
+          value: <string>
+          type: query
+          description: Filter list by journal entries name, it will search by matching strings from filter input
+        - name: description
+          value: <string>
+          type: query
+          description: Filter list by journal entries description, it will search by matching strings from filter input
+        - name: reservationConfirmationCodes
+          value: <string>
+          type: query
+          description: Filter by reservation confirmation codes
+        - name: ledger
+          value: AD
+          type: query
+          description: |-
+            Filter by ledger type.
+            Available ledgers: 
+             - AD  (Advanced deposit)
+             - AP  (Accounts payable)
+             - C   (Cash)
+             - O   (Owners)
+             - WC  (Working capital)
+        - name: guests
+          value: <string>
+          type: query
+          description: Show journal entries for selected guests ID
+        - name: vendors
+          value: <string>
+          type: query
+          description: Show journal entries for selected vendors ID
+        - name: owners
+          value: <string>
+          type: query
+          description: Show journal entries for selected owners ID
+        - name: listings
+          value: <string>
+          type: query
+          description: Show journal entries for selected listings ID
+        - name: chargeCode
+          value: PO
+          type: query
+          description: Show journal entries for selected transaction codes
+        - name: triggers
+          value: PERIODIC
+          type: query
+          description: |
+            Show journal entries for selected triggers. 
+            Available triggers: 
+              - PAYMENT
+              - MANUAL
+              - PERIODIC
+              - RESERVATION_CANCELLED
+              - RESERVATION_CREATED
+              - RESERVATION_UPDATED
+              - DISBURSEMENT
+              - RECONCILIATION_CASH_ADJUSTMENT
+        - name: skip
+          value: <number>
+          type: query
+          description: Pagination skip value
+        - name: limit
+          value: <number>
+          type: query
+          description: Pagination limit value
+        - name: sortByDate
+          value: DESC
+          type: query
+          description: Sort by date. For ascending order use 'ASC' value, for descending - 'DESC'
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "code": "<string>",
+              "status": "<number>",
+              "data": [
+                "<string>",
+                "<string>"
+              ]
+            }
+          }
+  - name: Accounting feature flow disabled
+    request:
+      url: "{{baseUrl}}/accounting-api/journal-entries?operator=@in_past&value=<string>&name=<string>&description=<string>&reservationConfirmationCodes=<string>&ledger=AD&guests=<string>&vendors=<string>&owners=<string>&listings=<string>&chargeCode=PO&triggers=PERIODIC&skip=<number>&limit=<number>&sortByDate=DESC"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: operator
+          value: "@in_past"
+          type: query
+          description: |
+            (Required) DO NOT use the format provided in the coding playground output.
+                Fields in this query param must be transformed according to the rules explained below.
+                For example, in order to fetch the information for past 7 days:
+            1. Form your object first
+            ```json
+            {
+              "operator": "@in_past_days",
+              "value": 7
+            }
+            ```
+
+            2. Then encode it to sanitized URL (see the code example written in JS below)
+            ```js
+            encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+            ```
+
+            3. The final query param structure should be looked like
+            ```
+            transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+            ```
+        - name: value
+          value: <string>
+          type: query
+          description: |
+            (Required) DO NOT use the format provided in the coding playground output.
+                Fields in this query param must be transformed according to the rules explained below.
+                For example, in order to fetch the information for past 7 days:
+            1. Form your object first
+            ```json
+            {
+              "operator": "@in_past_days",
+              "value": 7
+            }
+            ```
+
+            2. Then encode it to sanitized URL (see the code example written in JS below)
+            ```js
+            encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+            ```
+
+            3. The final query param structure should be looked like
+            ```
+            transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+            ```
+        - name: name
+          value: <string>
+          type: query
+          description: Filter list by journal entries name, it will search by matching strings from filter input
+        - name: description
+          value: <string>
+          type: query
+          description: Filter list by journal entries description, it will search by matching strings from filter input
+        - name: reservationConfirmationCodes
+          value: <string>
+          type: query
+          description: Filter by reservation confirmation codes
+        - name: ledger
+          value: AD
+          type: query
+          description: |-
+            Filter by ledger type.
+            Available ledgers: 
+             - AD  (Advanced deposit)
+             - AP  (Accounts payable)
+             - C   (Cash)
+             - O   (Owners)
+             - WC  (Working capital)
+        - name: guests
+          value: <string>
+          type: query
+          description: Show journal entries for selected guests ID
+        - name: vendors
+          value: <string>
+          type: query
+          description: Show journal entries for selected vendors ID
+        - name: owners
+          value: <string>
+          type: query
+          description: Show journal entries for selected owners ID
+        - name: listings
+          value: <string>
+          type: query
+          description: Show journal entries for selected listings ID
+        - name: chargeCode
+          value: PO
+          type: query
+          description: Show journal entries for selected transaction codes
+        - name: triggers
+          value: PERIODIC
+          type: query
+          description: |
+            Show journal entries for selected triggers. 
+            Available triggers: 
+              - PAYMENT
+              - MANUAL
+              - PERIODIC
+              - RESERVATION_CANCELLED
+              - RESERVATION_CREATED
+              - RESERVATION_UPDATED
+              - DISBURSEMENT
+              - RECONCILIATION_CASH_ADJUSTMENT
+        - name: skip
+          value: <number>
+          type: query
+          description: Pagination skip value
+        - name: limit
+          value: <number>
+          type: query
+          description: Pagination limit value
+        - name: sortByDate
+          value: DESC
+          type: query
+          description: Sort by date. For ascending order use 'ASC' value, for descending - 'DESC'
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+  - name: Unhandled exception. Something went wrong on server
+    request:
+      url: "{{baseUrl}}/accounting-api/journal-entries?operator=@in_past&value=<string>&name=<string>&description=<string>&reservationConfirmationCodes=<string>&ledger=AD&guests=<string>&vendors=<string>&owners=<string>&listings=<string>&chargeCode=PO&triggers=PERIODIC&skip=<number>&limit=<number>&sortByDate=DESC"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: operator
+          value: "@in_past"
+          type: query
+          description: |
+            (Required) DO NOT use the format provided in the coding playground output.
+                Fields in this query param must be transformed according to the rules explained below.
+                For example, in order to fetch the information for past 7 days:
+            1. Form your object first
+            ```json
+            {
+              "operator": "@in_past_days",
+              "value": 7
+            }
+            ```
+
+            2. Then encode it to sanitized URL (see the code example written in JS below)
+            ```js
+            encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+            ```
+
+            3. The final query param structure should be looked like
+            ```
+            transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+            ```
+        - name: value
+          value: <string>
+          type: query
+          description: |
+            (Required) DO NOT use the format provided in the coding playground output.
+                Fields in this query param must be transformed according to the rules explained below.
+                For example, in order to fetch the information for past 7 days:
+            1. Form your object first
+            ```json
+            {
+              "operator": "@in_past_days",
+              "value": 7
+            }
+            ```
+
+            2. Then encode it to sanitized URL (see the code example written in JS below)
+            ```js
+            encodeURIComponent(JSON.stringify({"operator": "@in_past_days", "value": 7}))
+            ```
+
+            3. The final query param structure should be looked like
+            ```
+            transactionDate=%7B%22operator%22%3A%22%40in_past_days%22%2C%22value%22%3A7%7D
+            ```
+        - name: name
+          value: <string>
+          type: query
+          description: Filter list by journal entries name, it will search by matching strings from filter input
+        - name: description
+          value: <string>
+          type: query
+          description: Filter list by journal entries description, it will search by matching strings from filter input
+        - name: reservationConfirmationCodes
+          value: <string>
+          type: query
+          description: Filter by reservation confirmation codes
+        - name: ledger
+          value: AD
+          type: query
+          description: |-
+            Filter by ledger type.
+            Available ledgers: 
+             - AD  (Advanced deposit)
+             - AP  (Accounts payable)
+             - C   (Cash)
+             - O   (Owners)
+             - WC  (Working capital)
+        - name: guests
+          value: <string>
+          type: query
+          description: Show journal entries for selected guests ID
+        - name: vendors
+          value: <string>
+          type: query
+          description: Show journal entries for selected vendors ID
+        - name: owners
+          value: <string>
+          type: query
+          description: Show journal entries for selected owners ID
+        - name: listings
+          value: <string>
+          type: query
+          description: Show journal entries for selected listings ID
+        - name: chargeCode
+          value: PO
+          type: query
+          description: Show journal entries for selected transaction codes
+        - name: triggers
+          value: PERIODIC
+          type: query
+          description: |
+            Show journal entries for selected triggers. 
+            Available triggers: 
+              - PAYMENT
+              - MANUAL
+              - PERIODIC
+              - RESERVATION_CANCELLED
+              - RESERVATION_CREATED
+              - RESERVATION_UPDATED
+              - DISBURSEMENT
+              - RECONCILIATION_CASH_ADJUSTMENT
+        - name: skip
+          value: <number>
+          type: query
+          description: Pagination skip value
+        - name: limit
+          value: <number>
+          type: query
+          description: Pagination limit value
+        - name: sortByDate
+          value: DESC
+          type: query
+          description: Sort by date. For ascending order use 'ASC' value, for descending - 'DESC'
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+
+docs: Get journal entries

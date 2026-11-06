@@ -1,0 +1,208 @@
+info:
+  name: Query vendors
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/vendors?limit=25&skip=0"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: limit
+      value: "25"
+      type: query
+      description: Pagination param. Limit the number of results
+    - name: skip
+      value: "0"
+      type: query
+      description: Pagination param. Skip a number of the first results.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: List of vendors response
+    request:
+      url: "{{baseUrl}}/vendors?limit=25&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: limit
+          value: "25"
+          type: query
+          description: Pagination param. Limit the number of results
+        - name: skip
+          value: "0"
+          type: query
+          description: Pagination param. Skip a number of the first results.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "count": "<number>",
+            "results": [
+              {
+                "id": "<string>",
+                "company": "<string>",
+                "firstName": "<string>",
+                "lastName": "<string>",
+                "phone": [
+                  "<string>",
+                  "<string>"
+                ],
+                "email": [
+                  "<string>",
+                  "<string>"
+                ],
+                "fullName": "<string>",
+                "address": "<string>",
+                "code": "<string>",
+                "notes": "<string>"
+              },
+              {
+                "id": "<string>",
+                "company": "<string>",
+                "firstName": "<string>",
+                "lastName": "<string>",
+                "phone": [
+                  "<string>",
+                  "<string>"
+                ],
+                "email": [
+                  "<string>",
+                  "<string>"
+                ],
+                "fullName": "<string>",
+                "address": "<string>",
+                "code": "<string>",
+                "notes": "<string>"
+              }
+            ]
+          }
+  - name: Validation failed
+    request:
+      url: "{{baseUrl}}/vendors?limit=25&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: limit
+          value: "25"
+          type: query
+          description: Pagination param. Limit the number of results
+        - name: skip
+          value: "0"
+          type: query
+          description: Pagination param. Skip a number of the first results.
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>",
+              "code": "<string>",
+              "data": [
+                "<string>",
+                "<string>"
+              ]
+            }
+          }
+  - name: You do not have sufficient permissions to access this resource
+    request:
+      url: "{{baseUrl}}/vendors?limit=25&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: limit
+          value: "25"
+          type: query
+          description: Pagination param. Limit the number of results
+        - name: skip
+          value: "0"
+          type: query
+          description: Pagination param. Skip a number of the first results.
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+  - name: Unhandled exception. Something went wrong on server
+    request:
+      url: "{{baseUrl}}/vendors?limit=25&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: limit
+          value: "25"
+          type: query
+          description: Pagination param. Limit the number of results
+        - name: skip
+          value: "0"
+          type: query
+          description: Pagination param. Skip a number of the first results.
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+
+docs: Get a list of vendors

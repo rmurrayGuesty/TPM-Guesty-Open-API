@@ -1,0 +1,717 @@
+info:
+  name: Update a task
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/tasks-open-api/:taskId"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json;
+  params:
+    - name: taskId
+      value: <string>
+      type: path
+      description: (Required) Task id
+  body:
+    type: json
+    data: |-
+      {
+        "title": "<string>",
+        "description": "<string>",
+        "priority": "medium",
+        "type": "issue",
+        "assigneeGroup": [
+          "<string>",
+          "<string>"
+        ],
+        "assigneeId": "<string>",
+        "supervisorId": "<string>",
+        "checklist": [
+          "<string>",
+          "<string>"
+        ],
+        "attachments": [
+          {
+            "url": "<string>",
+            "title": "<string>",
+            "mimetype": "<string>",
+            "size": "<number>",
+            "client": "cbt"
+          },
+          {
+            "url": "<string>",
+            "title": "<string>",
+            "mimetype": "<string>",
+            "size": "<number>",
+            "client": "cbt"
+          }
+        ],
+        "startTime": "<dateTime>",
+        "canStartAfter": "<dateTime>",
+        "mustFinishBefore": "<dateTime>",
+        "listingId": "<string>",
+        "reservationId": "<string>",
+        "comments": [
+          {
+            "_id": "<string>",
+            "text": "<string>",
+            "attachments": [
+              {
+                "name": "<string>",
+                "url": "<string>"
+              },
+              {
+                "name": "<string>",
+                "url": "<string>"
+              }
+            ]
+          },
+          {
+            "_id": "<string>",
+            "text": "<string>",
+            "attachments": [
+              {
+                "name": "<string>",
+                "url": "<string>"
+              },
+              {
+                "name": "<string>",
+                "url": "<string>"
+              }
+            ]
+          }
+        ],
+        "status": "pending",
+        "plannedDuration": "<number>",
+        "expenses": [
+          {
+            "name": "<string>",
+            "category": "internet",
+            "vendorId": "<string>",
+            "amount": "<number>",
+            "shareSplit": "<number>",
+            "id": "<string>",
+            "description": "<string>",
+            "recognitionDate": "<date>",
+            "attachments": {
+              "url": "<string>",
+              "extension": "<string>",
+              "fileName": "<string>",
+              "id": "<string>"
+            }
+          },
+          {
+            "name": "<string>",
+            "category": "channel_commission",
+            "vendorId": "<string>",
+            "amount": "<number>",
+            "shareSplit": "<number>",
+            "id": "<string>",
+            "description": "<string>",
+            "recognitionDate": "<date>",
+            "attachments": {
+              "url": "<string>",
+              "extension": "<string>",
+              "fileName": "<string>",
+              "id": "<string>"
+            }
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Successful operation
+    request:
+      url: "{{baseUrl}}/tasks-open-api/:taskId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json;
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: taskId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "description": "<string>",
+            "priority": "medium",
+            "type": "issue",
+            "assigneeGroup": [
+              "<string>",
+              "<string>"
+            ],
+            "assigneeId": "<string>",
+            "supervisorId": "<string>",
+            "checklist": [
+              "<string>",
+              "<string>"
+            ],
+            "attachments": [
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              },
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              }
+            ],
+            "startTime": "<dateTime>",
+            "canStartAfter": "<dateTime>",
+            "mustFinishBefore": "<dateTime>",
+            "listingId": "<string>",
+            "reservationId": "<string>",
+            "comments": [
+              {
+                "_id": "<string>",
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              },
+              {
+                "_id": "<string>",
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              }
+            ],
+            "status": "pending",
+            "plannedDuration": "<number>",
+            "expenses": [
+              {
+                "name": "<string>",
+                "category": "internet",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "shareSplit": "<number>",
+                "id": "<string>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>",
+                  "id": "<string>"
+                }
+              },
+              {
+                "name": "<string>",
+                "category": "channel_commission",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "shareSplit": "<number>",
+                "id": "<string>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>",
+                  "id": "<string>"
+                }
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json;
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "assigneeGroup": [
+              "<string>",
+              "<string>"
+            ],
+            "type": "<string>",
+            "checklistFinished": [
+              "<string>",
+              "<string>"
+            ],
+            "checklist": [
+              "<string>",
+              "<string>"
+            ],
+            "checklistAggregated": "<array>",
+            "tags": [
+              "<string>",
+              "<string>"
+            ],
+            "status": "<string>",
+            "comment": {
+              "_id": "<string>",
+              "text": "<string>",
+              "by": "<string>",
+              "date": "<string>"
+            },
+            "accountId": "<string>",
+            "createdBy": "<string>",
+            "title": "<string>",
+            "description": "<string>",
+            "priority": "medium",
+            "assigneeId": "<string>",
+            "supervisorId": "<string>",
+            "timezone": "<string>",
+            "afterEffects": {
+              "action": "<string>",
+              "_id": "<string>",
+              "payload": {
+                "target": "user",
+                "targetId": "<string>",
+                "message": {
+                  "subject": "<string>",
+                  "body": "<string>",
+                  "attachments": {
+                    "_id": "<string>",
+                    "url": "<string>",
+                    "title": "<string>",
+                    "mimetype": "<string>",
+                    "size": "<string>",
+                    "client": "<string>"
+                  }
+                }
+              }
+            },
+            "attachments": {
+              "title": "<string>",
+              "url": "<string>",
+              "mimetype": "<string>",
+              "size": "<number>",
+              "client": "<string>"
+            },
+            "timing": {
+              "type": "none",
+              "startTime": "<string>",
+              "canStartAfter": "<string>",
+              "mustFinishBefore": "<string>"
+            },
+            "apply": {
+              "type": "listing",
+              "listingId": "<string>",
+              "reservationId": "<string>",
+              "ownerReservationId": "<string>"
+            },
+            "plannedDuration": "<number>",
+            "pendingExpenses": [
+              {
+                "_id": "<string>",
+                "name": "<string>",
+                "description": "<string>",
+                "shareSplit": "<number>",
+                "shareType": "percent",
+                "accounting": {
+                  "charges": [
+                    "<number>",
+                    "<number>"
+                  ]
+                },
+                "category": "channel_commission",
+                "chargeable": {
+                  "amount": "<number>"
+                },
+                "payTo": {
+                  "id": "<string>"
+                },
+                "attachments": {
+                  "url": "<string>",
+                  "originalExtension": "<string>",
+                  "originalFilename": "<string>",
+                  "uploadedAt": "<string>",
+                  "uploadedBy": "<string>"
+                }
+              },
+              {
+                "_id": "<string>",
+                "name": "<string>",
+                "description": "<string>",
+                "shareSplit": "<number>",
+                "shareType": "percent",
+                "accounting": {
+                  "charges": [
+                    "<number>",
+                    "<number>"
+                  ]
+                },
+                "category": "supplies_purchases",
+                "chargeable": {
+                  "amount": "<number>"
+                },
+                "payTo": {
+                  "id": "<string>"
+                },
+                "attachments": {
+                  "url": "<string>",
+                  "originalExtension": "<string>",
+                  "originalFilename": "<string>",
+                  "uploadedAt": "<string>",
+                  "uploadedBy": "<string>"
+                }
+              }
+            ],
+            "postedExpenses": [
+              {
+                "_id": "<string>",
+                "name": "<string>",
+                "description": "<string>",
+                "shareSplit": "<number>",
+                "shareType": "percent",
+                "accounting": {
+                  "charges": [
+                    "<number>",
+                    "<number>"
+                  ],
+                  "failureCode": "<number>",
+                  "requestId": "<string>"
+                },
+                "category": "owner_cleaning",
+                "chargeable": {
+                  "amount": "<number>"
+                },
+                "payTo": {
+                  "id": "<string>"
+                },
+                "attachments": {
+                  "url": "<string>",
+                  "originalExtension": "<string>",
+                  "originalFilename": "<string>",
+                  "uploadedAt": "<string>",
+                  "uploadedBy": "<string>"
+                }
+              },
+              {
+                "_id": "<string>",
+                "name": "<string>",
+                "description": "<string>",
+                "shareSplit": "<number>",
+                "shareType": "percent",
+                "accounting": {
+                  "charges": [
+                    "<number>",
+                    "<number>"
+                  ],
+                  "failureCode": "<number>",
+                  "requestId": "<string>"
+                },
+                "category": "property_taxes",
+                "chargeable": {
+                  "amount": "<number>"
+                },
+                "payTo": {
+                  "id": "<string>"
+                },
+                "attachments": {
+                  "url": "<string>",
+                  "originalExtension": "<string>",
+                  "originalFilename": "<string>",
+                  "uploadedAt": "<string>",
+                  "uploadedBy": "<string>"
+                }
+              }
+            ]
+          }
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/tasks-open-api/:taskId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: taskId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "description": "<string>",
+            "priority": "medium",
+            "type": "issue",
+            "assigneeGroup": [
+              "<string>",
+              "<string>"
+            ],
+            "assigneeId": "<string>",
+            "supervisorId": "<string>",
+            "checklist": [
+              "<string>",
+              "<string>"
+            ],
+            "attachments": [
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              },
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              }
+            ],
+            "startTime": "<dateTime>",
+            "canStartAfter": "<dateTime>",
+            "mustFinishBefore": "<dateTime>",
+            "listingId": "<string>",
+            "reservationId": "<string>",
+            "comments": [
+              {
+                "_id": "<string>",
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              },
+              {
+                "_id": "<string>",
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              }
+            ],
+            "status": "pending",
+            "plannedDuration": "<number>",
+            "expenses": [
+              {
+                "name": "<string>",
+                "category": "internet",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "shareSplit": "<number>",
+                "id": "<string>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>",
+                  "id": "<string>"
+                }
+              },
+              {
+                "name": "<string>",
+                "category": "channel_commission",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "shareSplit": "<number>",
+                "id": "<string>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>",
+                  "id": "<string>"
+                }
+              }
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Forbidden
+    request:
+      url: "{{baseUrl}}/tasks-open-api/:taskId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: taskId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "title": "<string>",
+            "description": "<string>",
+            "priority": "medium",
+            "type": "issue",
+            "assigneeGroup": [
+              "<string>",
+              "<string>"
+            ],
+            "assigneeId": "<string>",
+            "supervisorId": "<string>",
+            "checklist": [
+              "<string>",
+              "<string>"
+            ],
+            "attachments": [
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              },
+              {
+                "url": "<string>",
+                "title": "<string>",
+                "mimetype": "<string>",
+                "size": "<number>",
+                "client": "cbt"
+              }
+            ],
+            "startTime": "<dateTime>",
+            "canStartAfter": "<dateTime>",
+            "mustFinishBefore": "<dateTime>",
+            "listingId": "<string>",
+            "reservationId": "<string>",
+            "comments": [
+              {
+                "_id": "<string>",
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              },
+              {
+                "_id": "<string>",
+                "text": "<string>",
+                "attachments": [
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  },
+                  {
+                    "name": "<string>",
+                    "url": "<string>"
+                  }
+                ]
+              }
+            ],
+            "status": "pending",
+            "plannedDuration": "<number>",
+            "expenses": [
+              {
+                "name": "<string>",
+                "category": "internet",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "shareSplit": "<number>",
+                "id": "<string>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>",
+                  "id": "<string>"
+                }
+              },
+              {
+                "name": "<string>",
+                "category": "channel_commission",
+                "vendorId": "<string>",
+                "amount": "<number>",
+                "shareSplit": "<number>",
+                "id": "<string>",
+                "description": "<string>",
+                "recognitionDate": "<date>",
+                "attachments": {
+                  "url": "<string>",
+                  "extension": "<string>",
+                  "fileName": "<string>",
+                  "id": "<string>"
+                }
+              }
+            ]
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": "<string>"
+          }

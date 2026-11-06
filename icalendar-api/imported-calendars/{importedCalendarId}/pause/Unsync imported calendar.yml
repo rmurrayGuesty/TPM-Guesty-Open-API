@@ -1,0 +1,93 @@
+info:
+  name: Unsync imported calendar
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId/pause"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: importedCalendarId
+      value: <string>
+      type: path
+      description: (Required) Id of an imported calendars
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Returns updated state of imported calendar
+    request:
+      url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId/pause"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: importedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "<string>",
+            "listingId": "<string>",
+            "accountId": "<string>",
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "status": "suspended",
+            "url": "<string>",
+            "name": "<string>",
+            "adjustmentValueStart": "<number>",
+            "adjustmentValueEnd": "<number>",
+            "lastSyncedAt": "<string>"
+          }
+  - name: Listing not found
+    request:
+      url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId/pause"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: importedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+
+docs: "
+
+  \    You can manually pause or resume the import process with the following requests.\ 
+
+  \    Once the imported calendar is resumed, the import sync process will be triggered.
+
+  \  "

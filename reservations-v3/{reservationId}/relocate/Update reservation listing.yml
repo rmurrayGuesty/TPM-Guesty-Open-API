@@ -1,0 +1,160 @@
+info:
+  name: Update reservation listing
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/reservations-v3/:reservationId/relocate"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: reservationId
+      value: <string>
+      type: path
+      description: (Required) The Guesty reservation ID
+  body:
+    type: json
+    data: |-
+      {
+        "listingId": "<string>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Reservation Listing Updated
+    request:
+      url: "{{baseUrl}}/reservations-v3/:reservationId/relocate"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listingId": "<string>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "reservationId": "<string>",
+            "money": {
+              "invoiceItems": [
+                {
+                  "_id": {},
+                  "amount": "<number>",
+                  "currency": "<string>",
+                  "isLocked": "<boolean>",
+                  "normalType": "<string>",
+                  "title": "<string>",
+                  "type": "<string>",
+                  "isTax": "<boolean>",
+                  "isDeducted": "<boolean>",
+                  "metadata": "<boolean>",
+                  "evaluatedPercent": "<number>",
+                  "baseAmount": "<number>",
+                  "isAutoAdditionalFee": "<boolean>",
+                  "secondIdentifier": "<string>"
+                },
+                {
+                  "_id": {},
+                  "amount": "<number>",
+                  "currency": "<string>",
+                  "isLocked": "<boolean>",
+                  "normalType": "<string>",
+                  "title": "<string>",
+                  "type": "<string>",
+                  "isTax": "<boolean>",
+                  "isDeducted": "<boolean>",
+                  "metadata": "<boolean>",
+                  "evaluatedPercent": "<number>",
+                  "baseAmount": "<number>",
+                  "isAutoAdditionalFee": "<boolean>",
+                  "secondIdentifier": "<string>"
+                }
+              ],
+              "_id": {},
+              "reservationId": "<string>",
+              "fareAccommodationAdjustment": "<number>",
+              "fareAccommodationDiscount": "<number>",
+              "currency": "<string>",
+              "fareAccommodation": "<number>",
+              "fareAccommodationAdjusted": "<number>",
+              "fareCleaning": "<number>",
+              "hostServiceFee": "<number>",
+              "hostServiceFeeTax": "<number>",
+              "hostServiceFeeIncTax": "<number>",
+              "subTotalPrice": "<number>",
+              "hostPayout": "<number>",
+              "hostPayoutUsd": "<number>",
+              "totalTaxes": "<number>",
+              "payments": [
+                "<string>",
+                "<string>"
+              ],
+              "totalRefunded": "<number>",
+              "totalPaid": "<number>",
+              "paymentsDue": "<number>",
+              "balanceDue": "<number>",
+              "isFullyPaid": "<boolean>",
+              "settingsSnapshot": {}
+            },
+            "listingId": "<string>",
+            "unitId": "<string>",
+            "unitTypeId": "<string>"
+          }
+  - name: Validation error failed during updating listing.
+    request:
+      url: "{{baseUrl}}/reservations-v3/:reservationId/relocate"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listingId": "<string>"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity (WebDAV) (RFC 4918)
+      body:
+        type: text
+        data: ""
+
+docs: Change a listing for specific reservations.

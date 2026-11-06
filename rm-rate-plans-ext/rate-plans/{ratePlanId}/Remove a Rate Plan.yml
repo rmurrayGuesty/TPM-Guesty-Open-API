@@ -1,0 +1,136 @@
+info:
+  name: Remove a Rate Plan
+  type: http
+  seq: 6
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans/:ratePlanId"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: ratePlanId
+      value: <string>
+      type: path
+      description: (Required) The rate plan ID.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans/:ratePlanId"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: Client unauthorized
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans/:ratePlanId"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Access is forbidden for this client
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans/:ratePlanId"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      body:
+        type: text
+        data: ""
+  - name: Not found
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans/:ratePlanId"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "RATE_PLAN_NOT_FOUND",
+              "data": "RatePlan not found",
+              "message": "Not Found",
+              "status": 404
+            }
+          }
+  - name: Internal server error
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans/:ratePlanId"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ratePlanId
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: |-
+  Deletes an existing rate plan. 
+
+   Currently in pilot, the Rate Plans API allows the creation and management of independent rate plans that are not visible or editable within the Guesty UI. This API is available exclusively for <a href="http://Booking.com">Booking.com</a>   and direct reservations. 
+
+  To participate in the pilot, customers should contact Guesty for an eligibility review and to receive detailed information on potential limitations and risks.

@@ -1,0 +1,184 @@
+info:
+  name: Create exported calendar link
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/icalendar-api/exported-calendars"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "listingId": "<string>",
+        "adjustmentValueStart": 1,
+        "adjustmentValueEnd": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Exported calendar created successfully
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "listingId": "<string>",
+            "adjustmentValueStart": 1,
+            "adjustmentValueEnd": 1
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "<string>",
+            "listingId": "<string>",
+            "accountId": "<string>",
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "url": "<string>",
+            "lastSyncedAt": "<string>",
+            "adjustmentValueStart": "<number>",
+            "adjustmentValueEnd": "<number>"
+          }
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "listingId": "<string>",
+            "adjustmentValueStart": 1,
+            "adjustmentValueEnd": 1
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "<string>",
+            "listingId": "<string>",
+            "accountId": "<string>",
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "url": "<string>",
+            "lastSyncedAt": "<string>",
+            "adjustmentValueStart": "<number>",
+            "adjustmentValueEnd": "<number>"
+          }
+  - name: Client unauthorized
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "listingId": "<string>",
+            "adjustmentValueStart": 1,
+            "adjustmentValueEnd": 1
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Listing not found
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "listingId": "<string>",
+            "adjustmentValueStart": 1,
+            "adjustmentValueEnd": 1
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+
+docs: "
+
+  \    When you export your Guesty calendar to an external service,\ 
+
+  \    the events from the Guesty calendar will block the external calendar.\ 
+
+  \    You must create an exported calendar entity to export data from Guesty via the iCalendar link.\ 
+
+  \    This entity stores the settings used during the export process, such as the URL, state, and adjustments.
+
+  \    Once the entity is created, the export sync process will be triggered.\ 
+
+  \    Please note that you can only have one exported calendar per listing.\ 
+
+  \    After posting your request, you will receive an exported calendar descriptor, which includes the URL property.\ 
+
+  \    You will use this URL in your other services to pull data from Guesty.
+
+  \    "

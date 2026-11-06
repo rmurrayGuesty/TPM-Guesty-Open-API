@@ -1,0 +1,403 @@
+info:
+  name: Create guest
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/guests-crud"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "firstName": "<string>",
+        "lastName": "<string>",
+        "hometown": "<string>",
+        "address": {
+          "street": "<string>",
+          "zipCode": "<string>",
+          "state": "<string>",
+          "city": "<string>",
+          "country": "<string>",
+          "countryCode": "<string>"
+        },
+        "picture": {},
+        "email": "<string>",
+        "emails": [
+          "<string>",
+          "<string>"
+        ],
+        "phone": "<string>",
+        "phones": [
+          "<string>",
+          "<string>"
+        ],
+        "notes": "<string>",
+        "contactType": "owner",
+        "tags": [
+          "friendsAndFamily",
+          "vip"
+        ],
+        "goodToKnowNotes": "<string>",
+        "preferredLanguage": "bh",
+        "birthday": "<dateTime>",
+        "gender": "other",
+        "maritalStatus": "divorced",
+        "dietaryPreferences": [
+          "<string>",
+          "<string>"
+        ],
+        "allergies": [
+          "<string>",
+          "<string>"
+        ],
+        "interests": [
+          "<string>",
+          "<string>"
+        ],
+        "pronouns": "xe/xem/xyr",
+        "kids": "<number>",
+        "passportNumber": "<string>",
+        "identityNumber": "<string>",
+        "nationality": "bl",
+        "otaLinks": [
+          {
+            "type": "airbnb",
+            "url": "https://www.airbnb.com"
+          },
+          {
+            "type": "airbnb",
+            "url": "https://www.airbnb.com"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The guest has been successfully created.
+    request:
+      url: "{{baseUrl}}/guests-crud"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "firstName": "<string>",
+            "lastName": "<string>",
+            "hometown": "<string>",
+            "address": {
+              "street": "<string>",
+              "zipCode": "<string>",
+              "state": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "countryCode": "<string>"
+            },
+            "picture": {},
+            "email": "<string>",
+            "emails": [
+              "<string>",
+              "<string>"
+            ],
+            "phone": "<string>",
+            "phones": [
+              "<string>",
+              "<string>"
+            ],
+            "notes": "<string>",
+            "contactType": "owner",
+            "tags": [
+              "friendsAndFamily",
+              "vip"
+            ],
+            "goodToKnowNotes": "<string>",
+            "preferredLanguage": "bh",
+            "birthday": "<dateTime>",
+            "gender": "other",
+            "maritalStatus": "divorced",
+            "dietaryPreferences": [
+              "<string>",
+              "<string>"
+            ],
+            "allergies": [
+              "<string>",
+              "<string>"
+            ],
+            "interests": [
+              "<string>",
+              "<string>"
+            ],
+            "pronouns": "xe/xem/xyr",
+            "kids": "<number>",
+            "passportNumber": "<string>",
+            "identityNumber": "<string>",
+            "nationality": "bl",
+            "otaLinks": [
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              },
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "firstName": "<string>",
+            "lastName": "<string>",
+            "returningGuest": "<boolean>",
+            "fullName": "<string>",
+            "hometown": "<string>",
+            "createdAt": "<dateTime>",
+            "address": {},
+            "picture": {},
+            "email": "<string>",
+            "emails": [
+              "<string>",
+              "<string>"
+            ],
+            "phone": "<string>",
+            "phones": [
+              "<string>",
+              "<string>"
+            ],
+            "notes": "<string>",
+            "tags": [
+              "<string>",
+              "<string>"
+            ],
+            "goodToKnowNotes": "<string>",
+            "preferredLanguage": "<string>",
+            "birthday": "<dateTime>",
+            "gender": "<string>",
+            "maritalStatus": "<string>",
+            "dietaryPreferences": [
+              "<string>",
+              "<string>"
+            ],
+            "allergies": [
+              "<string>",
+              "<string>"
+            ],
+            "interests": [
+              "<string>",
+              "<string>"
+            ],
+            "pronouns": "<string>",
+            "otaLinks": [
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              },
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              }
+            ],
+            "kids": "<number>",
+            "passportNumber": "<string>",
+            "identityNumber": "<string>",
+            "nationality": "<string>",
+            "contactType": "<string>",
+            "airbnb2": {},
+            "rentalsUnited": {},
+            "bookingCom": {},
+            "homeAway": {},
+            "tripAdvisor": {},
+            "policy": {}
+          }
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/guests-crud"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "firstName": "<string>",
+            "lastName": "<string>",
+            "hometown": "<string>",
+            "address": {
+              "street": "<string>",
+              "zipCode": "<string>",
+              "state": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "countryCode": "<string>"
+            },
+            "picture": {},
+            "email": "<string>",
+            "emails": [
+              "<string>",
+              "<string>"
+            ],
+            "phone": "<string>",
+            "phones": [
+              "<string>",
+              "<string>"
+            ],
+            "notes": "<string>",
+            "contactType": "owner",
+            "tags": [
+              "friendsAndFamily",
+              "vip"
+            ],
+            "goodToKnowNotes": "<string>",
+            "preferredLanguage": "bh",
+            "birthday": "<dateTime>",
+            "gender": "other",
+            "maritalStatus": "divorced",
+            "dietaryPreferences": [
+              "<string>",
+              "<string>"
+            ],
+            "allergies": [
+              "<string>",
+              "<string>"
+            ],
+            "interests": [
+              "<string>",
+              "<string>"
+            ],
+            "pronouns": "xe/xem/xyr",
+            "kids": "<number>",
+            "passportNumber": "<string>",
+            "identityNumber": "<string>",
+            "nationality": "bl",
+            "otaLinks": [
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              },
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      body:
+        type: text
+        data: ""
+  - name: Can not create guest, unauthorized
+    request:
+      url: "{{baseUrl}}/guests-crud"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "firstName": "<string>",
+            "lastName": "<string>",
+            "hometown": "<string>",
+            "address": {
+              "street": "<string>",
+              "zipCode": "<string>",
+              "state": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "countryCode": "<string>"
+            },
+            "picture": {},
+            "email": "<string>",
+            "emails": [
+              "<string>",
+              "<string>"
+            ],
+            "phone": "<string>",
+            "phones": [
+              "<string>",
+              "<string>"
+            ],
+            "notes": "<string>",
+            "contactType": "owner",
+            "tags": [
+              "friendsAndFamily",
+              "vip"
+            ],
+            "goodToKnowNotes": "<string>",
+            "preferredLanguage": "bh",
+            "birthday": "<dateTime>",
+            "gender": "other",
+            "maritalStatus": "divorced",
+            "dietaryPreferences": [
+              "<string>",
+              "<string>"
+            ],
+            "allergies": [
+              "<string>",
+              "<string>"
+            ],
+            "interests": [
+              "<string>",
+              "<string>"
+            ],
+            "pronouns": "xe/xem/xyr",
+            "kids": "<number>",
+            "passportNumber": "<string>",
+            "identityNumber": "<string>",
+            "nationality": "bl",
+            "otaLinks": [
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              },
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              }
+            ]
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+
+docs: Create guest

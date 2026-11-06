@@ -1,0 +1,120 @@
+info:
+  name: Update exported calendar
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: exportedCalendarId
+      value: <string>
+      type: path
+      description: (Required) Id of an exported calendars
+  body:
+    type: json
+    data: |-
+      {
+        "adjustmentValueStart": 0,
+        "adjustmentValueEnd": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Exported calendar found
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: exportedCalendarId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "adjustmentValueStart": 0,
+            "adjustmentValueEnd": 1
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "<string>",
+            "listingId": "<string>",
+            "accountId": "<string>",
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "url": "<string>",
+            "lastSyncedAt": "<string>",
+            "adjustmentValueStart": "<number>",
+            "adjustmentValueEnd": "<number>"
+          }
+  - name: Exported calendar not found
+    request:
+      url: "{{baseUrl}}/icalendar-api/exported-calendars/:exportedCalendarId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: exportedCalendarId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "adjustmentValueStart": 0,
+            "adjustmentValueEnd": 1
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+
+docs: "
+
+  \    If adjustment values are updated, the export sync process will be triggered.\ 
+
+  \    Use this request to update events adjustment of your exported Guesty calendar.\ 
+
+  \    Please note you can update only the parameters listed below.
+
+  \    "

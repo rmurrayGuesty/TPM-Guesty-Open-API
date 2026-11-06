@@ -1,0 +1,7 @@
+info:
+  name: guest-app-api
+  type: folder
+  seq: 39
+
+request:
+  auth: inherit

@@ -1,0 +1,247 @@
+info:
+  name: Assign listings to Business Models
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/business-models-api/assignment/:businessModelId"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: businessModelId
+      value: <string>
+      type: path
+      description: (Required) Business Model ID that provided listings will be assigned to
+  body:
+    type: json
+    data: |-
+      {
+        "listingIds": [
+          "<string>",
+          "<string>"
+        ],
+        "fromDate": "<string>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Assign listings response
+    request:
+      url: "{{baseUrl}}/business-models-api/assignment/:businessModelId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: businessModelId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "fromDate": "<string>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": "<string>"
+          }
+  - name: Input data is not valid
+    request:
+      url: "{{baseUrl}}/business-models-api/assignment/:businessModelId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: businessModelId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "fromDate": "<string>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "code": "<string>",
+              "status": "<number>",
+              "data": [
+                "<string>",
+                "<string>"
+              ]
+            }
+          }
+  - name: You do not have sufficient permissions to access this resource
+    request:
+      url: "{{baseUrl}}/business-models-api/assignment/:businessModelId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: businessModelId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "fromDate": "<string>"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+  - name: Can't find business model, by provided ID
+    request:
+      url: "{{baseUrl}}/business-models-api/assignment/:businessModelId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: businessModelId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "fromDate": "<string>"
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+  - name: Unhandled exception. Something went wrong on server
+    request:
+      url: "{{baseUrl}}/business-models-api/assignment/:businessModelId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: businessModelId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "fromDate": "<string>"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<number>"
+            }
+          }
+
+docs: Assign provided listings to appropriate Business model

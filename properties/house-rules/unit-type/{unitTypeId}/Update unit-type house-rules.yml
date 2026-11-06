@@ -1,0 +1,153 @@
+info:
+  name: Update unit-type house-rules
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/properties/house-rules/unit-type/:unitTypeId"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: unitTypeId
+      value: <string>
+      type: path
+      description: (Required) ID of the requested unitType
+  body:
+    type: json
+    data: |-
+      {
+        "additionalRules": "<string>",
+        "childrenRules": {
+          "suitableForChildren": "<boolean>",
+          "suitableForInfants": "<boolean>",
+          "reason": "<string>"
+        },
+        "petsAllowed": {
+          "enabled": "<boolean>",
+          "chargeType": "<string>"
+        },
+        "quietBetween": {
+          "enabled": "<boolean>",
+          "hours": {
+            "start": "<string>",
+            "end": "<string>"
+          }
+        },
+        "smokingAllowed": {
+          "enabled": "<boolean>"
+        },
+        "suitableForEvents": {
+          "enabled": "<boolean>"
+        },
+        "minimumAge": "<integer>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: When successfully updated
+    request:
+      url: "{{baseUrl}}/properties/house-rules/unit-type/:unitTypeId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: unitTypeId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "additionalRules": "<string>",
+            "childrenRules": {
+              "suitableForChildren": "<boolean>",
+              "suitableForInfants": "<boolean>",
+              "reason": "<string>"
+            },
+            "petsAllowed": {
+              "enabled": "<boolean>",
+              "chargeType": "<string>"
+            },
+            "quietBetween": {
+              "enabled": "<boolean>",
+              "hours": {
+                "start": "<string>",
+                "end": "<string>"
+              }
+            },
+            "smokingAllowed": {
+              "enabled": "<boolean>"
+            },
+            "suitableForEvents": {
+              "enabled": "<boolean>"
+            },
+            "minimumAge": "<integer>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: TBA
+    request:
+      url: "{{baseUrl}}/properties/house-rules/unit-type/:unitTypeId"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: unitTypeId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "additionalRules": "<string>",
+            "childrenRules": {
+              "suitableForChildren": "<boolean>",
+              "suitableForInfants": "<boolean>",
+              "reason": "<string>"
+            },
+            "petsAllowed": {
+              "enabled": "<boolean>",
+              "chargeType": "<string>"
+            },
+            "quietBetween": {
+              "enabled": "<boolean>",
+              "hours": {
+                "start": "<string>",
+                "end": "<string>"
+              }
+            },
+            "smokingAllowed": {
+              "enabled": "<boolean>"
+            },
+            "suitableForEvents": {
+              "enabled": "<boolean>"
+            },
+            "minimumAge": "<integer>"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""

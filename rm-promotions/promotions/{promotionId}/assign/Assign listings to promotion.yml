@@ -1,0 +1,190 @@
+info:
+  name: Assign listings to promotion.
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/rm-promotions/promotions/:promotionId/assign"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: promotionId
+      value: <string>
+      type: path
+      description: (Required) promotion id.
+  body:
+    type: json
+    data: |-
+      {
+        "listings": []
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Request for assigning listings has been accepted and is in the process of being processed.
+    request:
+      url: "{{baseUrl}}/rm-promotions/promotions/:promotionId/assign"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: promotionId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listings": []
+          }
+    response:
+      status: 202
+      statusText: Accepted
+      body:
+        type: text
+        data: ""
+  - name: Validation error.
+    request:
+      url: "{{baseUrl}}/rm-promotions/promotions/:promotionId/assign"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: promotionId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listings": []
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Authorization error.
+    request:
+      url: "{{baseUrl}}/rm-promotions/promotions/:promotionId/assign"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: promotionId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listings": []
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Feature is not enabled for this accountId.
+    request:
+      url: "{{baseUrl}}/rm-promotions/promotions/:promotionId/assign"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: promotionId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listings": []
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      body:
+        type: text
+        data: ""
+  - name: Promotion was not found.
+    request:
+      url: "{{baseUrl}}/rm-promotions/promotions/:promotionId/assign"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: promotionId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listings": []
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+  - name: Internal server error.
+    request:
+      url: "{{baseUrl}}/rm-promotions/promotions/:promotionId/assign"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: promotionId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listings": []
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Assign listings to promotion.

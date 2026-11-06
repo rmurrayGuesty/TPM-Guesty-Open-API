@@ -1,0 +1,8 @@
+name: Open API - [Account Name]
+variables:
+  - secret: true
+    name: client_Id
+  - secret: true
+    name: client_Secret
+  - secret: true
+    name: bearer

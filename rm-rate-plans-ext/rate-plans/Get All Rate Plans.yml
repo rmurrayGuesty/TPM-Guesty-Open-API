@@ -1,0 +1,274 @@
+info:
+  name: Get All Rate Plans
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans?skip=0&limit=25&sort=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: skip
+      value: "0"
+      type: query
+      description: (Required) The number of items to skip before starting to collect the result set.
+    - name: limit
+      value: "25"
+      type: query
+      description: (Required) The numbers of items to return.
+    - name: sort
+      value: <string>
+      type: query
+      description: (Required) The field by which to sort the items returned.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans?skip=0&limit=25&sort=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: "0"
+          type: query
+          description: (Required) The number of items to skip before starting to collect the result set.
+        - name: limit
+          value: "25"
+          type: query
+          description: (Required) The numbers of items to return.
+        - name: sort
+          value: <string>
+          type: query
+          description: (Required) The field by which to sort the items returned.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "requestId": "<string>",
+            "ratePlans": [
+              {
+                "_id": "<string>",
+                "accountId": "<string>",
+                "type": "independent",
+                "name": "<string>",
+                "pricingModel": "nightly_rate",
+                "active": "<boolean>",
+                "createdAt": "<dateTime>",
+                "updatedAt": "<dateTime>",
+                "description": "<string>",
+                "cancellationPolicy": "moderate",
+                "cancellationFee": "50",
+                "mealPlans": [
+                  null,
+                  null
+                ],
+                "availabilityRules": {
+                  "advanceNotice": "<number>",
+                  "bookingWindow": "<number>",
+                  "dateRange": {
+                    "to": "<dateTime>",
+                    "from": "<dateTime>",
+                    "repeatedDays": {
+                      "0": {
+                        "available": true
+                      },
+                      "1": {
+                        "available": true
+                      },
+                      "2": {
+                        "available": true
+                      },
+                      "3": {
+                        "available": true
+                      },
+                      "4": {
+                        "available": true
+                      },
+                      "5": {
+                        "available": true
+                      },
+                      "6": {
+                        "available": true
+                      }
+                    }
+                  },
+                  "restrictedDates": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "channelSync": [
+                  "manual_reservations",
+                  "manual_reservations"
+                ]
+              },
+              {
+                "_id": "<string>",
+                "accountId": "<string>",
+                "type": "independent",
+                "name": "<string>",
+                "pricingModel": "nightly_rate",
+                "active": "<boolean>",
+                "createdAt": "<dateTime>",
+                "updatedAt": "<dateTime>",
+                "description": "<string>",
+                "cancellationPolicy": "super_strict",
+                "cancellationFee": "100",
+                "mealPlans": [
+                  null,
+                  null
+                ],
+                "availabilityRules": {
+                  "advanceNotice": "<number>",
+                  "bookingWindow": "<number>",
+                  "dateRange": {
+                    "to": "<dateTime>",
+                    "from": "<dateTime>",
+                    "repeatedDays": {
+                      "0": {
+                        "available": true
+                      },
+                      "1": {
+                        "available": true
+                      },
+                      "2": {
+                        "available": true
+                      },
+                      "3": {
+                        "available": true
+                      },
+                      "4": {
+                        "available": true
+                      },
+                      "5": {
+                        "available": true
+                      },
+                      "6": {
+                        "available": true
+                      }
+                    }
+                  },
+                  "restrictedDates": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "channelSync": [
+                  "manual_reservations",
+                  "booking_engine"
+                ]
+              }
+            ],
+            "count": "<number>",
+            "limit": "<number>",
+            "skip": "<number>"
+          }
+  - name: Client unauthorized
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans?skip=0&limit=25&sort=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: "0"
+          type: query
+          description: (Required) The number of items to skip before starting to collect the result set.
+        - name: limit
+          value: "25"
+          type: query
+          description: (Required) The numbers of items to return.
+        - name: sort
+          value: <string>
+          type: query
+          description: (Required) The field by which to sort the items returned.
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Access is forbidden for this client
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans?skip=0&limit=25&sort=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: "0"
+          type: query
+          description: (Required) The number of items to skip before starting to collect the result set.
+        - name: limit
+          value: "25"
+          type: query
+          description: (Required) The numbers of items to return.
+        - name: sort
+          value: <string>
+          type: query
+          description: (Required) The field by which to sort the items returned.
+    response:
+      status: 403
+      statusText: Forbidden
+      body:
+        type: text
+        data: ""
+  - name: Internal server error
+    request:
+      url: "{{baseUrl}}/rm-rate-plans-ext/rate-plans?skip=0&limit=25&sort=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: skip
+          value: "0"
+          type: query
+          description: (Required) The number of items to skip before starting to collect the result set.
+        - name: limit
+          value: "25"
+          type: query
+          description: (Required) The numbers of items to return.
+        - name: sort
+          value: <string>
+          type: query
+          description: (Required) The field by which to sort the items returned.
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: |-
+  Retrieves all rate plans by channel. 
+
+   Currently in pilot, the Rate Plans API allows the creation and management of independent rate plans that are not visible or editable within the Guesty UI. This API is available exclusively for <a href="http://Booking.com">Booking.com</a>   and direct reservations. 
+
+  To participate in the pilot, customers should contact Guesty for an eligibility review and to receive detailed information on potential limitations and risks.

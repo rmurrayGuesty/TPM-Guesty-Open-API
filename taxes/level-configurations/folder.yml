@@ -1,0 +1,7 @@
+info:
+  name: level-configurations
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

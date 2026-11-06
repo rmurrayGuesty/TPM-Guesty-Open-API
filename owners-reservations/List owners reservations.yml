@@ -1,0 +1,666 @@
+info:
+  name: List owners reservations
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/owners-reservations?filters=[object Object]&filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=0"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: filters
+      value: "[object Object]"
+      type: query
+      description: Array of filters to query by
+    - name: filters
+      value: "[object Object]"
+      type: query
+      description: Array of filters to query by
+    - name: fields
+      value: <string>
+      type: query
+      description: |-
+        String of fields, separated by space. 
+
+          Allowed fields are "account", "listing" and "owner" fields with its according subkeys 
+
+         Please note: Allowed list of keys depend on user role and permissions
+    - name: sort
+      value: <string>
+      type: query
+      description: "ascending sort, use - to descending sort. Default: `_id`"
+    - name: limit
+      value: <integer>
+      type: query
+      description: "Limit for list of records. Default value: `25`, max: `100`"
+    - name: skip
+      value: "0"
+      type: query
+      description: Skip number of records. In case nothing provided so nothing will be skipped
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Reservation object
+    request:
+      url: "{{baseUrl}}/owners-reservations?filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: |-
+            String of fields, separated by space. 
+
+              Allowed fields are "account", "listing" and "owner" fields with its according subkeys 
+
+             Please note: Allowed list of keys depend on user role and permissions
+        - name: sort
+          value: <string>
+          type: query
+          description: "ascending sort, use - to descending sort. Default: `_id`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `25`, max: `100`"
+        - name: skip
+          value: "0"
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "status": "<string>",
+            "source": "<string>",
+            "accountId": "<string>",
+            "listingId": "<string>",
+            "checkIn": "<string>",
+            "checkOut": "<string>",
+            "note": "<string>",
+            "__v": "<number>",
+            "createdAt": "<string>",
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "plannedDeparture": "<string>",
+            "plannedArrival": "<string>",
+            "lastUpdatedAt": "<string>",
+            "listing": {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "createdAt": "<string>",
+              "integrations": [
+                {
+                  "_id": "<string>",
+                  "airbnb2": {
+                    "credentials": {
+                      "code": "<string>",
+                      "expiresAt": "<integer>",
+                      "accessToken": "<string>",
+                      "refreshToken": "<string>",
+                      "lastForceRefresh": "<string>"
+                    },
+                    "forwardEmails": {
+                      "all": true,
+                      "emails": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "createdAt": "<string>"
+                  },
+                  "forwardEmails": {
+                    "all": true,
+                    "emails": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  },
+                  "active": "<boolean>",
+                  "platform": "<string>",
+                  "nickname": "<string>",
+                  "channelId": "<string>",
+                  "activatedAt": "<string>",
+                  "disconnectedAt": "<string>",
+                  "proxyEmail": "<string>",
+                  "incomingEmail": "<string>",
+                  "externalAccountId": "<string>",
+                  "id": "<integer>",
+                  "companyName": "<string>",
+                  "fetchRequests": [
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    },
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "TIMEOUT",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    }
+                  ],
+                  "status": "PENDING",
+                  "migration": {
+                    "status": "IN_PROGRESS",
+                    "createTime": "<string>",
+                    "updateTime": "<string>",
+                    "finishedTime": "<string>",
+                    "discrepancyStepExecuted": false,
+                    "discrepancyResolution": "GUESTY",
+                    "listingQuantityDiscrepancyStepExecuted": false,
+                    "error": {
+                      "at": "<string>",
+                      "code": "<string>",
+                      "message": "<string>",
+                      "raw": {}
+                    },
+                    "notes": "<string>",
+                    "isRollingBack": false
+                  },
+                  "userId": "<string>",
+                  "accountId": "<string>",
+                  "tripAdvisor": {},
+                  "homeaway2": {},
+                  "bookingCom": {
+                    "legalEntityId": "<string>"
+                  },
+                  "createdAt": "<string>",
+                  "missingStep": "<string>",
+                  "steps": [
+                    {
+                      "type": "<string>",
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    },
+                    {
+                      "type": "<string>",
+                      "status": "COMPLETED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    }
+                  ],
+                  "newIntegrationBackup": {},
+                  "threadIdsMigrated": "<boolean>",
+                  "isDeleted": "<boolean>",
+                  "deletedAt": "<string>"
+                },
+                {
+                  "_id": "<string>",
+                  "airbnb2": {
+                    "credentials": {
+                      "code": "<string>",
+                      "expiresAt": "<integer>",
+                      "accessToken": "<string>",
+                      "refreshToken": "<string>",
+                      "lastForceRefresh": "<string>"
+                    },
+                    "forwardEmails": {
+                      "all": true,
+                      "emails": [
+                        "<string>",
+                        "<string>"
+                      ]
+                    },
+                    "createdAt": "<string>"
+                  },
+                  "forwardEmails": {
+                    "all": true,
+                    "emails": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  },
+                  "active": "<boolean>",
+                  "platform": "<string>",
+                  "nickname": "<string>",
+                  "channelId": "<string>",
+                  "activatedAt": "<string>",
+                  "disconnectedAt": "<string>",
+                  "proxyEmail": "<string>",
+                  "incomingEmail": "<string>",
+                  "externalAccountId": "<string>",
+                  "id": "<integer>",
+                  "companyName": "<string>",
+                  "fetchRequests": [
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "FAILED",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    },
+                    {
+                      "fetchAllListings": "<boolean>",
+                      "externalListingIds": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>",
+                      "finishedTime": "<string>"
+                    }
+                  ],
+                  "status": "DISCONNECTED",
+                  "migration": {
+                    "status": "IN_PROGRESS",
+                    "createTime": "<string>",
+                    "updateTime": "<string>",
+                    "finishedTime": "<string>",
+                    "discrepancyStepExecuted": false,
+                    "discrepancyResolution": "GUESTY",
+                    "listingQuantityDiscrepancyStepExecuted": false,
+                    "error": {
+                      "at": "<string>",
+                      "code": "<string>",
+                      "message": "<string>",
+                      "raw": {}
+                    },
+                    "notes": "<string>",
+                    "isRollingBack": false
+                  },
+                  "userId": "<string>",
+                  "accountId": "<string>",
+                  "tripAdvisor": {},
+                  "homeaway2": {},
+                  "bookingCom": {
+                    "legalEntityId": "<string>"
+                  },
+                  "createdAt": "<string>",
+                  "missingStep": "<string>",
+                  "steps": [
+                    {
+                      "type": "<string>",
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    },
+                    {
+                      "type": "<string>",
+                      "status": "IN_PROGRESS",
+                      "createTime": "<string>",
+                      "updateTime": "<string>"
+                    }
+                  ],
+                  "newIntegrationBackup": {},
+                  "threadIdsMigrated": "<boolean>",
+                  "isDeleted": "<boolean>",
+                  "deletedAt": "<string>"
+                }
+              ],
+              "isVirtual": "<boolean>",
+              "nickname": "<string>",
+              "tags": [
+                "<string>",
+                "<string>"
+              ],
+              "isListed": "<boolean>",
+              "title": "<string>",
+              "propertyType": "<string>",
+              "roomType": "<string>",
+              "bedType": "<string>",
+              "accommodates": "<number>",
+              "bedrooms": "<number>",
+              "areaSquareFeet": "<number>",
+              "address": {
+                "full": "<string>",
+                "lng": "<number>",
+                "lat": "<number>",
+                "street": "<string>",
+                "city": "<string>",
+                "country": "<string>"
+              },
+              "publishedAddress": {
+                "full": "<string>",
+                "lng": "<number>",
+                "lat": "<number>",
+                "street": "<string>",
+                "city": "<string>",
+                "country": "<string>"
+              },
+              "timezone": "<string>",
+              "defaultCheckInTime": "<string>",
+              "defaultCheckOutTime": "<string>",
+              "cleaning": {
+                "defaultCleaningTime": "<string>",
+                "instructions": "<string>"
+              },
+              "cleaningStatus": {
+                "value": "dirty",
+                "updatedAt": "<string>"
+              },
+              "picture": {
+                "regular": "<string>",
+                "thumbnail": "<string>",
+                "large": "<string>",
+                "caption": "<string>",
+                "height": "<number>",
+                "original": "<string>",
+                "size": "<number>",
+                "width": "<number>"
+              },
+              "pictures": [
+                {
+                  "regular": "<string>",
+                  "thumbnail": "<string>",
+                  "large": "<string>",
+                  "caption": "<string>",
+                  "height": "<number>",
+                  "original": "<string>",
+                  "size": "<number>",
+                  "width": "<number>"
+                },
+                {
+                  "regular": "<string>",
+                  "thumbnail": "<string>",
+                  "large": "<string>",
+                  "caption": "<string>",
+                  "height": "<number>",
+                  "original": "<string>",
+                  "size": "<number>",
+                  "width": "<number>"
+                }
+              ],
+              "amenities": [
+                "<string>",
+                "<string>"
+              ],
+              "amenitiesNotIncluded": [
+                "<string>",
+                "<string>"
+              ],
+              "terms": {
+                "minNights": "<number>",
+                "maxNights": "<number>",
+                "cancellation": "<string>"
+              },
+              "prices": {
+                "guestsIncludedInRegularFee": "<number>",
+                "extraPersonFee": "<number>",
+                "basePrice": "<number>",
+                "basePriceUSD": "<number>",
+                "monthlyPriceFactor": "<number>",
+                "weeklyPriceFactor": "<number>",
+                "weekendBasePrice": "<number>",
+                "securityDepositFee": "<number>",
+                "currency": "<string>",
+                "cleaningFee": "<number>"
+              },
+              "netIncomeFormula": "<string>",
+              "commissionFormula": "<string>",
+              "commissionTaxPrecentage": "<string>",
+              "pms": {
+                "active": "<boolean>",
+                "automation": {
+                  "autoList": {
+                    "active": "<boolean>",
+                    "config": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  }
+                },
+                "inbox": {
+                  "customSignature": "<string>"
+                },
+                "cleaningStatus": {
+                  "value": "unknown",
+                  "updatedAt": "<string>"
+                },
+                "paymentProcessing": {
+                  "active": "<boolean>",
+                  "paymentProviders": {
+                    "stripe": {
+                      "active": "<boolean>",
+                      "status": "<string>",
+                      "accountName": "<string>",
+                      "defaultCurrency": "<string>",
+                      "syncedAt": "<date>",
+                      "payload": {
+                        "id": "<string>",
+                        "livemode": "<boolean>",
+                        "token_type": "<string>",
+                        "stripe_publishable_key": "<string>",
+                        "stripe_user_id": "<string>",
+                        "scope": "<string>"
+                      }
+                    }
+                  }
+                },
+                "autoPayments": {
+                  "policy": "<array>"
+                }
+              },
+              "receptionistsService": {
+                "receptionDesk": {},
+                "screening": {},
+                "contactPersonUserId": "<string>"
+              },
+              "active": "<boolean>",
+              "customFields": {},
+              "calendarRules": {},
+              "publicDescription": {},
+              "privateDescription": {},
+              "markups": {}
+            },
+            "owner": {
+              "ownersPortalSettings": {
+                "bookedNights": "<boolean>",
+                "revenue": "<boolean>",
+                "accommodationFare": "<boolean>",
+                "guestsReports": "<boolean>",
+                "occupancy": "<boolean>",
+                "avgNightlyRate": "<boolean>",
+                "revPal": "<boolean>",
+                "hostPayout": "<boolean>",
+                "nightlyRate": "<boolean>",
+                "minNights": "<boolean>",
+                "bookingSource": "<boolean>",
+                "showInternalNotesForBlocks": "<boolean>",
+                "showReservedReservations": "<boolean>",
+                "showHelpCenter": "<boolean>",
+                "showOwnerStatements": "<boolean>",
+                "allowReservations": "<boolean>",
+                "allowReservationsUnavailableDates": "<boolean>",
+                "showGuestFullName": "<boolean>",
+                "showGuestEmail": "<boolean>",
+                "showGuestPhone": "<boolean>"
+              },
+              "listings": [
+                "<string>",
+                "<string>"
+              ],
+              "_id": "<string>",
+              "locale": "<string>",
+              "active": "<boolean>",
+              "allowReservations": "<boolean>",
+              "showReservationTooltips": "<boolean>",
+              "businessInformation": {
+                "businessType": {
+                  "type": "<string>",
+                  "other": "<string>"
+                },
+                "address": {
+                  "street": "<string>",
+                  "city": "<string>",
+                  "state": "<string>",
+                  "zipcode": "<string>",
+                  "country": "<string>",
+                  "full": "<string>"
+                },
+                "vatIdentificationNumber": "<string>",
+                "vatRate": "<number>",
+                "ownerCommission": "<number>"
+              },
+              "birthday": "<string>",
+              "anniversary": "<string>",
+              "workingCapital": "<number>",
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "fullName": "<string>",
+              "email": "<string>",
+              "address": "<string>",
+              "personalAddress": {
+                "street": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "zipcode": "<string>",
+                "country": "<string>",
+                "full": "<string>"
+              },
+              "phone": "<string>",
+              "picture": {
+                "thumbnail": "<string>",
+                "regular": "<string>",
+                "large": "<string>"
+              },
+              "notes": "<string>",
+              "createdAt": "<string>"
+            },
+            "nightsCount": "<number>",
+            "id": "<string>"
+          }
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/owners-reservations?filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: |-
+            String of fields, separated by space. 
+
+              Allowed fields are "account", "listing" and "owner" fields with its according subkeys 
+
+             Please note: Allowed list of keys depend on user role and permissions
+        - name: sort
+          value: <string>
+          type: query
+          description: "ascending sort, use - to descending sort. Default: `_id`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `25`, max: `100`"
+        - name: skip
+          value: "0"
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/owners-reservations?filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: |-
+            String of fields, separated by space. 
+
+              Allowed fields are "account", "listing" and "owner" fields with its according subkeys 
+
+             Please note: Allowed list of keys depend on user role and permissions
+        - name: sort
+          value: <string>
+          type: query
+          description: "ascending sort, use - to descending sort. Default: `_id`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `25`, max: `100`"
+        - name: skip
+          value: "0"
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Retrieve a list of all owner reservations. This endpoint is filterable.

@@ -1,0 +1,192 @@
+info:
+  name: Update a view
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/views/:id"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) View ID
+  body:
+    type: json
+    data: |-
+      {
+        "_id": "<string>",
+        "accountId": "<string>",
+        "title": "<string>",
+        "filters": [
+          {
+            "field": "<string>",
+            "operator": "<string>",
+            "value": "<string>",
+            "context": null
+          },
+          {
+            "field": "<string>",
+            "operator": "<string>",
+            "value": "<string>",
+            "context": null
+          }
+        ],
+        "fields": "<string>",
+        "sort": "<string>",
+        "createdAt": "<string>",
+        "updatedAt": "<string>",
+        "scheduledEmails": [
+          {
+            "hour": "<number>",
+            "days": "<array>",
+            "recipient": "<string>"
+          },
+          {
+            "hour": "<number>",
+            "days": "<array>",
+            "recipient": "<string>"
+          }
+        ],
+        "shares": [
+          {
+            "contactId": "<string>"
+          },
+          {
+            "contactId": "<string>"
+          }
+        ]
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Retrieve the updated listing, selection of fields that were sent in body.
+    request:
+      url: "{{baseUrl}}/views/:id"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "title": "<string>",
+            "filters": [
+              {
+                "field": "<string>",
+                "operator": "<string>",
+                "value": "<string>",
+                "context": null
+              },
+              {
+                "field": "<string>",
+                "operator": "<string>",
+                "value": "<string>",
+                "context": null
+              }
+            ],
+            "fields": "<string>",
+            "sort": "<string>",
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "scheduledEmails": [
+              {
+                "hour": "<number>",
+                "days": "<array>",
+                "recipient": "<string>"
+              },
+              {
+                "hour": "<number>",
+                "days": "<array>",
+                "recipient": "<string>"
+              }
+            ],
+            "shares": [
+              {
+                "contactId": "<string>"
+              },
+              {
+                "contactId": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "title": "<string>",
+            "filters": [
+              {
+                "field": "<string>",
+                "operator": "<string>",
+                "value": "<string>",
+                "context": null
+              },
+              {
+                "field": "<string>",
+                "operator": "<string>",
+                "value": "<string>",
+                "context": null
+              }
+            ],
+            "fields": "<string>",
+            "sort": "<string>",
+            "createdAt": "<string>",
+            "updatedAt": "<string>",
+            "scheduledEmails": [
+              {
+                "hour": "<number>",
+                "days": "<array>",
+                "recipient": "<string>"
+              },
+              {
+                "hour": "<number>",
+                "days": "<array>",
+                "recipient": "<string>"
+              }
+            ],
+            "shares": [
+              {
+                "contactId": "<string>"
+              },
+              {
+                "contactId": "<string>"
+              }
+            ]
+          }

@@ -1,0 +1,7 @@
+info:
+  name: rm-rate-strategies-open-api
+  type: folder
+  seq: 51
+
+request:
+  auth: inherit

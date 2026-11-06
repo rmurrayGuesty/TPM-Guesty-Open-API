@@ -1,0 +1,338 @@
+info:
+  name: Update tax
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/taxes/:id"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) The tax id
+  body:
+    type: json
+    data: |-
+      {
+        "type": "OCCUPANCY_TAX",
+        "units": "PERCENTAGE",
+        "amount": "<number>",
+        "quantifier": "PER_NIGHT",
+        "appliedToAllFees": "<boolean>",
+        "appliedOnFees": [
+          "<string>",
+          "<string>"
+        ],
+        "isAppliedByDefault": "<boolean>",
+        "appliedByDefaultOnChannels": [
+          "tripAdvisor",
+          "bookingCom"
+        ],
+        "conditionalOverrides": {
+          "viewType": "LOS",
+          "rules": [
+            {
+              "nightRanges": [
+                {
+                  "from": "<number>",
+                  "amount": "<number>",
+                  "to": "<number>"
+                },
+                {
+                  "from": "<number>",
+                  "amount": "<number>",
+                  "to": "<number>"
+                }
+              ],
+              "dateRange": {
+                "from": "<string>",
+                "to": "<string>"
+              }
+            },
+            {
+              "nightRanges": [
+                {
+                  "from": "<number>",
+                  "amount": "<number>",
+                  "to": "<number>"
+                },
+                {
+                  "from": "<number>",
+                  "amount": "<number>",
+                  "to": "<number>"
+                }
+              ],
+              "dateRange": {
+                "from": "<string>",
+                "to": "<string>"
+              }
+            }
+          ],
+          "maxNightCountToApplyOn": "<number>"
+        },
+        "name": "<string>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The tax has been successfully updated.
+    request:
+      url: "{{baseUrl}}/taxes/:id"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "type": "OCCUPANCY_TAX",
+            "units": "PERCENTAGE",
+            "amount": "<number>",
+            "quantifier": "PER_NIGHT",
+            "appliedToAllFees": "<boolean>",
+            "appliedOnFees": [
+              "<string>",
+              "<string>"
+            ],
+            "isAppliedByDefault": "<boolean>",
+            "appliedByDefaultOnChannels": [
+              "tripAdvisor",
+              "bookingCom"
+            ],
+            "conditionalOverrides": {
+              "viewType": "LOS",
+              "rules": [
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                },
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                }
+              ],
+              "maxNightCountToApplyOn": "<number>"
+            },
+            "name": "<string>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "accountId": "<string>",
+            "type": "MINIMUM_ALTERNATE_TAX",
+            "units": "PERCENTAGE",
+            "quantifier": "PER_GUEST_PER_NIGHT",
+            "appliedOnFees": [
+              "<string>",
+              "<string>"
+            ],
+            "appliedByDefaultOnChannels": [
+              "tripAdvisor",
+              "bookingPal"
+            ],
+            "amount": "<number>",
+            "appliedToAllFees": "<boolean>",
+            "isAppliedByDefault": "<boolean>",
+            "_id": "<string>",
+            "unitTypeId": "<string>",
+            "isDeleted": "<boolean>",
+            "name": "<string>",
+            "conditionalOverrides": {
+              "viewType": "NIGHTS_IN_DATES",
+              "rules": [
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                },
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                }
+              ],
+              "maxNightCountToApplyOn": "<number>"
+            },
+            "channelConfig": [
+              {
+                "channel": "<string>",
+                "userConfig": {
+                  "syncSelection": "<string>"
+                }
+              },
+              {
+                "channel": "<string>",
+                "userConfig": {
+                  "syncSelection": "<string>"
+                }
+              }
+            ]
+          }
+  - name: The input provided is invalid.
+    request:
+      url: "{{baseUrl}}/taxes/:id"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "type": "OCCUPANCY_TAX",
+            "units": "PERCENTAGE",
+            "amount": "<number>",
+            "quantifier": "PER_NIGHT",
+            "appliedToAllFees": "<boolean>",
+            "appliedOnFees": [
+              "<string>",
+              "<string>"
+            ],
+            "isAppliedByDefault": "<boolean>",
+            "appliedByDefaultOnChannels": [
+              "tripAdvisor",
+              "bookingCom"
+            ],
+            "conditionalOverrides": {
+              "viewType": "LOS",
+              "rules": [
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                },
+                {
+                  "nightRanges": [
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    },
+                    {
+                      "from": "<number>",
+                      "amount": "<number>",
+                      "to": "<number>"
+                    }
+                  ],
+                  "dateRange": {
+                    "from": "<string>",
+                    "to": "<string>"
+                  }
+                }
+              ],
+              "maxNightCountToApplyOn": "<number>"
+            },
+            "name": "<string>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: Update tax by id.

@@ -1,0 +1,105 @@
+info:
+  name: Delete imported calendar
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId?strategy=remove_future_channel_events"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: strategy
+      value: remove_future_channel_events
+      type: query
+      description: (Required) One of allowed approaches for deletion of imported calendar
+    - name: importedCalendarId
+      value: <string>
+      type: path
+      description: (Required) Id of an imported calendars
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Imported calendar deleted
+    request:
+      url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId?strategy=remove_future_channel_events"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: strategy
+          value: remove_future_channel_events
+          type: query
+          description: (Required) One of allowed approaches for deletion of imported calendar
+        - name: importedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId?strategy=remove_future_channel_events"
+      method: DELETE
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: strategy
+          value: remove_future_channel_events
+          type: query
+          description: (Required) One of allowed approaches for deletion of imported calendar
+        - name: importedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: Imported calendar not found
+    request:
+      url: "{{baseUrl}}/icalendar-api/imported-calendars/:importedCalendarId?strategy=remove_future_channel_events"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: strategy
+          value: remove_future_channel_events
+          type: query
+          description: (Required) One of allowed approaches for deletion of imported calendar
+        - name: importedCalendarId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+
+docs: |2-
+  
+      You can remove imported calendar with one of the following behaviors (strategies) regarding existing imported events.

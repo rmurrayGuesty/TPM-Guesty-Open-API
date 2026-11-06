@@ -1,0 +1,127 @@
+info:
+  name: Post msg(Send new msg)
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/communication/conversations/:conversationId/send-message"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: conversationId
+      value: <string>
+      type: path
+      description: (Required) Saved Conversation Id
+  body:
+    type: json
+    data: |-
+      {
+        "module": {
+          "type": "<string>"
+        },
+        "body": "<string>"
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: OK
+    request:
+      url: "{{baseUrl}}/communication/conversations/:conversationId/send-message"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: conversationId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "module": {
+              "type": "<string>"
+            },
+            "body": "<string>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Date
+          value: <string>
+        - name: Content-Type
+          value: <string>
+        - name: Content-Length
+          value: <integer>
+        - name: Connection
+          value: <string>
+        - name: x-request-id
+          value: <string>
+        - name: x-transit-id
+          value: <string>
+        - name: X-DNS-Prefetch-Control
+          value: <string>
+        - name: X-Frame-Options
+          value: <string>
+        - name: Strict-Transport-Security
+          value: <string>
+        - name: X-Download-Options
+          value: <string>
+        - name: X-Content-Type-Options
+          value: <string>
+        - name: X-XSS-Protection
+          value: <string>
+        - name: ETag
+          value: <string>
+        - name: Vary
+          value: <string>
+        - name: x-content-type
+          value: <string>
+        - name: x-permitted-cross-domain-policies
+          value: <string>
+      body:
+        type: json
+        data: |-
+          {
+            "status": "<number>",
+            "data": {
+              "module": {
+                "type": "<string>"
+              },
+              "from": {
+                "type": "<string>",
+                "fullName": "<string>"
+              },
+              "isFromMigration": "<boolean>",
+              "_id": "<string>",
+              "body": "<string>",
+              "conversationId": "<string>",
+              "createdAt": "<string>",
+              "__v": "<number>"
+            }
+          }
+
+docs: Owners conversations do not support airbnb2 module type, messages that sent with platform module type will be sent through Email.

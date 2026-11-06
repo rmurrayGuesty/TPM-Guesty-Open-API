@@ -1,0 +1,7 @@
+info:
+  name: create-single-task
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit

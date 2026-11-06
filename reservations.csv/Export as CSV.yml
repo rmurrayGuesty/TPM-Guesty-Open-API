@@ -1,0 +1,178 @@
+info:
+  name: Export as CSV
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/reservations.csv?filters=[object Object]&filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=<integer>"
+  headers:
+    - name: Accept
+      value: text/csv
+  params:
+    - name: filters
+      value: "[object Object]"
+      type: query
+      description: Array of filters to query by
+    - name: filters
+      value: "[object Object]"
+      type: query
+      description: Array of filters to query by
+    - name: fields
+      value: <string>
+      type: query
+      description: Selection of fields, separated by space
+    - name: sort
+      value: <string>
+      type: query
+      description: "Sorting, default: `checkIn`"
+    - name: limit
+      value: <integer>
+      type: query
+      description: "Limit for list of records. Default value: `250`, max: `500`"
+    - name: skip
+      value: <integer>
+      type: query
+      description: Skip number of records. In case nothing provided so nothing will be skipped
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: reservations csv
+    request:
+      url: "{{baseUrl}}/reservations.csv?filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=<integer>"
+      method: POST
+      headers:
+        - name: Accept
+          value: text/csv
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `checkIn`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `250`, max: `500`"
+        - name: skip
+          value: <integer>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: text/csv
+      body:
+        type: text
+        data: ""
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reservations.csv?filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=<integer>"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `checkIn`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `250`, max: `500`"
+        - name: skip
+          value: <integer>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/reservations.csv?filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=<integer>"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `checkIn`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `250`, max: `500`"
+        - name: skip
+          value: <integer>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Use this request to export a custom list of reservations as CSV file. Results are limited to 500 reservations per a request.

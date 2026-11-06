@@ -1,0 +1,7 @@
+info:
+  name: channel-commission
+  type: folder
+  seq: 36
+
+request:
+  auth: inherit

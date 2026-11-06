@@ -1,0 +1,168 @@
+info:
+  name: Get guest by id
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/guests-crud/:guestId?fields=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: fields
+      value: <string>
+      type: query
+      description: (Required) Fields
+    - name: guestId
+      value: <string>
+      type: path
+      description: (Required) Guest id
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The guest has been successfully pulled.
+    request:
+      url: "{{baseUrl}}/guests-crud/:guestId?fields=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: fields
+          value: <string>
+          type: query
+          description: (Required) Fields
+        - name: guestId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "firstName": "<string>",
+            "lastName": "<string>",
+            "returningGuest": "<boolean>",
+            "fullName": "<string>",
+            "hometown": "<string>",
+            "createdAt": "<dateTime>",
+            "address": {},
+            "picture": {},
+            "email": "<string>",
+            "emails": [
+              "<string>",
+              "<string>"
+            ],
+            "phone": "<string>",
+            "phones": [
+              "<string>",
+              "<string>"
+            ],
+            "notes": "<string>",
+            "tags": [
+              "<string>",
+              "<string>"
+            ],
+            "goodToKnowNotes": "<string>",
+            "preferredLanguage": "<string>",
+            "birthday": "<dateTime>",
+            "gender": "<string>",
+            "maritalStatus": "<string>",
+            "dietaryPreferences": [
+              "<string>",
+              "<string>"
+            ],
+            "allergies": [
+              "<string>",
+              "<string>"
+            ],
+            "interests": [
+              "<string>",
+              "<string>"
+            ],
+            "pronouns": "<string>",
+            "otaLinks": [
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              },
+              {
+                "type": "airbnb",
+                "url": "https://www.airbnb.com"
+              }
+            ],
+            "kids": "<number>",
+            "passportNumber": "<string>",
+            "identityNumber": "<string>",
+            "nationality": "<string>",
+            "contactType": "<string>",
+            "airbnb2": {},
+            "rentalsUnited": {},
+            "bookingCom": {},
+            "homeAway": {},
+            "tripAdvisor": {},
+            "policy": {}
+          }
+  - name: Can not pull guest, unauthorized
+    request:
+      url: "{{baseUrl}}/guests-crud/:guestId?fields=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: fields
+          value: <string>
+          type: query
+          description: (Required) Fields
+        - name: guestId
+          value: ""
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Guest not found
+    request:
+      url: "{{baseUrl}}/guests-crud/:guestId?fields=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: fields
+          value: <string>
+          type: query
+          description: (Required) Fields
+        - name: guestId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+
+docs: Get guest by id

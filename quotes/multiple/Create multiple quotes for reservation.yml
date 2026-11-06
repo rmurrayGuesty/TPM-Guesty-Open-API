@@ -1,0 +1,293 @@
+info:
+  name: Create multiple quotes for reservation
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/quotes/multiple"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "quotes": [
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "unitTypeId": "<string>",
+            "source": "<string>",
+            "applyPromotions": true,
+            "count": "<number>",
+            "unitId": "<string>",
+            "guestsCount": "<number>",
+            "bookerId": "<string>",
+            "channel": "booking_engine",
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            }
+          },
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "unitTypeId": "<string>",
+            "source": "<string>",
+            "applyPromotions": true,
+            "count": "<number>",
+            "unitId": "<string>",
+            "guestsCount": "<number>",
+            "bookerId": "<string>",
+            "channel": "booking_engine",
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            }
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The quotes have been successfully created
+    request:
+      url: "{{baseUrl}}/quotes/multiple"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "quotes": [
+              {
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>",
+                "unitTypeId": "<string>",
+                "source": "<string>",
+                "applyPromotions": true,
+                "count": "<number>",
+                "unitId": "<string>",
+                "guestsCount": "<number>",
+                "bookerId": "<string>",
+                "channel": "booking_engine",
+                "numberOfGuests": {
+                  "numberOfChildren": "<number>",
+                  "numberOfInfants": "<number>",
+                  "numberOfAdults": "<number>"
+                }
+              },
+              {
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>",
+                "unitTypeId": "<string>",
+                "source": "<string>",
+                "applyPromotions": true,
+                "count": "<number>",
+                "unitId": "<string>",
+                "guestsCount": "<number>",
+                "bookerId": "<string>",
+                "channel": "booking_engine",
+                "numberOfGuests": {
+                  "numberOfChildren": "<number>",
+                  "numberOfInfants": "<number>",
+                  "numberOfAdults": "<number>"
+                }
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errors": [
+              {
+                "unitTypeId": "<string>",
+                "unitId": "<string>",
+                "inquiryId": "<string>",
+                "errorMessage": "<string>"
+              },
+              {
+                "unitTypeId": "<string>",
+                "unitId": "<string>",
+                "inquiryId": "<string>",
+                "errorMessage": "<string>"
+              }
+            ],
+            "results": [
+              {
+                "_id": "<string>",
+                "accountId": "<string>",
+                "status": "valid",
+                "guestsCount": "<number>",
+                "channel": "manual_reservations",
+                "source": "<string>",
+                "createdAt": "<dateTime>",
+                "expiresAt": "<dateTime>",
+                "unitTypeId": "<string>",
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>",
+                "rates": {},
+                "promotions": {},
+                "reservationId": "<string>",
+                "unitId": "<string>",
+                "unassign": "<boolean>",
+                "bookerId": "<string>",
+                "alterationPayload": {
+                  "reservationId": "<string>",
+                  "dates": {
+                    "checkInDateLocalized": "<string>",
+                    "checkOutDateLocalized": "<string>"
+                  },
+                  "unit": {
+                    "unitTypeId": "<string>",
+                    "unitId": "<string>"
+                  },
+                  "guestsCount": "<number>",
+                  "ratePlanId": "<string>",
+                  "status": "declined",
+                  "numberOfGuests": {
+                    "numberOfAdults": "<number>",
+                    "numberOfChildren": "<number>",
+                    "numberOfInfants": "<number>"
+                  }
+                },
+                "numberOfGuests": {
+                  "numberOfAdults": "<number>",
+                  "numberOfChildren": "<number>",
+                  "numberOfInfants": "<number>",
+                  "numberOfPets": "<number>"
+                },
+                "pointOfSale": "<string>"
+              },
+              {
+                "_id": "<string>",
+                "accountId": "<string>",
+                "status": "valid",
+                "guestsCount": "<number>",
+                "channel": "booking_engine",
+                "source": "<string>",
+                "createdAt": "<dateTime>",
+                "expiresAt": "<dateTime>",
+                "unitTypeId": "<string>",
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>",
+                "rates": {},
+                "promotions": {},
+                "reservationId": "<string>",
+                "unitId": "<string>",
+                "unassign": "<boolean>",
+                "bookerId": "<string>",
+                "alterationPayload": {
+                  "reservationId": "<string>",
+                  "dates": {
+                    "checkInDateLocalized": "<string>",
+                    "checkOutDateLocalized": "<string>"
+                  },
+                  "unit": {
+                    "unitTypeId": "<string>",
+                    "unitId": "<string>"
+                  },
+                  "guestsCount": "<number>",
+                  "ratePlanId": "<string>",
+                  "status": "closed",
+                  "numberOfGuests": {
+                    "numberOfAdults": "<number>",
+                    "numberOfChildren": "<number>",
+                    "numberOfInfants": "<number>"
+                  }
+                },
+                "numberOfGuests": {
+                  "numberOfAdults": "<number>",
+                  "numberOfChildren": "<number>",
+                  "numberOfInfants": "<number>",
+                  "numberOfPets": "<number>"
+                },
+                "pointOfSale": "<string>"
+              }
+            ]
+          }
+  - name: Multiple quote creation failed.
+    request:
+      url: "{{baseUrl}}/quotes/multiple"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "quotes": [
+              {
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>",
+                "unitTypeId": "<string>",
+                "source": "<string>",
+                "applyPromotions": true,
+                "count": "<number>",
+                "unitId": "<string>",
+                "guestsCount": "<number>",
+                "bookerId": "<string>",
+                "channel": "booking_engine",
+                "numberOfGuests": {
+                  "numberOfChildren": "<number>",
+                  "numberOfInfants": "<number>",
+                  "numberOfAdults": "<number>"
+                }
+              },
+              {
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>",
+                "unitTypeId": "<string>",
+                "source": "<string>",
+                "applyPromotions": true,
+                "count": "<number>",
+                "unitId": "<string>",
+                "guestsCount": "<number>",
+                "bookerId": "<string>",
+                "channel": "booking_engine",
+                "numberOfGuests": {
+                  "numberOfChildren": "<number>",
+                  "numberOfInfants": "<number>",
+                  "numberOfAdults": "<number>"
+                }
+              }
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: This endpoint allows the creation of multiple price quotes for a reservation.

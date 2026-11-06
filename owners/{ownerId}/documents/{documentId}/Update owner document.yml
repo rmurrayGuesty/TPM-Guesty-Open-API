@@ -1,0 +1,176 @@
+info:
+  name: Update owner document
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/owners/:ownerId/documents/:documentId"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: ownerId
+      value: <string>
+      type: path
+      description: (Required) Owner id
+    - name: documentId
+      value: <string>
+      type: path
+      description: (Required) Document id
+  body:
+    type: json
+    data: |-
+      {
+        "name": "<string>",
+        "description": "<string>",
+        "type": "CONTRACT",
+        "isShared": "<boolean>",
+        "startDate": "<dateTime>",
+        "endDate": "<dateTime>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Untitled Response
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents/:documentId"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+        - name: documentId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "description": "<string>",
+            "type": "CONTRACT",
+            "isShared": "<boolean>",
+            "startDate": "<dateTime>",
+            "endDate": "<dateTime>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "ownerId": "<string>",
+            "originalFileName": "<string>",
+            "name": "<string>",
+            "type": "CONTRACT",
+            "isShared": "<boolean>",
+            "createdAt": "<dateTime>",
+            "description": "<string>",
+            "startDate": "<string>",
+            "endDate": "<string>",
+            "deletedAt": "<dateTime>"
+          }
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents/:documentId"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+        - name: documentId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "description": "<string>",
+            "type": "CONTRACT",
+            "isShared": "<boolean>",
+            "startDate": "<dateTime>",
+            "endDate": "<dateTime>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Not found
+    request:
+      url: "{{baseUrl}}/owners/:ownerId/documents/:documentId"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: ownerId
+          value: ""
+          type: path
+        - name: documentId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "description": "<string>",
+            "type": "CONTRACT",
+            "isShared": "<boolean>",
+            "startDate": "<dateTime>",
+            "endDate": "<dateTime>"
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Update owner document (supports partial update)

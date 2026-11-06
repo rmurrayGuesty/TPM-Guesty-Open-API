@@ -1,0 +1,151 @@
+info:
+  name: Retrieve a Quote by ID
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/quotes/:quoteId"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: quoteId
+      value: <string>
+      type: path
+      description: (Required) The unique identifier of the quote being retrieved
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Successful retrieval of the quote
+    request:
+      url: "{{baseUrl}}/quotes/:quoteId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: quoteId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "status": "valid",
+            "guestsCount": "<number>",
+            "channel": "owner_reservations",
+            "source": "<string>",
+            "createdAt": "<dateTime>",
+            "expiresAt": "<dateTime>",
+            "unitTypeId": "<string>",
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "rates": {},
+            "coupons": [],
+            "promotions": {},
+            "reservationId": "<string>",
+            "unitId": "<string>",
+            "unassign": "<boolean>",
+            "bookerId": "<string>",
+            "alterationPayload": {
+              "reservationId": "<string>",
+              "dates": {
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>"
+              },
+              "unit": {
+                "unitTypeId": "<string>",
+                "unitId": "<string>"
+              },
+              "guestsCount": "<number>",
+              "ratePlanId": "<string>",
+              "status": "expired",
+              "numberOfGuests": {
+                "numberOfAdults": "<number>",
+                "numberOfChildren": "<number>",
+                "numberOfInfants": "<number>"
+              }
+            },
+            "numberOfGuests": {
+              "numberOfAdults": "<number>",
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfPets": "<number>"
+            },
+            "pointOfSale": "<string>"
+          }
+  - name: Returned if the quoteId is missing or malformed
+    request:
+      url: "{{baseUrl}}/quotes/:quoteId"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: quoteId
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Returned if the quote with the specified ID does not exist
+    request:
+      url: "{{baseUrl}}/quotes/:quoteId"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: quoteId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+  - name: Returned if the quote has expired. The error message should indicate "Quote is expired, please create a new quote."
+    request:
+      url: "{{baseUrl}}/quotes/:quoteId"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: quoteId
+          value: ""
+          type: path
+    response:
+      status: 410
+      statusText: Gone
+      body:
+        type: text
+        data: ""
+
+docs: This endpoint allows retrieval of a specific quote using its unique ID. It is used to fetch details of a previously created quote. If the quote has expired, the endpoint returns an error message indicating that the quote is expired and suggests creating a new quote.

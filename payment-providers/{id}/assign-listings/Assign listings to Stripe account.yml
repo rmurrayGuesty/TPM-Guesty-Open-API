@@ -1,0 +1,94 @@
+info:
+  name: Assign listings to Stripe account
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/payment-providers/:id/assign-listings"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Stripe payment provider
+  body:
+    type: json
+    data: |-
+      {
+        "listingIds": [
+          "<string>",
+          "<string>"
+        ]
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Payment provider with listings assigned
+    request:
+      url: "{{baseUrl}}/payment-providers/:id/assign-listings"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "listingIds": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "<string>",
+            "status": "<string>",
+            "syncedAt": "<date>",
+            "lastPendingPaymentDate": "<date>",
+            "listings": [
+              "<string>",
+              "<string>"
+            ],
+            "pendingPaymentsCount": "<number>",
+            "paymentMethodsCount": "<number>",
+            "providerAccountId": "<string>",
+            "isDefault": "<boolean>",
+            "providerType": "<string>",
+            "connectedBy": "<string>",
+            "accountName": "<string>",
+            "defaultCurrency": "<string>",
+            "statsLastUpdated": "<date>"
+          }

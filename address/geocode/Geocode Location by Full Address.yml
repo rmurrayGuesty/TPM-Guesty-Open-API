@@ -1,0 +1,132 @@
+info:
+  name: Geocode Location by Full Address
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/address/geocode"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "address": {
+          "full": "<string>"
+        },
+        "publishedAddress": {
+          "full": "<string>"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Return geocoded addresses.
+    request:
+      url: "{{baseUrl}}/address/geocode"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "address": {
+              "full": "<string>"
+            },
+            "publishedAddress": {
+              "full": "<string>"
+            }
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "address": {
+              "full": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>"
+            },
+            "publishedAddress": {
+              "full": "<string>",
+              "city": "<string>",
+              "country": "<string>",
+              "location": {
+                "lat": "<number>",
+                "lng": "<number>"
+              },
+              "state": "<string>",
+              "street": "<string>",
+              "zipcode": "<string>"
+            }
+          }
+  - name: Unauthorized Request.
+    request:
+      url: "{{baseUrl}}/address/geocode"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "address": {
+              "full": "<string>"
+            },
+            "publishedAddress": {
+              "full": "<string>"
+            }
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+
+docs: Converts the full address into latitude and longitude coordinates and populates individual address fields.

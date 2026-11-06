@@ -1,0 +1,1474 @@
+info:
+  name: Search reservations
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: '{{baseUrl}}/reservations?filters=[{"operator": "$eq", "field": "reservation_id", "value": "GY-9AaK9Bqv"}]'
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: viewId
+      value: <string>
+      type: query
+      description: View Id
+      disabled: true
+    - name: filters
+      value: '[object Object]: [{"operator": "$eq", "field": "source", "value": "Website bookings"},{"operator": "$eq", "field": "listingId", "value": "1234"}]'
+      type: query
+      description: Array of filters to query by
+      disabled: true
+    - name: filters
+      value: '[{"operator": "$eq", "field": "reservation_id", "value": "GY-9AaK9Bqv"}]'
+      type: query
+      description: Array of filters to query by
+    - name: fields
+      value: <string>
+      type: query
+      description: Selection of fields, separated by space
+      disabled: true
+    - name: sort
+      value: <string>
+      type: query
+      description: "Sorting, default: `_id`"
+      disabled: true
+    - name: limit
+      value: <integer>
+      type: query
+      description: "Limit for list of records. Default value: `25`, max: `100`"
+      disabled: true
+    - name: skip
+      value: <integer>
+      type: query
+      description: Skip number of records. In case nothing provided so nothing will be skipped
+      disabled: true
+  auth:
+    type: bearer
+    token: "{{bearer}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Reservation object
+    request:
+      url: "{{baseUrl}}/reservations?viewId=<string>&filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=<integer>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: viewId
+          value: <string>
+          type: query
+          description: View Id
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `_id`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `25`, max: `100`"
+        - name: skip
+          value: <integer>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "integration": {
+              "limitations": {
+                "availableStatuses": "<array>"
+              },
+              "bookingCom": {
+                "invalidCreditCards": "<array>",
+                "reports": "<array>"
+              },
+              "_id": "<string>",
+              "platform": "<string>"
+            },
+            "guestyFeeDetails": {
+              "commission": "<number>",
+              "feeMinimum": "<number>",
+              "fee": "<number>",
+              "feeUsd": "<number>",
+              "isMinimumFee": "<boolean>",
+              "isMaximumFee": "<boolean>",
+              "planItems": "<array>"
+            },
+            "review": {
+              "shouldReview": "<boolean>"
+            },
+            "atTimeOfConfirmation": {
+              "snapshotCreated": "<boolean>",
+              "channelCommission": {
+                "useAccountSettings": "<boolean>",
+                "_id": "<string>",
+                "manual": "<array>"
+              },
+              "taxes": [
+                {
+                  "appliedOnFees": "<string>",
+                  "appliedByDefaultOnChannels": "<array>",
+                  "_id": "<string>",
+                  "name": "<string>",
+                  "units": "<string>",
+                  "quantifier": "<string>",
+                  "amount": "<number>",
+                  "appliedToAllFees": "<boolean>",
+                  "type": "<string>"
+                },
+                {
+                  "appliedOnFees": "<string>",
+                  "appliedByDefaultOnChannels": "<array>",
+                  "_id": "<string>",
+                  "name": "<string>",
+                  "units": "<string>",
+                  "quantifier": "<string>",
+                  "amount": "<number>",
+                  "appliedToAllFees": "<boolean>",
+                  "type": "<string>"
+                }
+              ],
+              "monthlyPriceFactor": "<number>",
+              "weeklyPriceFactor": "<number>",
+              "useAccountRevenueShare": "<boolean>"
+            },
+            "flag": "<boolean>",
+            "accountingEnabled": "<boolean>",
+            "isBMApplied": "<boolean>",
+            "confirmedPreBookings": "<array>",
+            "pulledByDailySync": "<boolean>",
+            "manuallyCreated": "<boolean>",
+            "_id": "<string>",
+            "status": "<string>",
+            "checkIn": "<string>",
+            "checkOut": "<string>",
+            "nightsCount": "<number>",
+            "guestsCount": "<number>",
+            "money": {
+              "altered": "<boolean>",
+              "invoiceItems": [
+                {
+                  "_id": "<string>",
+                  "title": "<string>",
+                  "amount": "<number>",
+                  "currency": "<string>",
+                  "type": "<string>",
+                  "isLocked": "<boolean>",
+                  "isTax": "<boolean>",
+                  "normalType": "<string>",
+                  "isAutoAdditionalFee": "<boolean>",
+                  "secondIdentifier": "<string>"
+                },
+                {
+                  "_id": "<string>",
+                  "title": "<string>",
+                  "amount": "<number>",
+                  "currency": "<string>",
+                  "type": "<string>",
+                  "isLocked": "<boolean>",
+                  "isTax": "<boolean>",
+                  "normalType": "<string>",
+                  "isAutoAdditionalFee": "<boolean>",
+                  "secondIdentifier": "<string>"
+                }
+              ],
+              "payments": [
+                {
+                  "authenticationRequiredData": {
+                    "lastAuthMsgSentDate": "<string>",
+                    "authenticationUrl": "<string>"
+                  },
+                  "paymentMethodStatus": "<string>",
+                  "isAuthorizationHold": "<boolean>",
+                  "status": "<string>",
+                  "refunds": "<array>",
+                  "authorizationHoldCaptures": "<array>",
+                  "createdAt": "<string>",
+                  "attempts": [
+                    {
+                      "createdAt": "<string>",
+                      "_id": "<string>",
+                      "status": "<string>",
+                      "error": "<string>",
+                      "payload": {
+                        "charge": "<string>",
+                        "code": "<string>",
+                        "decline_code": "<string>",
+                        "doc_url": "<string>",
+                        "message": "<string>",
+                        "payment_intent": {
+                          "id": "<string>",
+                          "object": "<string>",
+                          "amount": "<number>",
+                          "amount_capturable": "<number>",
+                          "amount_received": "<number>",
+                          "application": "<string>",
+                          "capture_method": "<string>",
+                          "charges": {
+                            "object": "<string>",
+                            "data": [
+                              {
+                                "id": "<string>",
+                                "object": "<string>",
+                                "amount": "<number>",
+                                "amount_captured": "<number>",
+                                "amount_refunded": "<number>",
+                                "application": "<string>",
+                                "billing_details": {
+                                  "address": {
+                                    "city": "<string>",
+                                    "country": "<string>",
+                                    "line1": "<string>",
+                                    "line2": "<string>",
+                                    "postal_code": "<string>",
+                                    "state": "<string>"
+                                  },
+                                  "email": "<string>",
+                                  "name": "<string>",
+                                  "phone": "<string>"
+                                },
+                                "calculated_statement_descriptor": "<string>",
+                                "captured": "<boolean>",
+                                "created": "<number>",
+                                "currency": "<string>",
+                                "customer": "<string>",
+                                "description": "<string>",
+                                "disputed": "<boolean>",
+                                "failure_code": "<string>",
+                                "failure_message": "<string>",
+                                "livemode": "<boolean>",
+                                "metadata": {
+                                  "accountId": "<string>",
+                                  "confirmationCode": "<string>",
+                                  "reservationId": "<string>",
+                                  "OTA": "<string>",
+                                  "listingId": "<string>"
+                                },
+                                "outcome": {
+                                  "network_status": "<string>",
+                                  "reason": "<string>",
+                                  "risk_level": "<string>",
+                                  "risk_score": "<number>",
+                                  "seller_message": "<string>",
+                                  "type": "<string>"
+                                },
+                                "paid": "<boolean>",
+                                "payment_intent": "<string>",
+                                "payment_method": "<string>",
+                                "payment_method_details": {
+                                  "card": {
+                                    "brand": "<string>",
+                                    "checks": {
+                                      "cvc_check": "<string>"
+                                    },
+                                    "country": "<string>",
+                                    "exp_month": "<number>",
+                                    "exp_year": "<number>",
+                                    "fingerprint": "<string>",
+                                    "funding": "<string>",
+                                    "last4": "<string>",
+                                    "network": "<string>"
+                                  },
+                                  "type": "<string>"
+                                },
+                                "refunded": "<boolean>",
+                                "refunds": {
+                                  "object": "<string>",
+                                  "data": "<array>",
+                                  "has_more": "<boolean>",
+                                  "total_count": "<number>",
+                                  "url": "<string>"
+                                },
+                                "statement_descriptor": "<string>",
+                                "status": "<string>"
+                              },
+                              {
+                                "id": "<string>",
+                                "object": "<string>",
+                                "amount": "<number>",
+                                "amount_captured": "<number>",
+                                "amount_refunded": "<number>",
+                                "application": "<string>",
+                                "billing_details": {
+                                  "address": {
+                                    "city": "<string>",
+                                    "country": "<string>",
+                                    "line1": "<string>",
+                                    "line2": "<string>",
+                                    "postal_code": "<string>",
+                                    "state": "<string>"
+                                  },
+                                  "email": "<string>",
+                                  "name": "<string>",
+                                  "phone": "<string>"
+                                },
+                                "calculated_statement_descriptor": "<string>",
+                                "captured": "<boolean>",
+                                "created": "<number>",
+                                "currency": "<string>",
+                                "customer": "<string>",
+                                "description": "<string>",
+                                "disputed": "<boolean>",
+                                "failure_code": "<string>",
+                                "failure_message": "<string>",
+                                "livemode": "<boolean>",
+                                "metadata": {
+                                  "accountId": "<string>",
+                                  "confirmationCode": "<string>",
+                                  "reservationId": "<string>",
+                                  "OTA": "<string>",
+                                  "listingId": "<string>"
+                                },
+                                "outcome": {
+                                  "network_status": "<string>",
+                                  "reason": "<string>",
+                                  "risk_level": "<string>",
+                                  "risk_score": "<number>",
+                                  "seller_message": "<string>",
+                                  "type": "<string>"
+                                },
+                                "paid": "<boolean>",
+                                "payment_intent": "<string>",
+                                "payment_method": "<string>",
+                                "payment_method_details": {
+                                  "card": {
+                                    "brand": "<string>",
+                                    "checks": {
+                                      "cvc_check": "<string>"
+                                    },
+                                    "country": "<string>",
+                                    "exp_month": "<number>",
+                                    "exp_year": "<number>",
+                                    "fingerprint": "<string>",
+                                    "funding": "<string>",
+                                    "last4": "<string>",
+                                    "network": "<string>"
+                                  },
+                                  "type": "<string>"
+                                },
+                                "refunded": "<boolean>",
+                                "refunds": {
+                                  "object": "<string>",
+                                  "data": "<array>",
+                                  "has_more": "<boolean>",
+                                  "total_count": "<number>",
+                                  "url": "<string>"
+                                },
+                                "statement_descriptor": "<string>",
+                                "status": "<string>"
+                              }
+                            ],
+                            "has_more": "<boolean>",
+                            "total_count": "<number>",
+                            "url": "<string>"
+                          },
+                          "client_secret": "<string>",
+                          "confirmation_method": "<string>",
+                          "created": "<number>",
+                          "currency": "<string>",
+                          "customer": "<string>",
+                          "description": "<string>",
+                          "livemode": "<boolean>",
+                          "metadata": {
+                            "accountId": "<string>",
+                            "confirmationCode": "<string>",
+                            "reservationId": "<string>",
+                            "OTA": "<string>",
+                            "listingId": "<string>"
+                          },
+                          "next_action": {
+                            "type": "<string>",
+                            "use_stripe_sdk": {
+                              "type": "<string>",
+                              "merchant": "<string>",
+                              "three_d_secure_2_source": "<string>",
+                              "directory_server_name": "<string>",
+                              "server_transaction_id": "<string>",
+                              "three_ds_method_url": "<string>",
+                              "three_ds_optimizations": "<string>",
+                              "directory_server_encryption": {
+                                "directory_server_id": "<string>",
+                                "algorithm": "<string>",
+                                "certificate": "<string>",
+                                "root_certificate_authorities": "<array>"
+                              }
+                            }
+                          },
+                          "payment_method": "<string>",
+                          "payment_method_options": {
+                            "card": {
+                              "request_three_d_secure": "<string>"
+                            }
+                          },
+                          "payment_method_types": "<array>",
+                          "statement_descriptor": "<string>",
+                          "status": "<string>"
+                        },
+                        "payment_method": {
+                          "id": "<string>",
+                          "object": "<string>",
+                          "billing_details": {
+                            "address": {
+                              "city": "<string>",
+                              "country": "<string>",
+                              "line1": "<string>",
+                              "line2": "<string>",
+                              "postal_code": "<string>",
+                              "state": "<string>"
+                            },
+                            "email": "<string>",
+                            "name": "<string>",
+                            "phone": "<string>"
+                          },
+                          "card": {
+                            "brand": "<string>",
+                            "checks": {
+                              "cvc_check": "<string>"
+                            },
+                            "country": "<string>",
+                            "exp_month": "<number>",
+                            "exp_year": "<number>",
+                            "fingerprint": "<string>",
+                            "funding": "<string>",
+                            "last4": "<string>",
+                            "networks": {
+                              "available": "<array>"
+                            },
+                            "three_d_secure_usage": {
+                              "supported": "<boolean>"
+                            }
+                          },
+                          "created": "<number>",
+                          "customer": "<string>",
+                          "livemode": "<boolean>",
+                          "type": "<string>"
+                        },
+                        "type": "<string>",
+                        "statusCode": "<number>",
+                        "requestId": "<string>"
+                      }
+                    },
+                    {
+                      "createdAt": "<string>",
+                      "_id": "<string>",
+                      "status": "<string>",
+                      "error": "<string>",
+                      "payload": {
+                        "charge": "<string>",
+                        "code": "<string>",
+                        "decline_code": "<string>",
+                        "doc_url": "<string>",
+                        "message": "<string>",
+                        "payment_intent": {
+                          "id": "<string>",
+                          "object": "<string>",
+                          "amount": "<number>",
+                          "amount_capturable": "<number>",
+                          "amount_received": "<number>",
+                          "application": "<string>",
+                          "capture_method": "<string>",
+                          "charges": {
+                            "object": "<string>",
+                            "data": [
+                              {
+                                "id": "<string>",
+                                "object": "<string>",
+                                "amount": "<number>",
+                                "amount_captured": "<number>",
+                                "amount_refunded": "<number>",
+                                "application": "<string>",
+                                "billing_details": {
+                                  "address": {
+                                    "city": "<string>",
+                                    "country": "<string>",
+                                    "line1": "<string>",
+                                    "line2": "<string>",
+                                    "postal_code": "<string>",
+                                    "state": "<string>"
+                                  },
+                                  "email": "<string>",
+                                  "name": "<string>",
+                                  "phone": "<string>"
+                                },
+                                "calculated_statement_descriptor": "<string>",
+                                "captured": "<boolean>",
+                                "created": "<number>",
+                                "currency": "<string>",
+                                "customer": "<string>",
+                                "description": "<string>",
+                                "disputed": "<boolean>",
+                                "failure_code": "<string>",
+                                "failure_message": "<string>",
+                                "livemode": "<boolean>",
+                                "metadata": {
+                                  "accountId": "<string>",
+                                  "confirmationCode": "<string>",
+                                  "reservationId": "<string>",
+                                  "OTA": "<string>",
+                                  "listingId": "<string>"
+                                },
+                                "outcome": {
+                                  "network_status": "<string>",
+                                  "reason": "<string>",
+                                  "risk_level": "<string>",
+                                  "risk_score": "<number>",
+                                  "seller_message": "<string>",
+                                  "type": "<string>"
+                                },
+                                "paid": "<boolean>",
+                                "payment_intent": "<string>",
+                                "payment_method": "<string>",
+                                "payment_method_details": {
+                                  "card": {
+                                    "brand": "<string>",
+                                    "checks": {
+                                      "cvc_check": "<string>"
+                                    },
+                                    "country": "<string>",
+                                    "exp_month": "<number>",
+                                    "exp_year": "<number>",
+                                    "fingerprint": "<string>",
+                                    "funding": "<string>",
+                                    "last4": "<string>",
+                                    "network": "<string>"
+                                  },
+                                  "type": "<string>"
+                                },
+                                "refunded": "<boolean>",
+                                "refunds": {
+                                  "object": "<string>",
+                                  "data": "<array>",
+                                  "has_more": "<boolean>",
+                                  "total_count": "<number>",
+                                  "url": "<string>"
+                                },
+                                "statement_descriptor": "<string>",
+                                "status": "<string>"
+                              },
+                              {
+                                "id": "<string>",
+                                "object": "<string>",
+                                "amount": "<number>",
+                                "amount_captured": "<number>",
+                                "amount_refunded": "<number>",
+                                "application": "<string>",
+                                "billing_details": {
+                                  "address": {
+                                    "city": "<string>",
+                                    "country": "<string>",
+                                    "line1": "<string>",
+                                    "line2": "<string>",
+                                    "postal_code": "<string>",
+                                    "state": "<string>"
+                                  },
+                                  "email": "<string>",
+                                  "name": "<string>",
+                                  "phone": "<string>"
+                                },
+                                "calculated_statement_descriptor": "<string>",
+                                "captured": "<boolean>",
+                                "created": "<number>",
+                                "currency": "<string>",
+                                "customer": "<string>",
+                                "description": "<string>",
+                                "disputed": "<boolean>",
+                                "failure_code": "<string>",
+                                "failure_message": "<string>",
+                                "livemode": "<boolean>",
+                                "metadata": {
+                                  "accountId": "<string>",
+                                  "confirmationCode": "<string>",
+                                  "reservationId": "<string>",
+                                  "OTA": "<string>",
+                                  "listingId": "<string>"
+                                },
+                                "outcome": {
+                                  "network_status": "<string>",
+                                  "reason": "<string>",
+                                  "risk_level": "<string>",
+                                  "risk_score": "<number>",
+                                  "seller_message": "<string>",
+                                  "type": "<string>"
+                                },
+                                "paid": "<boolean>",
+                                "payment_intent": "<string>",
+                                "payment_method": "<string>",
+                                "payment_method_details": {
+                                  "card": {
+                                    "brand": "<string>",
+                                    "checks": {
+                                      "cvc_check": "<string>"
+                                    },
+                                    "country": "<string>",
+                                    "exp_month": "<number>",
+                                    "exp_year": "<number>",
+                                    "fingerprint": "<string>",
+                                    "funding": "<string>",
+                                    "last4": "<string>",
+                                    "network": "<string>"
+                                  },
+                                  "type": "<string>"
+                                },
+                                "refunded": "<boolean>",
+                                "refunds": {
+                                  "object": "<string>",
+                                  "data": "<array>",
+                                  "has_more": "<boolean>",
+                                  "total_count": "<number>",
+                                  "url": "<string>"
+                                },
+                                "statement_descriptor": "<string>",
+                                "status": "<string>"
+                              }
+                            ],
+                            "has_more": "<boolean>",
+                            "total_count": "<number>",
+                            "url": "<string>"
+                          },
+                          "client_secret": "<string>",
+                          "confirmation_method": "<string>",
+                          "created": "<number>",
+                          "currency": "<string>",
+                          "customer": "<string>",
+                          "description": "<string>",
+                          "livemode": "<boolean>",
+                          "metadata": {
+                            "accountId": "<string>",
+                            "confirmationCode": "<string>",
+                            "reservationId": "<string>",
+                            "OTA": "<string>",
+                            "listingId": "<string>"
+                          },
+                          "next_action": {
+                            "type": "<string>",
+                            "use_stripe_sdk": {
+                              "type": "<string>",
+                              "merchant": "<string>",
+                              "three_d_secure_2_source": "<string>",
+                              "directory_server_name": "<string>",
+                              "server_transaction_id": "<string>",
+                              "three_ds_method_url": "<string>",
+                              "three_ds_optimizations": "<string>",
+                              "directory_server_encryption": {
+                                "directory_server_id": "<string>",
+                                "algorithm": "<string>",
+                                "certificate": "<string>",
+                                "root_certificate_authorities": "<array>"
+                              }
+                            }
+                          },
+                          "payment_method": "<string>",
+                          "payment_method_options": {
+                            "card": {
+                              "request_three_d_secure": "<string>"
+                            }
+                          },
+                          "payment_method_types": "<array>",
+                          "statement_descriptor": "<string>",
+                          "status": "<string>"
+                        },
+                        "payment_method": {
+                          "id": "<string>",
+                          "object": "<string>",
+                          "billing_details": {
+                            "address": {
+                              "city": "<string>",
+                              "country": "<string>",
+                              "line1": "<string>",
+                              "line2": "<string>",
+                              "postal_code": "<string>",
+                              "state": "<string>"
+                            },
+                            "email": "<string>",
+                            "name": "<string>",
+                            "phone": "<string>"
+                          },
+                          "card": {
+                            "brand": "<string>",
+                            "checks": {
+                              "cvc_check": "<string>"
+                            },
+                            "country": "<string>",
+                            "exp_month": "<number>",
+                            "exp_year": "<number>",
+                            "fingerprint": "<string>",
+                            "funding": "<string>",
+                            "last4": "<string>",
+                            "networks": {
+                              "available": "<array>"
+                            },
+                            "three_d_secure_usage": {
+                              "supported": "<boolean>"
+                            }
+                          },
+                          "created": "<number>",
+                          "customer": "<string>",
+                          "livemode": "<boolean>",
+                          "type": "<string>"
+                        },
+                        "type": "<string>",
+                        "statusCode": "<number>",
+                        "requestId": "<string>"
+                      }
+                    }
+                  ],
+                  "receiptTargets": "<array>",
+                  "_id": "<string>",
+                  "amount": "<number>",
+                  "shouldBePaidAt": "<string>",
+                  "paymentMethodId": "<string>",
+                  "guestId": "<string>",
+                  "currency": "<string>"
+                },
+                {
+                  "authenticationRequiredData": {
+                    "lastAuthMsgSentDate": "<string>",
+                    "authenticationUrl": "<string>"
+                  },
+                  "paymentMethodStatus": "<string>",
+                  "isAuthorizationHold": "<boolean>",
+                  "status": "<string>",
+                  "refunds": "<array>",
+                  "authorizationHoldCaptures": "<array>",
+                  "createdAt": "<string>",
+                  "attempts": [
+                    {
+                      "createdAt": "<string>",
+                      "_id": "<string>",
+                      "status": "<string>",
+                      "error": "<string>",
+                      "payload": {
+                        "charge": "<string>",
+                        "code": "<string>",
+                        "decline_code": "<string>",
+                        "doc_url": "<string>",
+                        "message": "<string>",
+                        "payment_intent": {
+                          "id": "<string>",
+                          "object": "<string>",
+                          "amount": "<number>",
+                          "amount_capturable": "<number>",
+                          "amount_received": "<number>",
+                          "application": "<string>",
+                          "capture_method": "<string>",
+                          "charges": {
+                            "object": "<string>",
+                            "data": [
+                              {
+                                "id": "<string>",
+                                "object": "<string>",
+                                "amount": "<number>",
+                                "amount_captured": "<number>",
+                                "amount_refunded": "<number>",
+                                "application": "<string>",
+                                "billing_details": {
+                                  "address": {
+                                    "city": "<string>",
+                                    "country": "<string>",
+                                    "line1": "<string>",
+                                    "line2": "<string>",
+                                    "postal_code": "<string>",
+                                    "state": "<string>"
+                                  },
+                                  "email": "<string>",
+                                  "name": "<string>",
+                                  "phone": "<string>"
+                                },
+                                "calculated_statement_descriptor": "<string>",
+                                "captured": "<boolean>",
+                                "created": "<number>",
+                                "currency": "<string>",
+                                "customer": "<string>",
+                                "description": "<string>",
+                                "disputed": "<boolean>",
+                                "failure_code": "<string>",
+                                "failure_message": "<string>",
+                                "livemode": "<boolean>",
+                                "metadata": {
+                                  "accountId": "<string>",
+                                  "confirmationCode": "<string>",
+                                  "reservationId": "<string>",
+                                  "OTA": "<string>",
+                                  "listingId": "<string>"
+                                },
+                                "outcome": {
+                                  "network_status": "<string>",
+                                  "reason": "<string>",
+                                  "risk_level": "<string>",
+                                  "risk_score": "<number>",
+                                  "seller_message": "<string>",
+                                  "type": "<string>"
+                                },
+                                "paid": "<boolean>",
+                                "payment_intent": "<string>",
+                                "payment_method": "<string>",
+                                "payment_method_details": {
+                                  "card": {
+                                    "brand": "<string>",
+                                    "checks": {
+                                      "cvc_check": "<string>"
+                                    },
+                                    "country": "<string>",
+                                    "exp_month": "<number>",
+                                    "exp_year": "<number>",
+                                    "fingerprint": "<string>",
+                                    "funding": "<string>",
+                                    "last4": "<string>",
+                                    "network": "<string>"
+                                  },
+                                  "type": "<string>"
+                                },
+                                "refunded": "<boolean>",
+                                "refunds": {
+                                  "object": "<string>",
+                                  "data": "<array>",
+                                  "has_more": "<boolean>",
+                                  "total_count": "<number>",
+                                  "url": "<string>"
+                                },
+                                "statement_descriptor": "<string>",
+                                "status": "<string>"
+                              },
+                              {
+                                "id": "<string>",
+                                "object": "<string>",
+                                "amount": "<number>",
+                                "amount_captured": "<number>",
+                                "amount_refunded": "<number>",
+                                "application": "<string>",
+                                "billing_details": {
+                                  "address": {
+                                    "city": "<string>",
+                                    "country": "<string>",
+                                    "line1": "<string>",
+                                    "line2": "<string>",
+                                    "postal_code": "<string>",
+                                    "state": "<string>"
+                                  },
+                                  "email": "<string>",
+                                  "name": "<string>",
+                                  "phone": "<string>"
+                                },
+                                "calculated_statement_descriptor": "<string>",
+                                "captured": "<boolean>",
+                                "created": "<number>",
+                                "currency": "<string>",
+                                "customer": "<string>",
+                                "description": "<string>",
+                                "disputed": "<boolean>",
+                                "failure_code": "<string>",
+                                "failure_message": "<string>",
+                                "livemode": "<boolean>",
+                                "metadata": {
+                                  "accountId": "<string>",
+                                  "confirmationCode": "<string>",
+                                  "reservationId": "<string>",
+                                  "OTA": "<string>",
+                                  "listingId": "<string>"
+                                },
+                                "outcome": {
+                                  "network_status": "<string>",
+                                  "reason": "<string>",
+                                  "risk_level": "<string>",
+                                  "risk_score": "<number>",
+                                  "seller_message": "<string>",
+                                  "type": "<string>"
+                                },
+                                "paid": "<boolean>",
+                                "payment_intent": "<string>",
+                                "payment_method": "<string>",
+                                "payment_method_details": {
+                                  "card": {
+                                    "brand": "<string>",
+                                    "checks": {
+                                      "cvc_check": "<string>"
+                                    },
+                                    "country": "<string>",
+                                    "exp_month": "<number>",
+                                    "exp_year": "<number>",
+                                    "fingerprint": "<string>",
+                                    "funding": "<string>",
+                                    "last4": "<string>",
+                                    "network": "<string>"
+                                  },
+                                  "type": "<string>"
+                                },
+                                "refunded": "<boolean>",
+                                "refunds": {
+                                  "object": "<string>",
+                                  "data": "<array>",
+                                  "has_more": "<boolean>",
+                                  "total_count": "<number>",
+                                  "url": "<string>"
+                                },
+                                "statement_descriptor": "<string>",
+                                "status": "<string>"
+                              }
+                            ],
+                            "has_more": "<boolean>",
+                            "total_count": "<number>",
+                            "url": "<string>"
+                          },
+                          "client_secret": "<string>",
+                          "confirmation_method": "<string>",
+                          "created": "<number>",
+                          "currency": "<string>",
+                          "customer": "<string>",
+                          "description": "<string>",
+                          "livemode": "<boolean>",
+                          "metadata": {
+                            "accountId": "<string>",
+                            "confirmationCode": "<string>",
+                            "reservationId": "<string>",
+                            "OTA": "<string>",
+                            "listingId": "<string>"
+                          },
+                          "next_action": {
+                            "type": "<string>",
+                            "use_stripe_sdk": {
+                              "type": "<string>",
+                              "merchant": "<string>",
+                              "three_d_secure_2_source": "<string>",
+                              "directory_server_name": "<string>",
+                              "server_transaction_id": "<string>",
+                              "three_ds_method_url": "<string>",
+                              "three_ds_optimizations": "<string>",
+                              "directory_server_encryption": {
+                                "directory_server_id": "<string>",
+                                "algorithm": "<string>",
+                                "certificate": "<string>",
+                                "root_certificate_authorities": "<array>"
+                              }
+                            }
+                          },
+                          "payment_method": "<string>",
+                          "payment_method_options": {
+                            "card": {
+                              "request_three_d_secure": "<string>"
+                            }
+                          },
+                          "payment_method_types": "<array>",
+                          "statement_descriptor": "<string>",
+                          "status": "<string>"
+                        },
+                        "payment_method": {
+                          "id": "<string>",
+                          "object": "<string>",
+                          "billing_details": {
+                            "address": {
+                              "city": "<string>",
+                              "country": "<string>",
+                              "line1": "<string>",
+                              "line2": "<string>",
+                              "postal_code": "<string>",
+                              "state": "<string>"
+                            },
+                            "email": "<string>",
+                            "name": "<string>",
+                            "phone": "<string>"
+                          },
+                          "card": {
+                            "brand": "<string>",
+                            "checks": {
+                              "cvc_check": "<string>"
+                            },
+                            "country": "<string>",
+                            "exp_month": "<number>",
+                            "exp_year": "<number>",
+                            "fingerprint": "<string>",
+                            "funding": "<string>",
+                            "last4": "<string>",
+                            "networks": {
+                              "available": "<array>"
+                            },
+                            "three_d_secure_usage": {
+                              "supported": "<boolean>"
+                            }
+                          },
+                          "created": "<number>",
+                          "customer": "<string>",
+                          "livemode": "<boolean>",
+                          "type": "<string>"
+                        },
+                        "type": "<string>",
+                        "statusCode": "<number>",
+                        "requestId": "<string>"
+                      }
+                    },
+                    {
+                      "createdAt": "<string>",
+                      "_id": "<string>",
+                      "status": "<string>",
+                      "error": "<string>",
+                      "payload": {
+                        "charge": "<string>",
+                        "code": "<string>",
+                        "decline_code": "<string>",
+                        "doc_url": "<string>",
+                        "message": "<string>",
+                        "payment_intent": {
+                          "id": "<string>",
+                          "object": "<string>",
+                          "amount": "<number>",
+                          "amount_capturable": "<number>",
+                          "amount_received": "<number>",
+                          "application": "<string>",
+                          "capture_method": "<string>",
+                          "charges": {
+                            "object": "<string>",
+                            "data": [
+                              {
+                                "id": "<string>",
+                                "object": "<string>",
+                                "amount": "<number>",
+                                "amount_captured": "<number>",
+                                "amount_refunded": "<number>",
+                                "application": "<string>",
+                                "billing_details": {
+                                  "address": {
+                                    "city": "<string>",
+                                    "country": "<string>",
+                                    "line1": "<string>",
+                                    "line2": "<string>",
+                                    "postal_code": "<string>",
+                                    "state": "<string>"
+                                  },
+                                  "email": "<string>",
+                                  "name": "<string>",
+                                  "phone": "<string>"
+                                },
+                                "calculated_statement_descriptor": "<string>",
+                                "captured": "<boolean>",
+                                "created": "<number>",
+                                "currency": "<string>",
+                                "customer": "<string>",
+                                "description": "<string>",
+                                "disputed": "<boolean>",
+                                "failure_code": "<string>",
+                                "failure_message": "<string>",
+                                "livemode": "<boolean>",
+                                "metadata": {
+                                  "accountId": "<string>",
+                                  "confirmationCode": "<string>",
+                                  "reservationId": "<string>",
+                                  "OTA": "<string>",
+                                  "listingId": "<string>"
+                                },
+                                "outcome": {
+                                  "network_status": "<string>",
+                                  "reason": "<string>",
+                                  "risk_level": "<string>",
+                                  "risk_score": "<number>",
+                                  "seller_message": "<string>",
+                                  "type": "<string>"
+                                },
+                                "paid": "<boolean>",
+                                "payment_intent": "<string>",
+                                "payment_method": "<string>",
+                                "payment_method_details": {
+                                  "card": {
+                                    "brand": "<string>",
+                                    "checks": {
+                                      "cvc_check": "<string>"
+                                    },
+                                    "country": "<string>",
+                                    "exp_month": "<number>",
+                                    "exp_year": "<number>",
+                                    "fingerprint": "<string>",
+                                    "funding": "<string>",
+                                    "last4": "<string>",
+                                    "network": "<string>"
+                                  },
+                                  "type": "<string>"
+                                },
+                                "refunded": "<boolean>",
+                                "refunds": {
+                                  "object": "<string>",
+                                  "data": "<array>",
+                                  "has_more": "<boolean>",
+                                  "total_count": "<number>",
+                                  "url": "<string>"
+                                },
+                                "statement_descriptor": "<string>",
+                                "status": "<string>"
+                              },
+                              {
+                                "id": "<string>",
+                                "object": "<string>",
+                                "amount": "<number>",
+                                "amount_captured": "<number>",
+                                "amount_refunded": "<number>",
+                                "application": "<string>",
+                                "billing_details": {
+                                  "address": {
+                                    "city": "<string>",
+                                    "country": "<string>",
+                                    "line1": "<string>",
+                                    "line2": "<string>",
+                                    "postal_code": "<string>",
+                                    "state": "<string>"
+                                  },
+                                  "email": "<string>",
+                                  "name": "<string>",
+                                  "phone": "<string>"
+                                },
+                                "calculated_statement_descriptor": "<string>",
+                                "captured": "<boolean>",
+                                "created": "<number>",
+                                "currency": "<string>",
+                                "customer": "<string>",
+                                "description": "<string>",
+                                "disputed": "<boolean>",
+                                "failure_code": "<string>",
+                                "failure_message": "<string>",
+                                "livemode": "<boolean>",
+                                "metadata": {
+                                  "accountId": "<string>",
+                                  "confirmationCode": "<string>",
+                                  "reservationId": "<string>",
+                                  "OTA": "<string>",
+                                  "listingId": "<string>"
+                                },
+                                "outcome": {
+                                  "network_status": "<string>",
+                                  "reason": "<string>",
+                                  "risk_level": "<string>",
+                                  "risk_score": "<number>",
+                                  "seller_message": "<string>",
+                                  "type": "<string>"
+                                },
+                                "paid": "<boolean>",
+                                "payment_intent": "<string>",
+                                "payment_method": "<string>",
+                                "payment_method_details": {
+                                  "card": {
+                                    "brand": "<string>",
+                                    "checks": {
+                                      "cvc_check": "<string>"
+                                    },
+                                    "country": "<string>",
+                                    "exp_month": "<number>",
+                                    "exp_year": "<number>",
+                                    "fingerprint": "<string>",
+                                    "funding": "<string>",
+                                    "last4": "<string>",
+                                    "network": "<string>"
+                                  },
+                                  "type": "<string>"
+                                },
+                                "refunded": "<boolean>",
+                                "refunds": {
+                                  "object": "<string>",
+                                  "data": "<array>",
+                                  "has_more": "<boolean>",
+                                  "total_count": "<number>",
+                                  "url": "<string>"
+                                },
+                                "statement_descriptor": "<string>",
+                                "status": "<string>"
+                              }
+                            ],
+                            "has_more": "<boolean>",
+                            "total_count": "<number>",
+                            "url": "<string>"
+                          },
+                          "client_secret": "<string>",
+                          "confirmation_method": "<string>",
+                          "created": "<number>",
+                          "currency": "<string>",
+                          "customer": "<string>",
+                          "description": "<string>",
+                          "livemode": "<boolean>",
+                          "metadata": {
+                            "accountId": "<string>",
+                            "confirmationCode": "<string>",
+                            "reservationId": "<string>",
+                            "OTA": "<string>",
+                            "listingId": "<string>"
+                          },
+                          "next_action": {
+                            "type": "<string>",
+                            "use_stripe_sdk": {
+                              "type": "<string>",
+                              "merchant": "<string>",
+                              "three_d_secure_2_source": "<string>",
+                              "directory_server_name": "<string>",
+                              "server_transaction_id": "<string>",
+                              "three_ds_method_url": "<string>",
+                              "three_ds_optimizations": "<string>",
+                              "directory_server_encryption": {
+                                "directory_server_id": "<string>",
+                                "algorithm": "<string>",
+                                "certificate": "<string>",
+                                "root_certificate_authorities": "<array>"
+                              }
+                            }
+                          },
+                          "payment_method": "<string>",
+                          "payment_method_options": {
+                            "card": {
+                              "request_three_d_secure": "<string>"
+                            }
+                          },
+                          "payment_method_types": "<array>",
+                          "statement_descriptor": "<string>",
+                          "status": "<string>"
+                        },
+                        "payment_method": {
+                          "id": "<string>",
+                          "object": "<string>",
+                          "billing_details": {
+                            "address": {
+                              "city": "<string>",
+                              "country": "<string>",
+                              "line1": "<string>",
+                              "line2": "<string>",
+                              "postal_code": "<string>",
+                              "state": "<string>"
+                            },
+                            "email": "<string>",
+                            "name": "<string>",
+                            "phone": "<string>"
+                          },
+                          "card": {
+                            "brand": "<string>",
+                            "checks": {
+                              "cvc_check": "<string>"
+                            },
+                            "country": "<string>",
+                            "exp_month": "<number>",
+                            "exp_year": "<number>",
+                            "fingerprint": "<string>",
+                            "funding": "<string>",
+                            "last4": "<string>",
+                            "networks": {
+                              "available": "<array>"
+                            },
+                            "three_d_secure_usage": {
+                              "supported": "<boolean>"
+                            }
+                          },
+                          "created": "<number>",
+                          "customer": "<string>",
+                          "livemode": "<boolean>",
+                          "type": "<string>"
+                        },
+                        "type": "<string>",
+                        "statusCode": "<number>",
+                        "requestId": "<string>"
+                      }
+                    }
+                  ],
+                  "receiptTargets": "<array>",
+                  "_id": "<string>",
+                  "amount": "<number>",
+                  "shouldBePaidAt": "<string>",
+                  "paymentMethodId": "<string>",
+                  "guestId": "<string>",
+                  "currency": "<string>"
+                }
+              ],
+              "autoPaymentsPolicy": "<array>",
+              "currency": "<string>",
+              "paymentProviderIds": "<array>",
+              "fareAccommodationAdjustment": "<number>",
+              "fareAccommodationDiscount": "<number>",
+              "fareAccommodation": "<number>",
+              "fareAccommodationAdjusted": "<number>",
+              "fareCleaning": "<number>",
+              "hostServiceFee": "<number>",
+              "hostServiceFeeTax": "<number>",
+              "hostServiceFeeIncTax": "<number>",
+              "subTotalPrice": "<number>",
+              "hostPayout": "<number>",
+              "hostPayoutUsd": "<number>",
+              "totalTaxes": "<number>",
+              "totalRefunded": "<number>",
+              "totalPaid": "<number>",
+              "paymentsDue": "<number>",
+              "balanceDue": "<number>",
+              "isFullyPaid": "<boolean>",
+              "useAccountRevenueShare": "<boolean>",
+              "netIncomeFormula": "<string>",
+              "netIncome": "<number>",
+              "commissionFormula": "<string>",
+              "commission": "<number>",
+              "commissionTaxPercentage": "<number>",
+              "commissionTax": "<number>",
+              "commissionIncTax": "<number>",
+              "ownerRevenueFormula": "<string>",
+              "ownerRevenue": "<number>",
+              "currencyConversionRateToAccount": "<number>",
+              "isTouchedPayments": "<boolean>"
+            },
+            "listingId": "<string>",
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "accountId": "<string>",
+            "guestId": "<string>",
+            "source": "<string>",
+            "confirmationCode": "<string>",
+            "mtl": {
+              "assigned": "<boolean>",
+              "_id": "<string>"
+            },
+            "isReturningGuest": "<boolean>",
+            "confirmedAt": "<string>",
+            "importedAt": "<string>",
+            "additionalFeesAtCreation": [
+              {
+                "automationSources": "<array>",
+                "_id": "<string>",
+                "isPercentage": "<boolean>",
+                "isAutomated": "<boolean>",
+                "name": "<string>",
+                "type": "<string>",
+                "value": "<number>",
+                "accountId": "<string>",
+                "multiplier": "<string>",
+                "targetFee": "<string>"
+              },
+              {
+                "automationSources": "<array>",
+                "_id": "<string>",
+                "isPercentage": "<boolean>",
+                "isAutomated": "<boolean>",
+                "name": "<string>",
+                "type": "<string>",
+                "value": "<number>",
+                "accountId": "<string>",
+                "multiplier": "<string>",
+                "targetFee": "<string>"
+              }
+            ],
+            "createdAt": "<string>",
+            "pendingTasks": "<array>",
+            "customFields": "<array>",
+            "lastUpdatedAt": "<string>",
+            "__v": "<number>",
+            "conversationId": "<string>",
+            "id": "<string>"
+          }
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reservations?viewId=<string>&filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=<integer>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: viewId
+          value: <string>
+          type: query
+          description: View Id
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `_id`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `25`, max: `100`"
+        - name: skip
+          value: <integer>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/reservations?viewId=<string>&filters=[object Object]&fields=<string>&sort=<string>&limit=<integer>&skip=<integer>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: viewId
+          value: <string>
+          type: query
+          description: View Id
+        - name: filters
+          value: "[object Object]"
+          type: query
+          description: Array of filters to query by
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space
+        - name: sort
+          value: <string>
+          type: query
+          description: "Sorting, default: `_id`"
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Limit for list of records. Default value: `25`, max: `100`"
+        - name: skip
+          value: <integer>
+          type: query
+          description: Skip number of records. In case nothing provided so nothing will be skipped
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Retrieve all reservations or a filtered subset of them.

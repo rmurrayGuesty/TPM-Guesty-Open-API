@@ -1,0 +1,540 @@
+info:
+  name: Retrieve All Rate Strategies.
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/rm-rate-strategies-open-api/rate-strategies"
+  headers:
+    - name: Accept
+      value: application/json
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Rate strategies have been received.
+    request:
+      url: "{{baseUrl}}/rm-rate-strategies-open-api/rate-strategies"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "rateStrategies": [
+              {
+                "_id": {},
+                "accountId": {},
+                "name": "<string>",
+                "assignedListingCount": "<number>",
+                "rules": {
+                  "seasonal": [
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "from": {},
+                      "to": {},
+                      "restriction": {
+                        "active": "<boolean>",
+                        "checkInWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ],
+                        "checkOutWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ]
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "isAnnual": "<boolean>",
+                      "weekDays": [
+                        "<number>",
+                        "<number>"
+                      ]
+                    },
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "from": {},
+                      "to": {},
+                      "restriction": {
+                        "active": "<boolean>",
+                        "checkInWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ],
+                        "checkOutWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ]
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "isAnnual": "<boolean>",
+                      "weekDays": [
+                        "<number>",
+                        "<number>"
+                      ]
+                    }
+                  ],
+                  "events": [
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "from": {},
+                      "to": {},
+                      "restriction": {
+                        "active": "<boolean>",
+                        "checkInWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ],
+                        "checkOutWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ]
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "isAnnual": "<boolean>"
+                    },
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "from": {},
+                      "to": {},
+                      "restriction": {
+                        "active": "<boolean>",
+                        "checkInWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ],
+                        "checkOutWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ]
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "isAnnual": "<boolean>"
+                    }
+                  ],
+                  "upcomingAvailability": [
+                    {
+                      "name": "<string>",
+                      "fromDays": "<number>",
+                      "toDays": "<number>",
+                      "weekDays": [
+                        "<number>",
+                        "<number>"
+                      ],
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>"
+                    },
+                    {
+                      "name": "<string>",
+                      "fromDays": "<number>",
+                      "toDays": "<number>",
+                      "weekDays": [
+                        "<number>",
+                        "<number>"
+                      ],
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>"
+                    }
+                  ],
+                  "customizedGaps": [
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "fromDays": "<number>",
+                      "toDays": "<number>",
+                      "adjustmentPercentage": "<number>",
+                      "maxGap": "<number>"
+                    },
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "fromDays": "<number>",
+                      "toDays": "<number>",
+                      "adjustmentPercentage": "<number>",
+                      "maxGap": "<number>"
+                    }
+                  ],
+                  "lengthOfStay": [
+                    {
+                      "_id": {},
+                      "length": {
+                        "from": "<number>",
+                        "to": "<number>"
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "type": "single"
+                    },
+                    {
+                      "_id": {},
+                      "length": {
+                        "from": "<number>",
+                        "to": "<number>"
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "type": "range"
+                    }
+                  ],
+                  "repeatedDays": {
+                    "0": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "1": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "2": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "3": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "4": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "5": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "6": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    }
+                  }
+                },
+                "description": "<string>",
+                "singleUnitsCount": "<number>",
+                "multiUnitsCount": "<number>",
+                "subUnitsCount": "<number>",
+                "minAdjustmentPercentage": "<number>",
+                "maxAdjustmentPercentage": "<number>",
+                "minNights": "<number>",
+                "isOptimized": "<boolean>",
+                "pendingSync": "<boolean>",
+                "createdAt": {},
+                "updatedAt": {}
+              },
+              {
+                "_id": {},
+                "accountId": {},
+                "name": "<string>",
+                "assignedListingCount": "<number>",
+                "rules": {
+                  "seasonal": [
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "from": {},
+                      "to": {},
+                      "restriction": {
+                        "active": "<boolean>",
+                        "checkInWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ],
+                        "checkOutWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ]
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "isAnnual": "<boolean>",
+                      "weekDays": [
+                        "<number>",
+                        "<number>"
+                      ]
+                    },
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "from": {},
+                      "to": {},
+                      "restriction": {
+                        "active": "<boolean>",
+                        "checkInWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ],
+                        "checkOutWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ]
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "isAnnual": "<boolean>",
+                      "weekDays": [
+                        "<number>",
+                        "<number>"
+                      ]
+                    }
+                  ],
+                  "events": [
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "from": {},
+                      "to": {},
+                      "restriction": {
+                        "active": "<boolean>",
+                        "checkInWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ],
+                        "checkOutWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ]
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "isAnnual": "<boolean>"
+                    },
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "from": {},
+                      "to": {},
+                      "restriction": {
+                        "active": "<boolean>",
+                        "checkInWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ],
+                        "checkOutWeekDays": [
+                          "<number>",
+                          "<number>"
+                        ]
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "isAnnual": "<boolean>"
+                    }
+                  ],
+                  "upcomingAvailability": [
+                    {
+                      "name": "<string>",
+                      "fromDays": "<number>",
+                      "toDays": "<number>",
+                      "weekDays": [
+                        "<number>",
+                        "<number>"
+                      ],
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>"
+                    },
+                    {
+                      "name": "<string>",
+                      "fromDays": "<number>",
+                      "toDays": "<number>",
+                      "weekDays": [
+                        "<number>",
+                        "<number>"
+                      ],
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>"
+                    }
+                  ],
+                  "customizedGaps": [
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "fromDays": "<number>",
+                      "toDays": "<number>",
+                      "adjustmentPercentage": "<number>",
+                      "maxGap": "<number>"
+                    },
+                    {
+                      "_id": {},
+                      "name": "<string>",
+                      "fromDays": "<number>",
+                      "toDays": "<number>",
+                      "adjustmentPercentage": "<number>",
+                      "maxGap": "<number>"
+                    }
+                  ],
+                  "lengthOfStay": [
+                    {
+                      "_id": {},
+                      "length": {
+                        "from": "<number>",
+                        "to": "<number>"
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "type": "range"
+                    },
+                    {
+                      "_id": {},
+                      "length": {
+                        "from": "<number>",
+                        "to": "<number>"
+                      },
+                      "adjustmentPercentage": "<number>",
+                      "type": "single"
+                    }
+                  ],
+                  "repeatedDays": {
+                    "0": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "1": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "2": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "3": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "4": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "5": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    },
+                    "6": {
+                      "_id": {},
+                      "adjustmentPercentage": "<number>",
+                      "minNights": "<number>",
+                      "cta": "<boolean>",
+                      "ctd": "<boolean>"
+                    }
+                  }
+                },
+                "description": "<string>",
+                "singleUnitsCount": "<number>",
+                "multiUnitsCount": "<number>",
+                "subUnitsCount": "<number>",
+                "minAdjustmentPercentage": "<number>",
+                "maxAdjustmentPercentage": "<number>",
+                "minNights": "<number>",
+                "isOptimized": "<boolean>",
+                "pendingSync": "<boolean>",
+                "createdAt": {},
+                "updatedAt": {}
+              }
+            ],
+            "count": "<number>",
+            "limit": "<number>",
+            "skip": "<number>",
+            "requestId": "<string>"
+          }
+  - name: Validation error.
+    request:
+      url: "{{baseUrl}}/rm-rate-strategies-open-api/rate-strategies"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Сlient unauthorized.
+    request:
+      url: "{{baseUrl}}/rm-rate-strategies-open-api/rate-strategies"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: Internal server error.
+    request:
+      url: "{{baseUrl}}/rm-rate-strategies-open-api/rate-strategies"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Use this endpoint to retrieve an account's associated rate strategy settings.

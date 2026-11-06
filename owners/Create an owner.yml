@@ -1,0 +1,288 @@
+info:
+  name: Create an owner
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/owners"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "firstName": "<string>",
+        "lastName": "<string>",
+        "email": "<string>",
+        "listings": [
+          {
+            "_id": "<string>"
+          },
+          {
+            "_id": "<string>"
+          }
+        ],
+        "ownersPortalSettings": {
+          "bookedNights": "<boolean>",
+          "revenue": "<boolean>",
+          "accommodationFare": "<boolean>",
+          "guestsReports": "<boolean>",
+          "guestsReportsViewId": "<string>",
+          "occupancy": "<boolean>",
+          "avgNightlyRate": "<boolean>",
+          "revPal": "<boolean>",
+          "hostPayout": "<boolean>",
+          "nightlyRate": "<boolean>",
+          "minNights": "<boolean>",
+          "bookingSource": "<boolean>",
+          "showInternalNotesForBlocks": "<boolean>",
+          "showReservedReservations": "<boolean>",
+          "showHelpCenter": "<boolean>",
+          "showOwnerStatements": "<boolean>",
+          "allowReservations": "<boolean>",
+          "allowReservationsUnavailableDates": "<boolean>",
+          "allowChangeCheckinCheckoutTime": "<boolean>",
+          "showGuestFullName": "<boolean>",
+          "showGuestEmail": "<boolean>",
+          "showGuestPhone": "<boolean>"
+        },
+        "locale": "<string>",
+        "active": "<boolean>",
+        "allowReservations": "<boolean>",
+        "showReservationTooltips": "<boolean>",
+        "businessInformation": {
+          "businessType": {
+            "type": "<string>",
+            "other": "<string>"
+          },
+          "address": {
+            "street": "<string>",
+            "city": "<string>",
+            "state": "<string>",
+            "zipcode": "<string>",
+            "country": "<string>",
+            "full": "<string>"
+          },
+          "vatIdentificationNumber": "<string>",
+          "vatRate": "<number>",
+          "ownerCommission": "<number>"
+        },
+        "birthday": "<string>",
+        "anniversary": "<string>",
+        "workingCapital": "<number>",
+        "fullName": "<string>",
+        "address": "<string>",
+        "personalAddress": {
+          "street": "<string>",
+          "city": "<string>",
+          "state": "<string>",
+          "zipcode": "<string>",
+          "country": "<string>",
+          "full": "<string>"
+        },
+        "phone": "<string>",
+        "picture": {
+          "thumbnail": "<string>",
+          "regular": "<string>",
+          "large": "<string>"
+        },
+        "notes": "<string>",
+        "createdAt": "<string>"
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The created user
+    request:
+      url: "{{baseUrl}}/owners"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "firstName": "<string>",
+            "lastName": "<string>",
+            "email": "<string>",
+            "listings": [
+              {
+                "_id": "<string>"
+              },
+              {
+                "_id": "<string>"
+              }
+            ],
+            "ownersPortalSettings": {
+              "bookedNights": "<boolean>",
+              "revenue": "<boolean>",
+              "accommodationFare": "<boolean>",
+              "guestsReports": "<boolean>",
+              "guestsReportsViewId": "<string>",
+              "occupancy": "<boolean>",
+              "avgNightlyRate": "<boolean>",
+              "revPal": "<boolean>",
+              "hostPayout": "<boolean>",
+              "nightlyRate": "<boolean>",
+              "minNights": "<boolean>",
+              "bookingSource": "<boolean>",
+              "showInternalNotesForBlocks": "<boolean>",
+              "showReservedReservations": "<boolean>",
+              "showHelpCenter": "<boolean>",
+              "showOwnerStatements": "<boolean>",
+              "allowReservations": "<boolean>",
+              "allowReservationsUnavailableDates": "<boolean>",
+              "allowChangeCheckinCheckoutTime": "<boolean>",
+              "showGuestFullName": "<boolean>",
+              "showGuestEmail": "<boolean>",
+              "showGuestPhone": "<boolean>"
+            },
+            "locale": "<string>",
+            "active": "<boolean>",
+            "allowReservations": "<boolean>",
+            "showReservationTooltips": "<boolean>",
+            "businessInformation": {
+              "businessType": {
+                "type": "<string>",
+                "other": "<string>"
+              },
+              "address": {
+                "street": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "zipcode": "<string>",
+                "country": "<string>",
+                "full": "<string>"
+              },
+              "vatIdentificationNumber": "<string>",
+              "vatRate": "<number>",
+              "ownerCommission": "<number>"
+            },
+            "birthday": "<string>",
+            "anniversary": "<string>",
+            "workingCapital": "<number>",
+            "fullName": "<string>",
+            "address": "<string>",
+            "personalAddress": {
+              "street": "<string>",
+              "city": "<string>",
+              "state": "<string>",
+              "zipcode": "<string>",
+              "country": "<string>",
+              "full": "<string>"
+            },
+            "phone": "<string>",
+            "picture": {
+              "thumbnail": "<string>",
+              "regular": "<string>",
+              "large": "<string>"
+            },
+            "notes": "<string>",
+            "createdAt": "<string>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "ownersPortalSettings": {
+              "bookedNights": "<boolean>",
+              "revenue": "<boolean>",
+              "accommodationFare": "<boolean>",
+              "guestsReports": "<boolean>",
+              "occupancy": "<boolean>",
+              "avgNightlyRate": "<boolean>",
+              "revPal": "<boolean>",
+              "hostPayout": "<boolean>",
+              "nightlyRate": "<boolean>",
+              "minNights": "<boolean>",
+              "bookingSource": "<boolean>",
+              "showInternalNotesForBlocks": "<boolean>",
+              "showReservedReservations": "<boolean>",
+              "showHelpCenter": "<boolean>",
+              "showOwnerStatements": "<boolean>",
+              "allowReservations": "<boolean>",
+              "allowReservationsUnavailableDates": "<boolean>",
+              "showGuestFullName": "<boolean>",
+              "showGuestEmail": "<boolean>",
+              "showGuestPhone": "<boolean>"
+            },
+            "listings": [
+              "<string>",
+              "<string>"
+            ],
+            "_id": "<string>",
+            "locale": "<string>",
+            "active": "<boolean>",
+            "allowReservations": "<boolean>",
+            "showReservationTooltips": "<boolean>",
+            "businessInformation": {
+              "businessType": {
+                "type": "<string>",
+                "other": "<string>"
+              },
+              "address": {
+                "street": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "zipcode": "<string>",
+                "country": "<string>",
+                "full": "<string>"
+              },
+              "vatIdentificationNumber": "<string>",
+              "vatRate": "<number>",
+              "ownerCommission": "<number>"
+            },
+            "birthday": "<string>",
+            "anniversary": "<string>",
+            "workingCapital": "<number>",
+            "firstName": "<string>",
+            "lastName": "<string>",
+            "fullName": "<string>",
+            "email": "<string>",
+            "address": "<string>",
+            "personalAddress": {
+              "street": "<string>",
+              "city": "<string>",
+              "state": "<string>",
+              "zipcode": "<string>",
+              "country": "<string>",
+              "full": "<string>"
+            },
+            "phone": "<string>",
+            "picture": {
+              "thumbnail": "<string>",
+              "regular": "<string>",
+              "large": "<string>"
+            },
+            "notes": "<string>",
+            "createdAt": "<string>"
+          }
+
+docs: Create an owner

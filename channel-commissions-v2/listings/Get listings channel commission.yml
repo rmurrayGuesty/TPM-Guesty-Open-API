@@ -1,0 +1,67 @@
+info:
+  name: Get listings channel commission
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/channel-commissions-v2/listings?listingIds=<string>&listingIds=<string>"
+  params:
+    - name: listingIds
+      value: <string>
+      type: query
+      description: (Required) The desired listing ids
+    - name: listingIds
+      value: <string>
+      type: query
+      description: (Required) The desired listing ids
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The array of the channel commission per listing.
+    request:
+      url: "{{baseUrl}}/channel-commissions-v2/listings?listingIds=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingIds
+          value: <string>
+          type: query
+          description: (Required) The desired listing ids
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
+  - name: The params provided are invalid.
+    request:
+      url: "{{baseUrl}}/channel-commissions-v2/listings?listingIds=<string>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingIds
+          value: <string>
+          type: query
+          description: (Required) The desired listing ids
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: Get channel commission from multiple listings.

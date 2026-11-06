@@ -1,0 +1,116 @@
+info:
+  name: Pre-approve an existing inquiry (Airbnb)
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/reservations-api/reservations/:reservationId/pre-approve"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: reservationId
+      value: <string>
+      type: path
+      description: (Required) ID of reservation
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Successful operation
+    request:
+      url: "{{baseUrl}}/reservations-api/reservations/:reservationId/pre-approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "listingId": "<string>",
+            "status": "<string>",
+            "checkInDateLocalized": "<dateTime>",
+            "checkOutDateLocalized": "<dateTime>",
+            "preApproveState": "<boolean>",
+            "pendingTasks": "<array>",
+            "integration": {
+              "platform": "<string>",
+              "_id": "<string>"
+            }
+          }
+  - name: Invalid request
+    request:
+      url: "{{baseUrl}}/reservations-api/reservations/:reservationId/pre-approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": "<string>",
+            "type": "<string>",
+            "code": "<string>"
+          }
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/reservations-api/reservations/:reservationId/pre-approve"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: reservationId
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Use this call to send a [pre-approval](https://www.airbnb.com/help/article/35).

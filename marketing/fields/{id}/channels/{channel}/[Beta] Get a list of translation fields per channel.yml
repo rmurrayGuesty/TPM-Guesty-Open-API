@@ -1,0 +1,480 @@
+info:
+  name: "[Beta] Get a list of translation fields per channel"
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/marketing/fields/:id/channels/:channel?language=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: language
+      value: <string>
+      type: query
+      description: (Required) Language slug for retrieving the translation. To get all translations for a specific listing, please use language=all.
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) The listing ID whose translations you wish to retrieve.
+    - name: channel
+      value: <string>
+      type: path
+      description: (Required) Channel whose translations you wish to retrieve
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Return the translation objects per channel
+    request:
+      url: "{{baseUrl}}/marketing/fields/:id/channels/:channel?language=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: language
+          value: <string>
+          type: query
+          description: (Required) Language slug for retrieving the translation. To get all translations for a specific listing, please use language=all.
+        - name: id
+          value: ""
+          type: path
+        - name: channel
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "listingId": "<string>",
+            "en_us": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "en_gb": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "en_au": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "en_nz": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "en_ca": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "da_dk": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "es_ar": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "es_es": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "es_mx": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "hu_hu": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "nl_nl": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "pt_pt": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "pt_br": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "de_de": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "fr_fr": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "fr_ca": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "it_it": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "pl_pl": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "ru_ru": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "hr_hr": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "ga_gp": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            },
+            "zh_chs": {
+              "active": "<boolean>",
+              "title": "<string>",
+              "summary": "<string>",
+              "space": "<string>",
+              "access": "<string>",
+              "neighborhood": "<string>",
+              "transit": "<string>",
+              "interactionWithGuests": "<string>",
+              "checkInInstructions": {
+                "primaryCheckIn": "<string>",
+                "alternativeCheckIn": "<string>",
+                "notes": "<string>",
+                "welcomeMessage": "<string>"
+              },
+              "notes": "<string>"
+            }
+          }
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/marketing/fields/:id/channels/:channel?language=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: language
+          value: <string>
+          type: query
+          description: (Required) Language slug for retrieving the translation. To get all translations for a specific listing, please use language=all.
+        - name: id
+          value: ""
+          type: path
+        - name: channel
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "message": "<string>",
+              "status": "<integer>",
+              "data": "<string>"
+            }
+          }
+
+docs: Get a list of translation fields for a specific language slug or all languages per channel.

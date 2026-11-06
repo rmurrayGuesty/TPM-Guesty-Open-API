@@ -1,0 +1,261 @@
+info:
+  name: Get list of additional fees for listing
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/additional-fees/listing/:listingId"
+  headers:
+    - name: Accept
+      value: application/json; charset=utf-8
+  params:
+    - name: listingId
+      value: <string>
+      type: path
+      description: "(Required) "
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: List of additional fees of listing
+    request:
+      url: "{{baseUrl}}/additional-fees/listing/:listingId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json; charset=utf-8
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json; charset=utf-8
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "name": "<string>",
+              "type": "VALET",
+              "value": "<integer>",
+              "listingId": "<string>",
+              "targetFee": "CLEANING_FEE",
+              "automationSources": [
+                "<string>",
+                "<string>"
+              ],
+              "automationPlatforms": [
+                "homeAway",
+                "siteMinder"
+              ],
+              "RUSources": [
+                "hostelworld",
+                "homeAway"
+              ],
+              "allSources": "<boolean>",
+              "allPlatforms": "<boolean>",
+              "allRUSources": "<boolean>",
+              "isAutomated": "<boolean>",
+              "isPercentage": "<boolean>",
+              "multiplier": "PER_GUEST_PER_NIGHT",
+              "isSyncToSupportedChannelsEnabled": "<boolean>",
+              "isBundled": "<boolean>",
+              "deductedConfiguration": {
+                "isApplyToAll": "<boolean>",
+                "sources": [
+                  "<string>",
+                  "<string>"
+                ],
+                "channels": [
+                  "<string>",
+                  "<string>"
+                ]
+              },
+              "channelConfigurations": [
+                {
+                  "channel": "<string>",
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "isEnabled": "<boolean>",
+                  "type": "<string>",
+                  "multiplier": "PER_STAY",
+                  "targetFee": "PAYOUT",
+                  "isBundled": "<boolean>"
+                },
+                {
+                  "channel": "<string>",
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "isEnabled": "<boolean>",
+                  "type": "<string>",
+                  "multiplier": "PER_NIGHT",
+                  "targetFee": "ACCOMMODATION_FARE",
+                  "isBundled": "<boolean>"
+                }
+              ],
+              "sourcesConfigurations": [
+                {
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "sources": [
+                    "<string>"
+                  ],
+                  "type": "SHIPPING",
+                  "multiplier": "PER_NIGHT",
+                  "targetFee": "PAYOUT",
+                  "isBundled": "<boolean>"
+                },
+                {
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "sources": [
+                    "<string>"
+                  ],
+                  "type": "MEAL",
+                  "multiplier": "PER_NIGHT",
+                  "targetFee": "ACCOMMODATION_FARE",
+                  "isBundled": "<boolean>"
+                }
+              ],
+              "isUpsell": "<boolean>",
+              "upsell": {
+                "description": "<string>",
+                "images": [
+                  {
+                    "url": "<string>",
+                    "fileName": "<string>"
+                  }
+                ]
+              }
+            },
+            {
+              "_id": "<string>",
+              "accountId": "<string>",
+              "name": "<string>",
+              "type": "INSURANCE",
+              "value": "<integer>",
+              "listingId": "<string>",
+              "targetFee": "CLEANING_FEE",
+              "automationSources": [
+                "<string>",
+                "<string>"
+              ],
+              "automationPlatforms": [
+                "siteMinder",
+                "agoda"
+              ],
+              "RUSources": [
+                "homeAway",
+                "expedia"
+              ],
+              "allSources": "<boolean>",
+              "allPlatforms": "<boolean>",
+              "allRUSources": "<boolean>",
+              "isAutomated": "<boolean>",
+              "isPercentage": "<boolean>",
+              "multiplier": "PER_NIGHT",
+              "isSyncToSupportedChannelsEnabled": "<boolean>",
+              "isBundled": "<boolean>",
+              "deductedConfiguration": {
+                "isApplyToAll": "<boolean>",
+                "sources": [
+                  "<string>",
+                  "<string>"
+                ],
+                "channels": [
+                  "<string>",
+                  "<string>"
+                ]
+              },
+              "channelConfigurations": [
+                {
+                  "channel": "<string>",
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "isEnabled": "<boolean>",
+                  "type": "<string>",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "targetFee": "CLEANING_FEE",
+                  "isBundled": "<boolean>"
+                },
+                {
+                  "channel": "<string>",
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "isEnabled": "<boolean>",
+                  "type": "<string>",
+                  "multiplier": "PER_NIGHT",
+                  "targetFee": "PAYOUT",
+                  "isBundled": "<boolean>"
+                }
+              ],
+              "sourcesConfigurations": [
+                {
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "sources": [
+                    "<string>"
+                  ],
+                  "type": "CLEANING",
+                  "multiplier": "PER_STAY",
+                  "targetFee": "CLEANING_FEE",
+                  "isBundled": "<boolean>"
+                },
+                {
+                  "value": "<number>",
+                  "isPercentage": "<boolean>",
+                  "sources": [
+                    "<string>"
+                  ],
+                  "type": "CLEANING",
+                  "multiplier": "PER_GUEST_PER_NIGHT",
+                  "targetFee": "CLEANING_FEE",
+                  "isBundled": "<boolean>"
+                }
+              ],
+              "isUpsell": "<boolean>",
+              "upsell": {
+                "description": "<string>",
+                "images": [
+                  {
+                    "url": "<string>",
+                    "fileName": "<string>"
+                  }
+                ]
+              }
+            }
+          ]
+  - name: Invalid input
+    request:
+      url: "{{baseUrl}}/additional-fees/listing/:listingId"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""

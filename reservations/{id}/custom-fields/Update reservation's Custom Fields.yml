@@ -1,0 +1,255 @@
+info:
+  name: Update reservation's Custom Fields
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/reservations/:id/custom-fields"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: (Required) Reservation ID
+  body:
+    type: json
+    data: |-
+      {
+        "customFields": [
+          {
+            "fieldId": "<string>",
+            "value": "<string>"
+          },
+          {
+            "fieldId": "<string>",
+            "value": "<string>"
+          }
+        ]
+      }
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The updated object
+    request:
+      url: "{{baseUrl}}/reservations/:id/custom-fields"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "customFields": [
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              },
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: ""
+  - name: Unauthorized
+    request:
+      url: "{{baseUrl}}/reservations/:id/custom-fields"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "customFields": [
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              },
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "<string>",
+              "message": "<string>"
+            }
+          }
+  - name: Forbidden
+    request:
+      url: "{{baseUrl}}/reservations/:id/custom-fields"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "customFields": [
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              },
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Not Found
+    request:
+      url: "{{baseUrl}}/reservations/:id/custom-fields"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "customFields": [
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              },
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+  - name: Unhandled exception. Something went wrong on server.
+    request:
+      url: "{{baseUrl}}/reservations/:id/custom-fields"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "customFields": [
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              },
+              {
+                "fieldId": "<string>",
+                "value": "<string>"
+              }
+            ]
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: <string>
+
+docs: Edit the values of any custom fields on an existing reservation.

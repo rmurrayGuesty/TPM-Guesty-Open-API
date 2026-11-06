@@ -1,0 +1,7 @@
+info:
+  name: reservations-api
+  type: folder
+  seq: 44
+
+request:
+  auth: inherit

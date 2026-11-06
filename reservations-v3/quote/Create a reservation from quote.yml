@@ -1,0 +1,272 @@
+info:
+  name: Create a reservation from quote
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/reservations-v3/quote"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "quoteId": "<string>",
+        "status": "awaiting_payment",
+        "ratePlanId": "<string>",
+        "reservedUntil": -1,
+        "guestId": "<string>",
+        "guest": {
+          "firstName": "<string>",
+          "lastName": "<string>",
+          "phones": [
+            "<string>",
+            "<string>"
+          ],
+          "email": "<string>",
+          "address": {
+            "street": "<string>",
+            "zipCode": "<string>",
+            "city": "<string>",
+            "state": "<string>",
+            "country": "<string>",
+            "countryCode": "<string>"
+          }
+        },
+        "ignoreCalendar": "<boolean>",
+        "ignoreTerms": "<boolean>",
+        "ignoreBlocks": "<boolean>",
+        "confirmedAt": "<dateTime>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/reservations-v3/quote"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "quoteId": "<string>",
+            "status": "awaiting_payment",
+            "ratePlanId": "<string>",
+            "reservedUntil": -1,
+            "guestId": "<string>",
+            "guest": {
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "phones": [
+                "<string>",
+                "<string>"
+              ],
+              "email": "<string>",
+              "address": {
+                "street": "<string>",
+                "zipCode": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "country": "<string>",
+                "countryCode": "<string>"
+              }
+            },
+            "ignoreCalendar": "<boolean>",
+            "ignoreTerms": "<boolean>",
+            "ignoreBlocks": "<boolean>",
+            "confirmedAt": "<dateTime>"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "reservationId": "<string>",
+            "quoteId": "<string>",
+            "confirmationCode": "<string>",
+            "status": "<string>",
+            "guestId": "<string>",
+            "numberOfGuests": {
+              "numberOfAdults": "<number>",
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfPets": "<number>"
+            },
+            "creationTime": "<dateTime>",
+            "reservedExpiresAt": "<dateTime>",
+            "checkInDate": "<dateTime>",
+            "checkOutDate": "<dateTime>",
+            "unitTypeId": "<string>",
+            "unitId": "<string>",
+            "source": "<string>",
+            "channel": "<string>",
+            "guestsCount": "<number>",
+            "creationInfo": {}
+          }
+  - name: Returned if required fields are missing or there is a validation error in the request body
+    request:
+      url: "{{baseUrl}}/reservations-v3/quote"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "quoteId": "<string>",
+            "status": "awaiting_payment",
+            "ratePlanId": "<string>",
+            "reservedUntil": -1,
+            "guestId": "<string>",
+            "guest": {
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "phones": [
+                "<string>",
+                "<string>"
+              ],
+              "email": "<string>",
+              "address": {
+                "street": "<string>",
+                "zipCode": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "country": "<string>",
+                "countryCode": "<string>"
+              }
+            },
+            "ignoreCalendar": "<boolean>",
+            "ignoreTerms": "<boolean>",
+            "ignoreBlocks": "<boolean>",
+            "confirmedAt": "<dateTime>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Returned if required fields are missing or there is a validation error in the request body
+    request:
+      url: "{{baseUrl}}/reservations-v3/quote"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "quoteId": "<string>",
+            "status": "awaiting_payment",
+            "ratePlanId": "<string>",
+            "reservedUntil": -1,
+            "guestId": "<string>",
+            "guest": {
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "phones": [
+                "<string>",
+                "<string>"
+              ],
+              "email": "<string>",
+              "address": {
+                "street": "<string>",
+                "zipCode": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "country": "<string>",
+                "countryCode": "<string>"
+              }
+            },
+            "ignoreCalendar": "<boolean>",
+            "ignoreTerms": "<boolean>",
+            "ignoreBlocks": "<boolean>",
+            "confirmedAt": "<dateTime>"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity (WebDAV) (RFC 4918)
+      body:
+        type: text
+        data: ""
+  - name: Indicates server-side error while processing the request
+    request:
+      url: "{{baseUrl}}/reservations-v3/quote"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "quoteId": "<string>",
+            "status": "awaiting_payment",
+            "ratePlanId": "<string>",
+            "reservedUntil": -1,
+            "guestId": "<string>",
+            "guest": {
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "phones": [
+                "<string>",
+                "<string>"
+              ],
+              "email": "<string>",
+              "address": {
+                "street": "<string>",
+                "zipCode": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "country": "<string>",
+                "countryCode": "<string>"
+              }
+            },
+            "ignoreCalendar": "<boolean>",
+            "ignoreTerms": "<boolean>",
+            "ignoreBlocks": "<boolean>",
+            "confirmedAt": "<dateTime>"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Create a reservation based on an existing quote with all the necessary reservation data. You can create a quote using the [dedicated endpoint](https://open-api-docs.guesty.com/reference/quotesopenapicontroller_create) or the [booking engine API](https://booking-api-docs.guesty.com/reference/createreservationquote).

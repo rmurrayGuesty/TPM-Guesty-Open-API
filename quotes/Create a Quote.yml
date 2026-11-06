@@ -1,0 +1,200 @@
+info:
+  name: Create a Quote
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/quotes"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "checkInDateLocalized": "<string>",
+        "checkOutDateLocalized": "<string>",
+        "listingId": "<string>",
+        "source": "<string>",
+        "guestsCount": "<number>",
+        "numberOfGuests": {
+          "numberOfChildren": "<number>",
+          "numberOfInfants": "<number>",
+          "numberOfAdults": "<number>"
+        },
+        "ignoreCalendar": "<boolean>",
+        "ignoreTerms": "<boolean>",
+        "ignoreBlocks": "<boolean>",
+        "couponCode": "<string>"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/quotes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "listingId": "<string>",
+            "source": "<string>",
+            "guestsCount": "<number>",
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            },
+            "ignoreCalendar": "<boolean>",
+            "ignoreTerms": "<boolean>",
+            "ignoreBlocks": "<boolean>",
+            "couponCode": "<string>"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "status": "valid",
+            "guestsCount": "<number>",
+            "channel": "owner_reservations",
+            "source": "<string>",
+            "createdAt": "<dateTime>",
+            "expiresAt": "<dateTime>",
+            "unitTypeId": "<string>",
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "rates": {},
+            "coupons": [],
+            "promotions": {},
+            "reservationId": "<string>",
+            "unitId": "<string>",
+            "unassign": "<boolean>",
+            "bookerId": "<string>",
+            "alterationPayload": {
+              "reservationId": "<string>",
+              "dates": {
+                "checkInDateLocalized": "<string>",
+                "checkOutDateLocalized": "<string>"
+              },
+              "unit": {
+                "unitTypeId": "<string>",
+                "unitId": "<string>"
+              },
+              "guestsCount": "<number>",
+              "ratePlanId": "<string>",
+              "status": "expired",
+              "numberOfGuests": {
+                "numberOfAdults": "<number>",
+                "numberOfChildren": "<number>",
+                "numberOfInfants": "<number>"
+              }
+            },
+            "numberOfGuests": {
+              "numberOfAdults": "<number>",
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfPets": "<number>"
+            },
+            "pointOfSale": "<string>"
+          }
+  - name: Returned if required fields are missing or there is a validation error in the request body
+    request:
+      url: "{{baseUrl}}/quotes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "listingId": "<string>",
+            "source": "<string>",
+            "guestsCount": "<number>",
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            },
+            "ignoreCalendar": "<boolean>",
+            "ignoreTerms": "<boolean>",
+            "ignoreBlocks": "<boolean>",
+            "couponCode": "<string>"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Indicates server-side error while processing the request
+    request:
+      url: "{{baseUrl}}/quotes"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "listingId": "<string>",
+            "source": "<string>",
+            "guestsCount": "<number>",
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            },
+            "ignoreCalendar": "<boolean>",
+            "ignoreTerms": "<boolean>",
+            "ignoreBlocks": "<boolean>",
+            "couponCode": "<string>"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: This endpoint allows the creation of a price quote for a reservation. It requires details such as the listing ID, check-in and check-out dates, and guest count. The response includes detailed information about the quote, including rates, promotions, and applicable fees.

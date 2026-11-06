@@ -1,0 +1,137 @@
+info:
+  name: Update custom field
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/accounts/:id/custom-fields"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: "(Required) "
+  body:
+    type: json
+    data: |-
+      {
+        "customFields": [
+          {
+            "fieldId": "<string>",
+            "isPublic": "<boolean>",
+            "key": "<string>",
+            "object": "reservation",
+            "options": [
+              "<string>",
+              "<string>"
+            ],
+            "type": "enum"
+          },
+          {
+            "fieldId": "<string>",
+            "isPublic": "<boolean>",
+            "key": "<string>",
+            "object": "listing",
+            "options": [
+              "<string>",
+              "<string>"
+            ],
+            "type": "enum"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Custom Fields Array
+    request:
+      url: "{{baseUrl}}/accounts/:id/custom-fields"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "customFields": [
+              {
+                "fieldId": "<string>",
+                "isPublic": "<boolean>",
+                "key": "<string>",
+                "object": "reservation",
+                "options": [
+                  "<string>",
+                  "<string>"
+                ],
+                "type": "enum"
+              },
+              {
+                "fieldId": "<string>",
+                "isPublic": "<boolean>",
+                "key": "<string>",
+                "object": "listing",
+                "options": [
+                  "<string>",
+                  "<string>"
+                ],
+                "type": "enum"
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "id": "<string>",
+              "displayName": "<string>",
+              "isPublic": "<boolean>",
+              "key": "<string>",
+              "object": "listing",
+              "options": [
+                "<string>",
+                "<string>"
+              ],
+              "type": "longtext"
+            },
+            {
+              "id": "<string>",
+              "displayName": "<string>",
+              "isPublic": "<boolean>",
+              "key": "<string>",
+              "object": "reservation",
+              "options": [
+                "<string>",
+                "<string>"
+              ],
+              "type": "contact"
+            }
+          ]

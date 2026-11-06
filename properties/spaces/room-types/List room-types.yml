@@ -1,0 +1,44 @@
+info:
+  name: List room-types
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/properties/spaces/room-types"
+  headers:
+    - name: Accept
+      value: application/json; charset=utf-8
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Array of all available room types
+    request:
+      url: "{{baseUrl}}/properties/spaces/room-types"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json; charset=utf-8
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json; charset=utf-8
+      body:
+        type: json
+        data: |-
+          [
+            "<string>",
+            "<string>"
+          ]

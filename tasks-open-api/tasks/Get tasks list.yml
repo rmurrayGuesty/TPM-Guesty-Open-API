@@ -1,0 +1,220 @@
+info:
+  name: Get tasks list
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/tasks-open-api/tasks"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: filters
+      value: <string>
+      type: query
+      description: Object of filters to query by
+      disabled: true
+    - name: columns
+      value: <string>
+      type: query
+      description: (Required) Selection of columns, separated by space
+      disabled: true
+    - name: limit
+      value: <number>
+      type: query
+      description: Pagination
+      disabled: true
+    - name: skip
+      value: <number>
+      type: query
+      description: Indication of number of results to skip
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Successful operation
+    request:
+      url: "{{baseUrl}}/tasks-open-api/tasks?filters=<string>&columns=<string>&limit=<number>&skip=<number>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: <string>
+          type: query
+          description: Object of filters to query by
+        - name: columns
+          value: <string>
+          type: query
+          description: (Required) Selection of columns, separated by space
+        - name: limit
+          value: <number>
+          type: query
+          description: Pagination
+        - name: skip
+          value: <number>
+          type: query
+          description: Indication of number of results to skip
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "status": {
+                "children": "pending"
+              },
+              "taskTitle": {
+                "children": "<string>"
+              },
+              "type": "dolor ad elit in",
+              "listing": {
+                "listingId": "<string>",
+                "img": "<string>",
+                "title": "<string>"
+              },
+              "reservation": {},
+              "scheduledFor": {
+                "startTime": "<string>",
+                "canStartAfter": "<string>",
+                "mustFinishBefore": "<string>"
+              },
+              "endTime": {
+                "date": "<string>"
+              },
+              "canStartAfter": {
+                "date": "<string>"
+              },
+              "mustFinishBefore": {
+                "date": "<string>"
+              },
+              "assignee": {
+                "taskId": "<string>",
+                "assigneeId": "<string>",
+                "picture": "<string>"
+              },
+              "id": "<string>"
+            },
+            {
+              "status": {
+                "children": "canceled"
+              },
+              "taskTitle": {
+                "children": "<string>"
+              },
+              "type": "sit veniam est ullamco",
+              "listing": {
+                "listingId": "<string>",
+                "img": "<string>",
+                "title": "<string>"
+              },
+              "reservation": {},
+              "scheduledFor": {
+                "startTime": "<string>",
+                "canStartAfter": "<string>",
+                "mustFinishBefore": "<string>"
+              },
+              "endTime": {
+                "date": "<string>"
+              },
+              "canStartAfter": {
+                "date": "<string>"
+              },
+              "mustFinishBefore": {
+                "date": "<string>"
+              },
+              "assignee": {
+                "taskId": "<string>",
+                "assigneeId": "<string>",
+                "picture": "<string>"
+              },
+              "id": "<string>"
+            }
+          ]
+  - name: Bad request
+    request:
+      url: "{{baseUrl}}/tasks-open-api/tasks?filters=<string>&columns=<string>&limit=<number>&skip=<number>"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: <string>
+          type: query
+          description: Object of filters to query by
+        - name: columns
+          value: <string>
+          type: query
+          description: (Required) Selection of columns, separated by space
+        - name: limit
+          value: <number>
+          type: query
+          description: Pagination
+        - name: skip
+          value: <number>
+          type: query
+          description: Indication of number of results to skip
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Forbidden
+    request:
+      url: "{{baseUrl}}/tasks-open-api/tasks?filters=<string>&columns=<string>&limit=<number>&skip=<number>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: filters
+          value: <string>
+          type: query
+          description: Object of filters to query by
+        - name: columns
+          value: <string>
+          type: query
+          description: (Required) Selection of columns, separated by space
+        - name: limit
+          value: <number>
+          type: query
+          description: Pagination
+        - name: skip
+          value: <number>
+          type: query
+          description: Indication of number of results to skip
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": "<string>"
+          }

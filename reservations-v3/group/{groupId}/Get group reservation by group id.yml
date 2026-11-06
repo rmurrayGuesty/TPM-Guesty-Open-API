@@ -1,0 +1,73 @@
+info:
+  name: Get group reservation by group id
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/reservations-v3/group/:groupId"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: groupId
+      value: <string>
+      type: path
+      description: (Required) The ID of the group reservation to fetch
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The group reservation has been successfully fetched
+    request:
+      url: "{{baseUrl}}/reservations-v3/group/:groupId"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: groupId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "groupReservation": {},
+            "subReservations": {}
+          }
+  - name: Group reservation wasnt found.
+    request:
+      url: "{{baseUrl}}/reservations-v3/group/:groupId"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: groupId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+
+docs: Get group reservation by group id, including it's sub reservations (up to 25 sub reservations)

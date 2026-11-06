@@ -1,0 +1,132 @@
+info:
+  name: Change Reservation Guest Stay Status
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/reservations-v3/guest-stay"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "reservationId": "<string>",
+        "status": "checked_in"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/reservations-v3/guest-stay"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "reservationId": "<string>",
+            "status": "checked_in"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "example": {}
+          }
+  - name: Returned if required fields are missing or there is a validation error in the request body
+    request:
+      url: "{{baseUrl}}/reservations-v3/guest-stay"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "reservationId": "<string>",
+            "status": "checked_in"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Returned if required fields are missing or there is a validation error in the request body
+    request:
+      url: "{{baseUrl}}/reservations-v3/guest-stay"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "reservationId": "<string>",
+            "status": "checked_in"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity (WebDAV) (RFC 4918)
+      body:
+        type: text
+        data: ""
+  - name: Indicates server-side error while processing the request
+    request:
+      url: "{{baseUrl}}/reservations-v3/guest-stay"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "reservationId": "<string>",
+            "status": "checked_in"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Change the guest stay status of the reservation

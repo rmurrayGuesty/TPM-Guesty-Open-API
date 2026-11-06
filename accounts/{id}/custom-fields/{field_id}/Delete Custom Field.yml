@@ -1,0 +1,86 @@
+info:
+  name: Delete Custom Field
+  type: http
+  seq: 2
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/accounts/:id/custom-fields/:field_id"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: <string>
+      type: path
+      description: "(Required) "
+    - name: field_id
+      value: <string>
+      type: path
+      description: "(Required) "
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Custom Field
+    request:
+      url: "{{baseUrl}}/accounts/:id/custom-fields/:field_id"
+      method: DELETE
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: id
+          value: ""
+          type: path
+        - name: field_id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "id": "<string>",
+              "displayName": "<string>",
+              "isPublic": "<boolean>",
+              "key": "<string>",
+              "object": "listing",
+              "options": [
+                "<string>",
+                "<string>"
+              ],
+              "type": "longtext"
+            },
+            {
+              "id": "<string>",
+              "displayName": "<string>",
+              "isPublic": "<boolean>",
+              "key": "<string>",
+              "object": "reservation",
+              "options": [
+                "<string>",
+                "<string>"
+              ],
+              "type": "contact"
+            }
+          ]

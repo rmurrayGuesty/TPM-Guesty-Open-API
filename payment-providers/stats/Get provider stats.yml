@@ -1,0 +1,63 @@
+info:
+  name: Get provider stats
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/payment-providers/stats"
+  headers:
+    - name: Accept
+      value: application/json; charset=utf-8
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Response received
+    request:
+      url: "{{baseUrl}}/payment-providers/stats"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json; charset=utf-8
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json; charset=utf-8
+      body:
+        type: json
+        data: |-
+          {
+            "data": [
+              {
+                "_id": "<string>",
+                "accountName": "<string>",
+                "status": "<string>",
+                "isDefault": "<boolean>",
+                "listingsCount": "<number>",
+                "paymentMethodsCount": "<number>"
+              },
+              {
+                "_id": "<string>",
+                "accountName": "<string>",
+                "status": "<string>",
+                "isDefault": "<boolean>",
+                "listingsCount": "<number>",
+                "paymentMethodsCount": "<number>"
+              }
+            ],
+            "limit": "<number>",
+            "skip": "<number>",
+            "total": "<number>"
+          }

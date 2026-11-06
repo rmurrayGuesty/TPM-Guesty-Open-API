@@ -1,0 +1,7 @@
+info:
+  name: taxes
+  type: folder
+  seq: 34
+
+request:
+  auth: inherit

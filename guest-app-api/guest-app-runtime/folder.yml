@@ -1,0 +1,7 @@
+info:
+  name: guest-app-runtime
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

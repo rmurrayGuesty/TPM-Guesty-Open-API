@@ -1,0 +1,147 @@
+info:
+  name: Add upsell fee to inquiry rate plans quotes [Beta]
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/additional-fees/inquiries/:inquiryId/upsells"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  params:
+    - name: inquiryId
+      value: <string>
+      type: path
+      description: (Required) Inquiry id
+  body:
+    type: json
+    data: |-
+      {
+        "additionalFeeIds": [
+          "<string>",
+          "<string>"
+        ],
+        "ratePlanIds": [
+          "<string>",
+          "<string>"
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Inquiry with rate plans with quotes with added upsell fees in invoice items
+    request:
+      url: "{{baseUrl}}/additional-fees/inquiries/:inquiryId/upsells"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: inquiryId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "additionalFeeIds": [
+              "<string>",
+              "<string>"
+            ],
+            "ratePlanIds": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+  - name: Invalid input
+    request:
+      url: "{{baseUrl}}/additional-fees/inquiries/:inquiryId/upsells"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: inquiryId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "additionalFeeIds": [
+              "<string>",
+              "<string>"
+            ],
+            "ratePlanIds": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Not found
+    request:
+      url: "{{baseUrl}}/additional-fees/inquiries/:inquiryId/upsells"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: inquiryId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "additionalFeeIds": [
+              "<string>",
+              "<string>"
+            ],
+            "ratePlanIds": [
+              "<string>",
+              "<string>"
+            ]
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      body:
+        type: text
+        data: ""
+
+docs: Add upsell fee to inquiry rate plans quotes. Add upsell fee id multiple times if you want to add the same upsell fee multiple times. To remove the upsell fee exclude the ID from an array [Beta]

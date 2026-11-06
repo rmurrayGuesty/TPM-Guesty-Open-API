@@ -1,0 +1,447 @@
+info:
+  name: Create additional fee on account level
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/additional-fees/account"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json; charset=utf-8
+  body:
+    type: json
+    data: |-
+      {
+        "name": "<string>",
+        "type": "GUESTY_BASIC_TRAVEL_COVERAGE",
+        "value": "<integer>",
+        "isPercentage": "<boolean>",
+        "targetFee": "ACCOMMODATION_FARE",
+        "multiplier": "PER_NIGHT",
+        "isSyncToSupportedChannelsEnabled": "<boolean>",
+        "isAutomated": "<boolean>",
+        "allPlatforms": "<boolean>",
+        "automationPlatforms": [
+          "manual",
+          "bookingCom"
+        ],
+        "allSources": "<boolean>",
+        "automationSources": [
+          "<string>",
+          "<string>"
+        ],
+        "allRUSources": "<boolean>",
+        "RUSources": [
+          "homeAway",
+          "despegar"
+        ],
+        "isDeducted": "<boolean>",
+        "isBundled": "<boolean>",
+        "deductedConfiguration": {
+          "isApplyToAll": "<boolean>",
+          "sources": [
+            "<string>",
+            "<string>"
+          ],
+          "channels": [
+            "<string>",
+            "<string>"
+          ]
+        },
+        "channelConfigurations": [
+          {
+            "channel": "<string>",
+            "value": "<number>",
+            "isPercentage": "<boolean>",
+            "isEnabled": "<boolean>",
+            "type": "<string>",
+            "multiplier": "PER_STAY",
+            "targetFee": "PAYOUT",
+            "isBundled": "<boolean>"
+          },
+          {
+            "channel": "<string>",
+            "value": "<number>",
+            "isPercentage": "<boolean>",
+            "isEnabled": "<boolean>",
+            "type": "<string>",
+            "multiplier": "PER_NIGHT",
+            "targetFee": "CLEANING_FEE",
+            "isBundled": "<boolean>"
+          }
+        ],
+        "sourcesConfigurations": [
+          {
+            "value": "<number>",
+            "isPercentage": "<boolean>",
+            "sources": [
+              "<string>"
+            ],
+            "type": "WIFI",
+            "multiplier": "PER_GUEST",
+            "targetFee": "ACCOMMODATION_FARE",
+            "isBundled": "<boolean>"
+          },
+          {
+            "value": "<number>",
+            "isPercentage": "<boolean>",
+            "sources": [
+              "<string>"
+            ],
+            "type": "AIR_CONDITIONING",
+            "multiplier": "PER_NIGHT",
+            "targetFee": "CLEANING_FEE",
+            "isBundled": "<boolean>"
+          }
+        ],
+        "isUpsell": "<boolean>",
+        "upsell": {
+          "description": "<string>",
+          "images": [
+            {
+              "url": "<string>",
+              "fileName": "<string>"
+            }
+          ]
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: created additional fee item in account level
+    request:
+      url: "{{baseUrl}}/additional-fees/account"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json; charset=utf-8
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "GUESTY_BASIC_TRAVEL_COVERAGE",
+            "value": "<integer>",
+            "isPercentage": "<boolean>",
+            "targetFee": "ACCOMMODATION_FARE",
+            "multiplier": "PER_NIGHT",
+            "isSyncToSupportedChannelsEnabled": "<boolean>",
+            "isAutomated": "<boolean>",
+            "allPlatforms": "<boolean>",
+            "automationPlatforms": [
+              "manual",
+              "bookingCom"
+            ],
+            "allSources": "<boolean>",
+            "automationSources": [
+              "<string>",
+              "<string>"
+            ],
+            "allRUSources": "<boolean>",
+            "RUSources": [
+              "homeAway",
+              "despegar"
+            ],
+            "isDeducted": "<boolean>",
+            "isBundled": "<boolean>",
+            "deductedConfiguration": {
+              "isApplyToAll": "<boolean>",
+              "sources": [
+                "<string>",
+                "<string>"
+              ],
+              "channels": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "channelConfigurations": [
+              {
+                "channel": "<string>",
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "isEnabled": "<boolean>",
+                "type": "<string>",
+                "multiplier": "PER_STAY",
+                "targetFee": "PAYOUT",
+                "isBundled": "<boolean>"
+              },
+              {
+                "channel": "<string>",
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "isEnabled": "<boolean>",
+                "type": "<string>",
+                "multiplier": "PER_NIGHT",
+                "targetFee": "CLEANING_FEE",
+                "isBundled": "<boolean>"
+              }
+            ],
+            "sourcesConfigurations": [
+              {
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "sources": [
+                  "<string>"
+                ],
+                "type": "WIFI",
+                "multiplier": "PER_GUEST",
+                "targetFee": "ACCOMMODATION_FARE",
+                "isBundled": "<boolean>"
+              },
+              {
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "sources": [
+                  "<string>"
+                ],
+                "type": "AIR_CONDITIONING",
+                "multiplier": "PER_NIGHT",
+                "targetFee": "CLEANING_FEE",
+                "isBundled": "<boolean>"
+              }
+            ],
+            "isUpsell": "<boolean>",
+            "upsell": {
+              "description": "<string>",
+              "images": [
+                {
+                  "url": "<string>",
+                  "fileName": "<string>"
+                }
+              ]
+            }
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json; charset=utf-8
+      body:
+        type: json
+        data: |-
+          {
+            "_id": "<string>",
+            "accountId": "<string>",
+            "name": "<string>",
+            "type": "RESERVATION_FEE",
+            "value": "<integer>",
+            "targetFee": "ACCOMMODATION_FARE",
+            "automationSources": [
+              "<string>",
+              "<string>"
+            ],
+            "automationPlatforms": [
+              "agoda",
+              "agoda"
+            ],
+            "RUSources": [
+              "expedia",
+              "homeAway"
+            ],
+            "allSources": "<boolean>",
+            "isDeducted": "<boolean>",
+            "isBundled": "<boolean>",
+            "allPlatforms": "<boolean>",
+            "allRUSources": "<boolean>",
+            "isAutomated": "<boolean>",
+            "isPercentage": "<boolean>",
+            "multiplier": "PER_GUEST",
+            "isSyncToSupportedChannelsEnabled": "<boolean>",
+            "deductedConfiguration": {
+              "isApplyToAll": "<boolean>",
+              "sources": [
+                "<string>",
+                "<string>"
+              ],
+              "channels": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "channelConfigurations": [
+              {
+                "channel": "<string>",
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "isEnabled": "<boolean>",
+                "type": "<string>",
+                "multiplier": "PER_GUEST_PER_NIGHT",
+                "targetFee": "ACCOMMODATION_FARE",
+                "isBundled": "<boolean>"
+              },
+              {
+                "channel": "<string>",
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "isEnabled": "<boolean>",
+                "type": "<string>",
+                "multiplier": "PER_NIGHT",
+                "targetFee": "PAYOUT",
+                "isBundled": "<boolean>"
+              }
+            ],
+            "sourcesConfigurations": [
+              {
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "sources": [
+                  "<string>"
+                ],
+                "type": "BEVERAGE",
+                "multiplier": "PER_GUEST_PER_NIGHT",
+                "targetFee": "ACCOMMODATION_FARE",
+                "isBundled": "<boolean>"
+              },
+              {
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "sources": [
+                  "<string>"
+                ],
+                "type": "EARLY_CHECK_IN",
+                "multiplier": "PER_STAY",
+                "targetFee": "CLEANING_FEE",
+                "isBundled": "<boolean>"
+              }
+            ],
+            "isUpsell": "<boolean>",
+            "upsell": {
+              "description": "<string>",
+              "images": [
+                {
+                  "url": "<string>",
+                  "fileName": "<string>"
+                }
+              ]
+            }
+          }
+  - name: Invalid input
+    request:
+      url: "{{baseUrl}}/additional-fees/account"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "name": "<string>",
+            "type": "GUESTY_BASIC_TRAVEL_COVERAGE",
+            "value": "<integer>",
+            "isPercentage": "<boolean>",
+            "targetFee": "ACCOMMODATION_FARE",
+            "multiplier": "PER_NIGHT",
+            "isSyncToSupportedChannelsEnabled": "<boolean>",
+            "isAutomated": "<boolean>",
+            "allPlatforms": "<boolean>",
+            "automationPlatforms": [
+              "manual",
+              "bookingCom"
+            ],
+            "allSources": "<boolean>",
+            "automationSources": [
+              "<string>",
+              "<string>"
+            ],
+            "allRUSources": "<boolean>",
+            "RUSources": [
+              "homeAway",
+              "despegar"
+            ],
+            "isDeducted": "<boolean>",
+            "isBundled": "<boolean>",
+            "deductedConfiguration": {
+              "isApplyToAll": "<boolean>",
+              "sources": [
+                "<string>",
+                "<string>"
+              ],
+              "channels": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "channelConfigurations": [
+              {
+                "channel": "<string>",
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "isEnabled": "<boolean>",
+                "type": "<string>",
+                "multiplier": "PER_STAY",
+                "targetFee": "PAYOUT",
+                "isBundled": "<boolean>"
+              },
+              {
+                "channel": "<string>",
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "isEnabled": "<boolean>",
+                "type": "<string>",
+                "multiplier": "PER_NIGHT",
+                "targetFee": "CLEANING_FEE",
+                "isBundled": "<boolean>"
+              }
+            ],
+            "sourcesConfigurations": [
+              {
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "sources": [
+                  "<string>"
+                ],
+                "type": "WIFI",
+                "multiplier": "PER_GUEST",
+                "targetFee": "ACCOMMODATION_FARE",
+                "isBundled": "<boolean>"
+              },
+              {
+                "value": "<number>",
+                "isPercentage": "<boolean>",
+                "sources": [
+                  "<string>"
+                ],
+                "type": "AIR_CONDITIONING",
+                "multiplier": "PER_NIGHT",
+                "targetFee": "CLEANING_FEE",
+                "isBundled": "<boolean>"
+              }
+            ],
+            "isUpsell": "<boolean>",
+            "upsell": {
+              "description": "<string>",
+              "images": [
+                {
+                  "url": "<string>",
+                  "fileName": "<string>"
+                }
+              ]
+            }
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""

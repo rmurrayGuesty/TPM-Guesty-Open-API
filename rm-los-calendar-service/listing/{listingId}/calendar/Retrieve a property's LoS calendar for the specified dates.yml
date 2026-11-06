@@ -1,0 +1,238 @@
+info:
+  name: Retrieve a property's LoS calendar for the specified dates.
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/rm-los-calendar-service/listing/:listingId/calendar?startDate=<string>&endDate=<string>&limit=100&skip=0"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: startDate
+      value: <string>
+      type: query
+      description: (Required) LoS calendar search start date
+    - name: endDate
+      value: <string>
+      type: query
+      description: (Required) LoS calendar search end date
+    - name: limit
+      value: "100"
+      type: query
+      description: The requested limit (number of results) of the call.
+    - name: skip
+      value: "0"
+      type: query
+      description: The requested offset (skipped results) of the call.
+    - name: listingId
+      value: <string>
+      type: path
+      description: (Required) Guesty Listing ID.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: LoS calendar has been received
+    request:
+      url: "{{baseUrl}}/rm-los-calendar-service/listing/:listingId/calendar?startDate=<string>&endDate=<string>&limit=100&skip=0"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search start date
+        - name: endDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search end date
+        - name: limit
+          value: "100"
+          type: query
+          description: The requested limit (number of results) of the call.
+        - name: skip
+          value: "0"
+          type: query
+          description: The requested offset (skipped results) of the call.
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "calendar": {
+              "date": "<dateTime>",
+              "adultOccupancy": "<number>",
+              "losPrice": {
+                "Duis_f_": "<string>",
+                "amet_5_c": "<string>",
+                "aliqua_66e": "<string>",
+                "cupidatat_1": "<string>",
+                "reprehenderit_9": "<string>"
+              },
+              "createdAt": "<dateTime>",
+              "updatedAt": "<dateTime>"
+            },
+            "requestId": "<string>",
+            "listingId": "<string>",
+            "skip": "<number>",
+            "limit": "<number>"
+          }
+  - name: Validation error
+    request:
+      url: "{{baseUrl}}/rm-los-calendar-service/listing/:listingId/calendar?startDate=<string>&endDate=<string>&limit=100&skip=0"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search start date
+        - name: endDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search end date
+        - name: limit
+          value: "100"
+          type: query
+          description: The requested limit (number of results) of the call.
+        - name: skip
+          value: "0"
+          type: query
+          description: The requested offset (skipped results) of the call.
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Unauthorized client. Your access token is invalid or expired. Please generate a fresh token and try again.
+    request:
+      url: "{{baseUrl}}/rm-los-calendar-service/listing/:listingId/calendar?startDate=<string>&endDate=<string>&limit=100&skip=0"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search start date
+        - name: endDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search end date
+        - name: limit
+          value: "100"
+          type: query
+          description: The requested limit (number of results) of the call.
+        - name: skip
+          value: "0"
+          type: query
+          description: The requested offset (skipped results) of the call.
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      body:
+        type: text
+        data: ""
+  - name: The feature `LoS calendar` is turned off for this client
+    request:
+      url: "{{baseUrl}}/rm-los-calendar-service/listing/:listingId/calendar?startDate=<string>&endDate=<string>&limit=100&skip=0"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search start date
+        - name: endDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search end date
+        - name: limit
+          value: "100"
+          type: query
+          description: The requested limit (number of results) of the call.
+        - name: skip
+          value: "0"
+          type: query
+          description: The requested offset (skipped results) of the call.
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      body:
+        type: text
+        data: ""
+  - name: Internal server error
+    request:
+      url: "{{baseUrl}}/rm-los-calendar-service/listing/:listingId/calendar?startDate=<string>&endDate=<string>&limit=100&skip=0"
+      method: GET
+      headers:
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: startDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search start date
+        - name: endDate
+          value: <string>
+          type: query
+          description: (Required) LoS calendar search end date
+        - name: limit
+          value: "100"
+          type: query
+          description: The requested limit (number of results) of the call.
+        - name: skip
+          value: "0"
+          type: query
+          description: The requested offset (skipped results) of the call.
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Retrieve a property's LoS calendar for the specified dates.

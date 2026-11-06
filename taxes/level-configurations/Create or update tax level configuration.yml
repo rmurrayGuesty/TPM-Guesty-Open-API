@@ -1,0 +1,88 @@
+info:
+  name: Create or update tax level configuration
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/taxes/level-configurations"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "unitTypeId": "<string>",
+        "levelEntityType": "ACCOUNT"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: The taxes level configuration has been successfully updated or created.
+    request:
+      url: "{{baseUrl}}/taxes/level-configurations"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "unitTypeId": "<string>",
+            "levelEntityType": "ACCOUNT"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "unitTypeId": "<string>",
+            "accountId": "<string>",
+            "levelEntityType": "UNIT_TYPE"
+          }
+  - name: The input provided is invalid.
+    request:
+      url: "{{baseUrl}}/taxes/level-configurations"
+      method: PUT
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "unitTypeId": "<string>",
+            "levelEntityType": "ACCOUNT"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+
+docs: Use to define on which level the taxes are defined for a specific unit type.

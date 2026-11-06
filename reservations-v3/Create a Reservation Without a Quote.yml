@@ -1,0 +1,332 @@
+info:
+  name: Create a Reservation Without a Quote
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/reservations-v3"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "checkInDateLocalized": "<string>",
+        "checkOutDateLocalized": "<string>",
+        "listingId": "<string>",
+        "source": "<string>",
+        "status": "closed",
+        "guestsCount": "<number>",
+        "guestId": "<string>",
+        "guest": {
+          "firstName": "<string>",
+          "lastName": "<string>",
+          "phones": [
+            "<string>",
+            "<string>"
+          ],
+          "email": "<string>",
+          "address": {
+            "street": "<string>",
+            "zipCode": "<string>",
+            "city": "<string>",
+            "state": "<string>",
+            "country": "<string>",
+            "countryCode": "<string>"
+          }
+        },
+        "numberOfGuests": {
+          "numberOfChildren": "<number>",
+          "numberOfInfants": "<number>",
+          "numberOfAdults": "<number>"
+        },
+        "couponCode": "<string>",
+        "ratePlanId": "<string>",
+        "applyPromotions": true,
+        "ignoreCalendar": false,
+        "ignoreTerms": false,
+        "ignoreBlocks": false,
+        "confirmedAt": "<dateTime>",
+        "reservedUntil": 0.25,
+        "money": {}
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{baseUrl}}/reservations-v3"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "listingId": "<string>",
+            "source": "<string>",
+            "status": "closed",
+            "guestsCount": "<number>",
+            "guestId": "<string>",
+            "guest": {
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "phones": [
+                "<string>",
+                "<string>"
+              ],
+              "email": "<string>",
+              "address": {
+                "street": "<string>",
+                "zipCode": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "country": "<string>",
+                "countryCode": "<string>"
+              }
+            },
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            },
+            "couponCode": "<string>",
+            "ratePlanId": "<string>",
+            "applyPromotions": true,
+            "ignoreCalendar": false,
+            "ignoreTerms": false,
+            "ignoreBlocks": false,
+            "confirmedAt": "<dateTime>",
+            "reservedUntil": 0.25,
+            "money": {}
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "reservationId": "<string>",
+            "quoteId": "<string>",
+            "confirmationCode": "<string>",
+            "status": "<string>",
+            "guestId": "<string>",
+            "numberOfGuests": {
+              "numberOfAdults": "<number>",
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfPets": "<number>"
+            },
+            "creationTime": "<dateTime>",
+            "reservedExpiresAt": "<dateTime>",
+            "checkInDate": "<dateTime>",
+            "checkOutDate": "<dateTime>",
+            "unitTypeId": "<string>",
+            "unitId": "<string>",
+            "source": "<string>",
+            "channel": "<string>",
+            "guestsCount": "<number>",
+            "creationInfo": {}
+          }
+  - name: Returned if required fields are missing or there is a validation error in the request body
+    request:
+      url: "{{baseUrl}}/reservations-v3"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "listingId": "<string>",
+            "source": "<string>",
+            "status": "closed",
+            "guestsCount": "<number>",
+            "guestId": "<string>",
+            "guest": {
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "phones": [
+                "<string>",
+                "<string>"
+              ],
+              "email": "<string>",
+              "address": {
+                "street": "<string>",
+                "zipCode": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "country": "<string>",
+                "countryCode": "<string>"
+              }
+            },
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            },
+            "couponCode": "<string>",
+            "ratePlanId": "<string>",
+            "applyPromotions": true,
+            "ignoreCalendar": false,
+            "ignoreTerms": false,
+            "ignoreBlocks": false,
+            "confirmedAt": "<dateTime>",
+            "reservedUntil": 0.25,
+            "money": {}
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      body:
+        type: text
+        data: ""
+  - name: Returned if required fields are missing or there is a validation error in the request body
+    request:
+      url: "{{baseUrl}}/reservations-v3"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "listingId": "<string>",
+            "source": "<string>",
+            "status": "closed",
+            "guestsCount": "<number>",
+            "guestId": "<string>",
+            "guest": {
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "phones": [
+                "<string>",
+                "<string>"
+              ],
+              "email": "<string>",
+              "address": {
+                "street": "<string>",
+                "zipCode": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "country": "<string>",
+                "countryCode": "<string>"
+              }
+            },
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            },
+            "couponCode": "<string>",
+            "ratePlanId": "<string>",
+            "applyPromotions": true,
+            "ignoreCalendar": false,
+            "ignoreTerms": false,
+            "ignoreBlocks": false,
+            "confirmedAt": "<dateTime>",
+            "reservedUntil": 0.25,
+            "money": {}
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity (WebDAV) (RFC 4918)
+      body:
+        type: text
+        data: ""
+  - name: Indicates server-side error while processing the request
+    request:
+      url: "{{baseUrl}}/reservations-v3"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      body:
+        type: json
+        data: |-
+          {
+            "checkInDateLocalized": "<string>",
+            "checkOutDateLocalized": "<string>",
+            "listingId": "<string>",
+            "source": "<string>",
+            "status": "closed",
+            "guestsCount": "<number>",
+            "guestId": "<string>",
+            "guest": {
+              "firstName": "<string>",
+              "lastName": "<string>",
+              "phones": [
+                "<string>",
+                "<string>"
+              ],
+              "email": "<string>",
+              "address": {
+                "street": "<string>",
+                "zipCode": "<string>",
+                "city": "<string>",
+                "state": "<string>",
+                "country": "<string>",
+                "countryCode": "<string>"
+              }
+            },
+            "numberOfGuests": {
+              "numberOfChildren": "<number>",
+              "numberOfInfants": "<number>",
+              "numberOfAdults": "<number>"
+            },
+            "couponCode": "<string>",
+            "ratePlanId": "<string>",
+            "applyPromotions": true,
+            "ignoreCalendar": false,
+            "ignoreTerms": false,
+            "ignoreBlocks": false,
+            "confirmedAt": "<dateTime>",
+            "reservedUntil": 0.25,
+            "money": {}
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      body:
+        type: text
+        data: ""
+
+docs: Create a reservation without needing a quote. When the listing doesn't have an active rate plan assigned, a default rate plan is selected. Otherwise, the first active rate plan is selected.

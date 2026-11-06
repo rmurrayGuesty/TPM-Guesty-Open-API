@@ -1,0 +1,237 @@
+info:
+  name: Get saved replies by listing id
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/saved-replies/listing/:listingId?limit=<integer>&skip=<integer>&accountId=<string>&returnDefault=<boolean>&fields=<string>&sort=<string>&q=<string>"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: limit
+      value: <integer>
+      type: query
+      description: "Pagination limit, max: 100"
+    - name: skip
+      value: <integer>
+      type: query
+      description: How many results should be skipped to get to the current page
+    - name: accountId
+      value: <string>
+      type: query
+      description: Limit results to a specific account
+    - name: returnDefault
+      value: <boolean>
+      type: query
+      description: To get Guesty defaults SRs
+    - name: fields
+      value: <string>
+      type: query
+      description: Selection of fields, separated by space. See response schema to get list of fields
+    - name: sort
+      value: <string>
+      type: query
+      description: Field to sort by. Prepend - for DESC.
+    - name: q
+      value: <string>
+      type: query
+      description: Search query string. Searches in question and folder. Search is case-insensitive.
+    - name: listingId
+      value: <string>
+      type: path
+      description: (Required) Limit results to a specific listing
+  auth:
+    type: apikey
+    key: authorization
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: OK
+    request:
+      url: "{{baseUrl}}/saved-replies/listing/:listingId?limit=<integer>&skip=<integer>&accountId=<string>&returnDefault=<boolean>&fields=<string>&sort=<string>&q=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Pagination limit, max: 100"
+        - name: skip
+          value: <integer>
+          type: query
+          description: How many results should be skipped to get to the current page
+        - name: accountId
+          value: <string>
+          type: query
+          description: Limit results to a specific account
+        - name: returnDefault
+          value: <boolean>
+          type: query
+          description: To get Guesty defaults SRs
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space. See response schema to get list of fields
+        - name: sort
+          value: <string>
+          type: query
+          description: Field to sort by. Prepend - for DESC.
+        - name: q
+          value: <string>
+          type: query
+          description: Search query string. Searches in question and folder. Search is case-insensitive.
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Date
+          value: <string>
+        - name: Content-Type
+          value: <string>
+        - name: Content-Length
+          value: <integer>
+        - name: Connection
+          value: <string>
+        - name: X-DNS-Prefetch-Control
+          value: <string>
+        - name: X-Frame-Options
+          value: <string>
+        - name: Strict-Transport-Security
+          value: <string>
+        - name: X-Download-Options
+          value: <string>
+        - name: X-Content-Type-Options
+          value: <string>
+        - name: X-XSS-Protection
+          value: <string>
+        - name: Access-Control-Allow-Credentials
+          value: <boolean>
+        - name: Access-Control-Allow-Origin
+          value: <string>
+        - name: Access-Control-Max-Age
+          value: <integer>
+        - name: Access-Control-Allow-Headers
+          value: <string>
+        - name: Access-Control-Allow-Methods
+          value: <string>
+        - name: uber-trace-id
+          value: <string>
+        - name: uberctx-accountid
+          value: <string>
+        - name: x-request-id
+          value: <string>
+        - name: ETag
+          value: <string>
+        - name: x-content-type
+          value: <string>
+        - name: x-permitted-cross-domain-policies
+          value: <string>
+      body:
+        type: json
+        data: |-
+          {
+            "question": "<string>",
+            "answer": "<string>",
+            "applyWhenHasBooking": "<boolean>",
+            "applyWhenNoBooking": "<boolean>",
+            "isAbstract": "<boolean>",
+            "type": "contact",
+            "language": "ja",
+            "excludeListingIds": [
+              "<string>",
+              "<string>"
+            ],
+            "listingsIds": [
+              "<string>",
+              "<string>"
+            ],
+            "folder": "<string>",
+            "tags": [
+              "<string>",
+              "<string>"
+            ],
+            "filters": {
+              "_id": "<string>",
+              "field": "<string>",
+              "operator": "<string>",
+              "value": [
+                "<string>",
+                "<string>"
+              ]
+            },
+            "accountId": "<string>",
+            "_id": "<string>"
+          }
+  - name: User does not have the permissions to use this endpoint
+    request:
+      url: "{{baseUrl}}/saved-replies/listing/:listingId?limit=<integer>&skip=<integer>&accountId=<string>&returnDefault=<boolean>&fields=<string>&sort=<string>&q=<string>"
+      method: GET
+      headers:
+        - name: Accept
+          value: text/plain
+        - name: authorization
+          value: <API Key>
+          description: "Added as a part of security scheme: apikey"
+      params:
+        - name: limit
+          value: <integer>
+          type: query
+          description: "Pagination limit, max: 100"
+        - name: skip
+          value: <integer>
+          type: query
+          description: How many results should be skipped to get to the current page
+        - name: accountId
+          value: <string>
+          type: query
+          description: Limit results to a specific account
+        - name: returnDefault
+          value: <boolean>
+          type: query
+          description: To get Guesty defaults SRs
+        - name: fields
+          value: <string>
+          type: query
+          description: Selection of fields, separated by space. See response schema to get list of fields
+        - name: sort
+          value: <string>
+          type: query
+          description: Field to sort by. Prepend - for DESC.
+        - name: q
+          value: <string>
+          type: query
+          description: Search query string. Searches in question and folder. Search is case-insensitive.
+        - name: listingId
+          value: ""
+          type: path
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: text/plain
+      body:
+        type: text
+        data: <string>
+
+docs: Returns saved replies filtered by the listing id. By default only ids are returned.

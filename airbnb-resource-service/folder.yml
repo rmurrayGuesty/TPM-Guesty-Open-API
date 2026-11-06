@@ -1,0 +1,7 @@
+info:
+  name: airbnb-resource-service
+  type: folder
+  seq: 30
+
+request:
+  auth: inherit
